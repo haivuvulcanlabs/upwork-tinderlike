@@ -131,7 +131,7 @@ func verifyUrl(urlString: String?) -> Bool {
 
 extension String {
     var addUploadBaseURL : String {
-        return WebServices.uploadBaseURL + self
+        return self
     }
 }
 //MARK: -  Int

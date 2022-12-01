@@ -9,8 +9,6 @@ import SwiftUI
 
 struct SplashScreenView: View {
     @StateObject var model = SplashScreeViewModel()
-    @AppStorage(Defaults.coins) var coins = 0
-    @AppStorage(Defaults.userID) var userID = 0
     
     var body: some View {
         ZStack {
@@ -26,7 +24,6 @@ struct SplashScreenView: View {
         }
         .onAppear(perform: {
             UIApplication.shared.isIdleTimerDisabled = true
-            AllStaticData.userID = userID
             model.fetchAllAPI()
         })
         .myBackColor()

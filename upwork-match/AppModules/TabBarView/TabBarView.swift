@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @AppStorage(Defaults.IsUserLogin) var isLogin = false
     @State var isLoginSheet = false
     @State var selectedTab = 0
     @State var isPostCover = false
@@ -41,7 +40,6 @@ struct TabBarView: View {
 }
 
 struct TabButton : View {
-    @AppStorage(Defaults.IsUserLogin) var isLogin = false
     @State var isLoginSheet = false
     var image : Image?
     var text : String
