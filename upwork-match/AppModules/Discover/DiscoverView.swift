@@ -15,13 +15,6 @@ struct DiscoverView: View {
     
     var body: some View {
         VStack {
-            HStack{
-                EmptyView()
-            }
-            .padding(.horizontal,10)
-            .frame(height: 55, alignment: .center)
-            
-            Spacer()
             ZStack(alignment: .top) {
                 ScrollView(showsIndicators: false) {
                     

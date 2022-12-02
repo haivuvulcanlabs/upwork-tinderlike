@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2112A899293A608C00129304 /* WellcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2112A898293A608C00129304 /* WellcomeView.swift */; };
 		214A0FEB29379445002D2EE3 /* upwork_matchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214A0FEA29379445002D2EE3 /* upwork_matchApp.swift */; };
 		214A0FED29379445002D2EE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214A0FEC29379445002D2EE3 /* ContentView.swift */; };
 		214A0FEF29379446002D2EE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 214A0FEE29379446002D2EE3 /* Assets.xcassets */; };
@@ -49,9 +50,21 @@
 		21E41D142938F8B800227BAA /* ReorderableForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D132938F8B800227BAA /* ReorderableForEach.swift */; };
 		21E41D172938FC6400227BAA /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D162938FC6400227BAA /* AppSetting.swift */; };
 		21E41D192938FE2200227BAA /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D182938FE2200227BAA /* SettingViewModel.swift */; };
+		21E41D1C293995CF00227BAA /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D1B293995CF00227BAA /* CreateAccountView.swift */; };
+		21E41D1E293995DA00227BAA /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D1D293995DA00227BAA /* CreateAccountViewModel.swift */; };
+		21E41D2029399F4A00227BAA /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D1F29399F4A00227BAA /* SigninView.swift */; };
+		21E41D242939A11000227BAA /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D232939A11000227BAA /* SignInViewModel.swift */; };
+		21E41D262939A61100227BAA /* AdaptsToKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D252939A61100227BAA /* AdaptsToKeyboard.swift */; };
+		21E41D282939AEBF00227BAA /* InputPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D272939AEBF00227BAA /* InputPhoneView.swift */; };
+		21E41D2A2939AECA00227BAA /* InputVerifyCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D292939AECA00227BAA /* InputVerifyCodeView.swift */; };
+		21E41D2D2939BF9C00227BAA /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D2C2939BF9C00227BAA /* SignupView.swift */; };
+		21E41D2F2939BFBF00227BAA /* SignupInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D2E2939BFBF00227BAA /* SignupInfoView.swift */; };
+		21E41D312939C1C400227BAA /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D302939C1C400227BAA /* PageControl.swift */; };
+		21E41D332939C6E600227BAA /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D322939C6E600227BAA /* SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2112A898293A608C00129304 /* WellcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WellcomeView.swift; sourceTree = "<group>"; };
 		214A0FE729379445002D2EE3 /* upwork-match.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "upwork-match.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		214A0FEA29379445002D2EE3 /* upwork_matchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = upwork_matchApp.swift; sourceTree = "<group>"; };
 		214A0FEC29379445002D2EE3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -94,6 +107,17 @@
 		21E41D132938F8B800227BAA /* ReorderableForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderableForEach.swift; sourceTree = "<group>"; };
 		21E41D162938FC6400227BAA /* AppSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = "<group>"; };
 		21E41D182938FE2200227BAA /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		21E41D1B293995CF00227BAA /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		21E41D1D293995DA00227BAA /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
+		21E41D1F29399F4A00227BAA /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
+		21E41D232939A11000227BAA /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		21E41D252939A61100227BAA /* AdaptsToKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptsToKeyboard.swift; sourceTree = "<group>"; };
+		21E41D272939AEBF00227BAA /* InputPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPhoneView.swift; sourceTree = "<group>"; };
+		21E41D292939AECA00227BAA /* InputVerifyCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputVerifyCodeView.swift; sourceTree = "<group>"; };
+		21E41D2C2939BF9C00227BAA /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		21E41D2E2939BFBF00227BAA /* SignupInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInfoView.swift; sourceTree = "<group>"; };
+		21E41D302939C1C400227BAA /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		21E41D322939C6E600227BAA /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +173,8 @@
 		214A0FF829379478002D2EE3 /* AppModules */ = {
 			isa = PBXGroup;
 			children = (
+				21E41D2B2939BF8C00227BAA /* Signup */,
+				21E41D1A293995C000227BAA /* CreateAccount */,
 				21E41D152938FC5000227BAA /* AppSettings */,
 				216E2F3829384CCF006FF871 /* Common */,
 				214A10132937B588002D2EE3 /* HomeView */,
@@ -179,6 +205,7 @@
 				214A0FFF2937966E002D2EE3 /* Extentions.swift */,
 				214A100129379693002D2EE3 /* Constant.swift */,
 				21E41D0F2938B63600227BAA /* Functions.swift */,
+				21E41D252939A61100227BAA /* AdaptsToKeyboard.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -246,6 +273,7 @@
 				21E41D0D2938B5F600227BAA /* ImagePicker.swift */,
 				21E41D112938B99400227BAA /* CustomActionSheet.swift */,
 				21E41D132938F8B800227BAA /* ReorderableForEach.swift */,
+				21E41D302939C1C400227BAA /* PageControl.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -258,6 +286,30 @@
 				21E41D182938FE2200227BAA /* SettingViewModel.swift */,
 			);
 			path = AppSettings;
+			sourceTree = "<group>";
+		};
+		21E41D1A293995C000227BAA /* CreateAccount */ = {
+			isa = PBXGroup;
+			children = (
+				21E41D1B293995CF00227BAA /* CreateAccountView.swift */,
+				21E41D1D293995DA00227BAA /* CreateAccountViewModel.swift */,
+				21E41D1F29399F4A00227BAA /* SigninView.swift */,
+				21E41D232939A11000227BAA /* SignInViewModel.swift */,
+				21E41D272939AEBF00227BAA /* InputPhoneView.swift */,
+				21E41D292939AECA00227BAA /* InputVerifyCodeView.swift */,
+			);
+			path = CreateAccount;
+			sourceTree = "<group>";
+		};
+		21E41D2B2939BF8C00227BAA /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				21E41D2C2939BF9C00227BAA /* SignupView.swift */,
+				21E41D2E2939BFBF00227BAA /* SignupInfoView.swift */,
+				21E41D322939C6E600227BAA /* SignUpViewModel.swift */,
+				2112A898293A608C00129304 /* WellcomeView.swift */,
+			);
+			path = Signup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,8 +400,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E41D242939A11000227BAA /* SignInViewModel.swift in Sources */,
 				21E41D0C2938B57D00227BAA /* EditViewModel.swift in Sources */,
+				21E41D262939A61100227BAA /* AdaptsToKeyboard.swift in Sources */,
+				21E41D312939C1C400227BAA /* PageControl.swift in Sources */,
 				214A100B29379AE8002D2EE3 /* SplashScreeViewModel.swift in Sources */,
+				21E41D2F2939BFBF00227BAA /* SignupInfoView.swift in Sources */,
 				214A100929379A6A002D2EE3 /* ProfileView.swift in Sources */,
 				216E2F42293873EA006FF871 /* CustomAlert.swift in Sources */,
 				214A0FFB2937948B002D2EE3 /* DiscoverView.swift in Sources */,
@@ -358,6 +414,9 @@
 				21E41D0E2938B5F600227BAA /* ImagePicker.swift in Sources */,
 				21C723DE2938932200C4B961 /* MyPlusView.swift in Sources */,
 				216E2F3E29385213006FF871 /* SwiftUISlider.swift in Sources */,
+				21E41D2029399F4A00227BAA /* SigninView.swift in Sources */,
+				21E41D1C293995CF00227BAA /* CreateAccountView.swift in Sources */,
+				21E41D2D2939BF9C00227BAA /* SignupView.swift in Sources */,
 				21E41D172938FC6400227BAA /* AppSetting.swift in Sources */,
 				214A1005293799CA002D2EE3 /* TabBarView.swift in Sources */,
 				216E2F402938596D006FF871 /* ProfileAndLikeView.swift in Sources */,
@@ -365,13 +424,18 @@
 				21E41D102938B63600227BAA /* Functions.swift in Sources */,
 				21C723E229389D5D00C4B961 /* EditProfileView.swift in Sources */,
 				21E41D192938FE2200227BAA /* SettingViewModel.swift in Sources */,
+				21E41D332939C6E600227BAA /* SignUpViewModel.swift in Sources */,
+				21E41D2A2939AECA00227BAA /* InputVerifyCodeView.swift in Sources */,
 				214A10002937966E002D2EE3 /* Extentions.swift in Sources */,
 				21E41D142938F8B800227BAA /* ReorderableForEach.swift in Sources */,
 				216E2F3C29384DD3006FF871 /* ProfileFilterSheet.swift in Sources */,
+				21E41D282939AEBF00227BAA /* InputPhoneView.swift in Sources */,
 				214A0FEB29379445002D2EE3 /* upwork_matchApp.swift in Sources */,
+				21E41D1E293995DA00227BAA /* CreateAccountViewModel.swift in Sources */,
 				214A100F2937A99D002D2EE3 /* Profile.swift in Sources */,
 				214A10152937B597002D2EE3 /* HomeView.swift in Sources */,
 				214A0FFD2937963E002D2EE3 /* SplashScreenView.swift in Sources */,
+				2112A899293A608C00129304 /* WellcomeView.swift in Sources */,
 				216E2F3A29384CD8006FF871 /* BottomSheet.swift in Sources */,
 				214A100229379693002D2EE3 /* Constant.swift in Sources */,
 				21C723E029389AF200C4B961 /* SettingsView.swift in Sources */,

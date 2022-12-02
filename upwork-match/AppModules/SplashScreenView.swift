@@ -13,7 +13,8 @@ struct SplashScreenView: View {
     var body: some View {
         ZStack {
             NavigationLink(isActive: $model.isDataLoaded, destination: {
-                TabBarView()
+//                TabBarView()
+                CreateAccountView()
             }, label: {}).frame(width: 0, height: 0, alignment: .center)
                             
             MyImages.icLogo

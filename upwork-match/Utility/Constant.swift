@@ -96,6 +96,9 @@ struct MyColor {
     static let textGray                             = Color(#colorLiteral(red: 0.4509803922, green: 0.4509803922, blue: 0.4509803922, alpha: 1))
     static let popupBackground                      = Color(#colorLiteral(red: 0.1176470588, green: 0.1176470588, blue: 0.1176470588, alpha: 1))
     static let hex4d4d4d                            = Color(hex: "#4D4D4D")
+    static let hexD1D1D1                            = Color(hex: "#D1D1D1")
+    static let hexABABAB                            = Color(hex: "#ABABAB")
+
     
     static let gradientHorizontal                = LinearGradient(colors: [gradLight,gradDark], startPoint: .leading, endPoint: .trailing)
     static let gradient                            = LinearGradient(colors: [gradLight,gradDark], startPoint: .top, endPoint: .bottom)

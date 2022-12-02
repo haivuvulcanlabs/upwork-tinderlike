@@ -114,7 +114,7 @@ struct ProfileImageView: View {
     var item: GridData
     @Binding var imagePicker: Bool
     @Binding var isDelete: Bool
-
+    var selectHandler: (()->())?
     var body: some View {
         ZStack {
             if !item.thumbURL.isEmpty {
@@ -128,6 +128,7 @@ struct ProfileImageView: View {
                         Spacer()
                         Button {
                             isDelete = true
+                            selectHandler?()
                         } label: {
                             Image("ic-remove")
                                 .resizable()
@@ -144,6 +145,7 @@ struct ProfileImageView: View {
             } else {
                 Button {
                     imagePicker = true
+                    selectHandler?()
                 } label: {
                     Image("ic-plus")
                         .resizable()
