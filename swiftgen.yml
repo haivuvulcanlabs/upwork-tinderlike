@@ -1,0 +1,14 @@
+xcassets:
+  inputs:
+    - upwork-match/Resources/Assets.xcassets
+    - upwork-match/Resources/Colors.xcassets
+  outputs:
+    - templatePath: xcassets-swiftui.stencil
+      output: upwork-match/SwiftGen/Accessor.assets.swift
+fonts:
+  inputs: upwork-match/Resources/Fonts
+  outputs:
+    - templatePath: swiftgen-font.stencil
+      output: upwork-match/SwiftGen/Accessor.fonts.swift
+      params:
+        publicAccess: true

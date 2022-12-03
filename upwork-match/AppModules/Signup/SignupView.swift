@@ -11,7 +11,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct SignupView: View {
-    @State private var selectedTab = 0
+    @State private var selectedTab = 2
     @StateObject private var model = SignUpViewModel()
     
     var body: some View {
@@ -25,7 +25,7 @@ struct SignupView: View {
                         Spacer()
                         if selectedTab >= 3 {
                             Button {
-                                
+                                AppFlow.shared.isLoggedIn = true
                             } label: {
                                 Text("SKIP")
                                     .foregroundColor(MyColor.red)
@@ -35,13 +35,15 @@ struct SignupView: View {
                         }
                     }
                 }
+                
                 TabView(selection: $selectedTab) {
-                    SignupInfoView(step: .name).tag(0)
-                    SignupInfoView(step: .birthday).tag(1)
-                    SignupInfoView(step: .gender).tag(2)
-                    SignupInfoView(step: .bio).tag(3)
-                    SignupInfoView(step: .photo).tag(4)
+                    SignupInfoView(step: .name, tabIndex: $selectedTab).tag(2)                    .gesture(DragGesture())
 
+                    SignupInfoView(step: .birthday, tabIndex: $selectedTab).tag(3)
+                    SignupInfoView(step: .gender, tabIndex: $selectedTab).tag(4)
+                    SignupInfoView(step: .bio, tabIndex: $selectedTab).tag(5)
+                    SignupInfoView(step: .photo, tabIndex: $selectedTab).tag(6)
+                    WellcomeView().tag(7)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 

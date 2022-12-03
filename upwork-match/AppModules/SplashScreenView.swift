@@ -7,15 +7,25 @@
 
 import SwiftUI
 
+class AppFlow: ObservableObject {
+    static let shared = AppFlow()
+    @Published var isLoggedIn = false
+}
+
 struct SplashScreenView: View {
     @StateObject var model = SplashScreeViewModel()
-    
+    @StateObject var appflow = AppFlow.shared
+
     var body: some View {
         ZStack {
             NavigationLink(isActive: $model.isDataLoaded, destination: {
-//                TabBarView()
-                CreateAccountView()
-            }, label: {}).frame(width: 0, height: 0, alignment: .center)
+                if appflow.isLoggedIn {
+                    TabBarView()
+                } else {
+                    CreateAccountView()
+                }
+            }, label: {})
+            .frame(width: 0, height: 0, alignment: .center)
                             
             MyImages.icLogo
                 .resizable()
@@ -29,6 +39,7 @@ struct SplashScreenView: View {
         })
         .myBackColor()
         .ignoresSafeArea()
+
 //        .onChange(of: model.coins) { newValue in
 //            coins = newValue
 //        }

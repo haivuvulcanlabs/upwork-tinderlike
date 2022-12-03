@@ -48,28 +48,44 @@ extension View {
 struct BackButtonNavView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    let image: Image
+    var image: Image?
     var text: String? = nil
+    var rightText: String? = nil
     
     var body: some View {
         HStack {
-            Button {
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 12, height: 12, alignment: .center)
+            if let leftImage = image {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    leftImage
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 12, height: 12, alignment: .center)
+                }
+                .frame(width: 30, height: 30, alignment: .center)
             }
-            .frame(width: 30, height: 30, alignment: .center)
+           
             
             
             if let notNilText = text, !notNilText.isEmpty {
                 Spacer()
                 Text(notNilText)
+                    .font(.roboto(.bold, size: 17))
                     .foregroundColor(MyColor.red)
             }
             Spacer()
+            
+            if let rightText = rightText {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Text(rightText)
+                        .foregroundColor(MyColor.red)
+                }
+                .frame(height: 30, alignment: .trailing)
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+            }
         }
         .frame(height: 44, alignment: .center)
     }

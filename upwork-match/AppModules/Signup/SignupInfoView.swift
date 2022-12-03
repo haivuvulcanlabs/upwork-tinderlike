@@ -7,12 +7,18 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 struct SignupInfoView: View {
     var step: SignupStep
+    @Binding var tabIndex: Int
     @State private var inputText: String = "john"
-    @State private var birthday: [String] = ["","","","","",""]
     @StateObject var model = SignUpViewModel()
+    
+    @State var birthday: [String] = ["","","","","",""]
+    @FocusState var field: BirthdayField?
+    var allBirthdayFields: [BirthdayField] = BirthdayField.allCases
+
     var body: some View {
         ZStack{
             VStack {
@@ -35,11 +41,31 @@ struct SignupInfoView: View {
                     TextField("", text: $inputText)
                     HStack {
                         ForEach(0..<6, id: \.self) {index in
-                            inputTextView(text: $birthday[index])
-                                .frame(width: 14, height: 40, alignment: .center)
+                            VStack{
+                                TextField("", text: $birthday[index])
+                                    .focused($field, equals: allBirthdayFields[index])
+                                    .foregroundColor(Color(hex: "999999"))
+                                    .multilineTextAlignment(.center)
+                                    .onReceive(Just($birthday[index])) { _ in
+                                        if birthday[index].count > 1 {
+                                            birthday[index] = String(birthday[index].prefix(1))
+                                        }
+                                    }
+                                
+                                Rectangle()
+                                    .foregroundColor(MyColor.red)
+                                    .background(MyColor.red)
+                                    .frame(height: 3)
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .frame(width: 14, height: 40, alignment: .center)
+                            .onAppear{
+                                field = .month1
+                            }
                             
                         }
                     }
+                    
                 case .gender:
                     selectGenderView
                 case .bio:
@@ -55,10 +81,16 @@ struct SignupInfoView: View {
                 Spacer()
                 
                 Button {
+                    if step == .birthday {
+                        model.onAddBithday()
+                    }
+                    tabIndex += 1
+
                 } label: {
                     buildButton(with: "CONTINUE")
                 }
             }
+
             BottomSheet(isShowing: $model.imagePicker, bgColor: .clear, content: AnyView(cameraActionSheet))
             BottomSheet(isShowing: $model.isShowingDelete, bgColor: .clear, content: AnyView(deleteSheet))
         }
@@ -68,7 +100,6 @@ struct SignupInfoView: View {
         .fullScreenCover(isPresented: $model.isCameraOn) {
             ImagePicker(image: $model.selfie, filename: Binding.constant(""), imagePickerType: .camera, videoURL: .constant(URL(string: "www.retrytech.com")!))
         }
-        
         .myBackColor()
     }
     
@@ -85,7 +116,7 @@ struct SignupInfoView: View {
                 .frame(maxWidth: .infinity)
         }
     }
-    
+
     var selectGenderView: some View {
         VStack(spacing: 20) {
             Button {
@@ -146,7 +177,7 @@ struct SignupInfoView: View {
         }
         .background(Color.clear)
         .ignoresSafeArea()
-
+        
     }
     
     var deleteSheet : some View {
@@ -159,7 +190,7 @@ struct SignupInfoView: View {
             }
         }, options: ["Delete"])
         .ignoresSafeArea()
-
+        
     }
 }
 

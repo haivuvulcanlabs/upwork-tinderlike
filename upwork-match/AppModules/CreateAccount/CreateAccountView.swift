@@ -30,7 +30,7 @@ struct CreateAccountView: View {
                         .multilineTextAlignment(.center)
                         .padding(.vertical, 20)
                     NavigationLink {
-                        WellcomeView()
+                        EditPhotoView()
                     } label: {
                         buildButton(with: "SIGN IN WITH APPLE")
                     }

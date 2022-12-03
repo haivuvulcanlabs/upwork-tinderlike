@@ -27,6 +27,13 @@ class SignUpViewModel: ObservableObject {
     @Published var selfie = UIImage()
     @Published var isFilePicker = false
     @Published var selectedGridItem: GridData = GridData(id: -1, thumbURL: "")
+    
+    @Published var birthdayModel = BirthdateViewModel()
+    
+    func onAddBithday() {
+        
+    }
+    
 }
 
 enum SignupStep: Int, CaseIterable {

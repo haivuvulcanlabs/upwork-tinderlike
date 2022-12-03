@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct WellcomeView: View {
+    @StateObject var appflow = AppFlow.shared
+
     var body: some View {
         
         ZStack() {
@@ -22,6 +24,7 @@ struct WellcomeView: View {
                 
                 Spacer()
                 Button {
+                    appflow.isLoggedIn = true
                 } label: {
                     buildButton(with: "CONTINUE")
                 }

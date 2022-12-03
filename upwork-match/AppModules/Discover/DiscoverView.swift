@@ -39,8 +39,12 @@ struct DiscoverView: View {
                                 }
                             }
                         }
+                        .refreshable {
+                            print("Do your refresh work here")
+                        }
                     }
                 }
+                
             }
             .background(MyColor.whiteBGTab)
         }

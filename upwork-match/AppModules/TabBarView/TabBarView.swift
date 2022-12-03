@@ -17,7 +17,7 @@ struct TabBarView: View {
             case 1 :
                 HomeView()
             case 2:
-                ProfileView()
+                ChatListView()
             default :
                 ProfileView()
             }
