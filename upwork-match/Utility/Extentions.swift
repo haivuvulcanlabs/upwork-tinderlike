@@ -299,17 +299,17 @@ extension AVPlayer {
 }
 
 extension Date {
-    func toString() -> String {
+    func toString(format: String = "dd/MM/yyyy HH:mm") -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        dateFormatter.dateFormat = format
         return dateFormatter.string(from: self)
     }
 }
 
 extension String {
-    func toDate() -> Date {
+    func toDate(format: String = "dd/MM/yyyy HH:mm") -> Date {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        dateFormatter.dateFormat = format
         return dateFormatter.date(from: self) ?? Date()
     }
 }

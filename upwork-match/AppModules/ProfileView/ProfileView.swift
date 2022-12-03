@@ -18,6 +18,7 @@ struct ProfileView: View {
             HStack {
                 Spacer()
                 Text("Profile")
+                    .font(.roboto(.black, size: 17))
                     .foregroundColor(MyColor.red)
                 Spacer()
             }
@@ -26,11 +27,11 @@ struct ProfileView: View {
                 .scaledToFill()
                 .frame(width: Device.width * 180.0 / 375.0, height:  Device.width * 180.0 / 375.0, alignment: .center)
                 .clipShape(Circle())
-            
+                .padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
             
             
             Text("Jhon, 22")
-                .font(.system(size: 25, weight: .semibold))
+                .font(.montserrat(.semiBold, size: 25))
                 .foregroundColor(MyColor.white)
                 .frame(alignment: .center)
                 .padding(.vertical, 10)
@@ -47,16 +48,12 @@ struct ProfileView: View {
             }
             Spacer()
             
-            ScrollView{
-                LazyHStack {
-                    GetPlusPageView()
-                }
-                .frame(maxHeight: .infinity, alignment: .center)
-            }
+            GetPlusPageView()
             
             NavigationLink(destination: MyPlusView()) {
                 
-                Text("Get plus")
+                Text("Get plus".uppercased())
+                    .font(.montserrat(.semiBold, size: 16))
                     .foregroundColor(MyColor.red)
                 
                     .frame(width: Device.width * 325.0 / 414.0, height: 48, alignment: .center)
@@ -79,6 +76,7 @@ struct VerticleButton: View {
     let image: Image
     let text: String
     let imageSize: CGFloat = 30
+    var font: Font = .openSans(.bold, size: 15)
     var body: some View {
         VStack{
             image
@@ -96,9 +94,23 @@ struct VerticleButton: View {
 
 
 struct GetPlusPageView: View {
+    struct PlusText {
+        let title: String
+        let subTitle: String
+    }
+    var plusTexts: [PlusText] = []
+    
+    init() {
+        let text1 = PlusText(title: "Unlimited message", subTitle: "Send as many messages you want")
+        let text2 = PlusText(title: "Unlimited likes", subTitle: "Like as much you want")
+        let text3 = PlusText(title: "Turn off adverts", subTitle: "Don´t get disturbed")
+        plusTexts = [text1, text2, text3]
+    }
+    
     var body: some View {
         TabView {
-            ForEach(0..<3) { i in
+            ForEach(0..<plusTexts.count, id: \.self) { i in
+                let plusText = plusTexts[i]
                 ZStack {
                     MyColor.darkBG
                     VStack{
@@ -106,19 +118,20 @@ struct GetPlusPageView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 25, height: 25, alignment: .center)
-                        Text("Unlimited message")
+                        Text(plusText.title)
                             .foregroundColor(.white)
-                            .font(.system(size: 14, weight: .semibold))
+                            .font(.montserrat(.semiBold, size: 14))
                             .padding(.vertical, 1)
-                        Text("Send as many messages you want")
+                        Text(plusText.subTitle)
                             .foregroundColor(.white)
-                            .font(.system(size: 12, weight: .medium))
+                            .font(.montserrat(.medium, size: 12))
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0))
                     }
                 }
             }
         }
-        .frame(width: UIScreen.main.bounds.width, height: 150)
         .tabViewStyle(.page(indexDisplayMode: .always))
+        .frame(width: UIScreen.main.bounds.width, height: 150)
+        .padding(.vertical, 10)
     }
 }

@@ -12,19 +12,18 @@ import Combine
 struct SignupInfoView: View {
     var step: SignupStep
     @Binding var tabIndex: Int
-    @State private var inputText: String = "john"
+    @State private var inputText: String = ""
     @StateObject var model = SignUpViewModel()
-    
-    @State var birthday: [String] = ["","","","","",""]
+    @State var birthday: [String] = ["","","","","","","",""]
     @FocusState var field: BirthdayField?
     var allBirthdayFields: [BirthdayField] = BirthdayField.allCases
-
+    
     var body: some View {
         ZStack{
             VStack {
                 Text(step.titleText)
                     .foregroundColor(Color(hex: "C1C1C1"))
-                    .font(.system(size: 22, weight: .semibold))
+                    .font(.montserrat(.semiBold, size: 22))
                     .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
                 if let subTitle = step.subtitle, !subTitle.isEmpty {
                     Text(subTitle)
@@ -35,62 +34,42 @@ struct SignupInfoView: View {
                 
                 switch step {
                 case .name:
-                    inputTextView(text: $inputText)
+                    inputTextView()
                         .frame(width: Device.width * 265.0 / 375.0, height: 40, alignment: .center)
                 case .birthday:
-                    TextField("", text: $inputText)
-                    HStack {
-                        ForEach(0..<6, id: \.self) {index in
-                            VStack{
-                                TextField("", text: $birthday[index])
-                                    .focused($field, equals: allBirthdayFields[index])
-                                    .foregroundColor(Color(hex: "999999"))
-                                    .multilineTextAlignment(.center)
-                                    .onReceive(Just($birthday[index])) { _ in
-                                        if birthday[index].count > 1 {
-                                            birthday[index] = String(birthday[index].prefix(1))
-                                        }
-                                    }
-                                
-                                Rectangle()
-                                    .foregroundColor(MyColor.red)
-                                    .background(MyColor.red)
-                                    .frame(height: 3)
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .frame(width: 14, height: 40, alignment: .center)
-                            .onAppear{
-                                field = .month1
-                            }
+                    HStack(spacing: 1) {
+                        ForEach(0..<birthday.count, id: \.self) {index in
                             
+                            inputBirthdateView(index: index)
                         }
                     }
                     
                 case .gender:
                     selectGenderView
                 case .bio:
-                    TextField("Type here...", text: $inputText)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color(hex: "999999"))
-                        .padding(.horizontal, 20)
+                    bioView
                 case .photo:
                     selectProfileImages
                 default:
                     EmptyView()
                 }
+                
+                if let errorMessage = model.errorMessage, !errorMessage.isEmpty {
+                    Text(errorMessage)
+                        .font(.montserrat(.regular, size: 11))
+                        .foregroundColor(Color(hex: "#FF001A"))
+                }
                 Spacer()
                 
                 Button {
-                    if step == .birthday {
-                        model.onAddBithday()
-                    }
+                    
                     tabIndex += 1
-
+                    
                 } label: {
                     buildButton(with: "CONTINUE")
-                }
+                }.disabled(!model.isVerified)
             }
-
+            
             BottomSheet(isShowing: $model.imagePicker, bgColor: .clear, content: AnyView(cameraActionSheet))
             BottomSheet(isShowing: $model.isShowingDelete, bgColor: .clear, content: AnyView(deleteSheet))
         }
@@ -104,11 +83,23 @@ struct SignupInfoView: View {
     }
     
     @ViewBuilder
-    func inputTextView(text: Binding<String>) -> some View {
+    func inputTextView() -> some View {
         VStack{
-            TextField("", text: text)
-                .foregroundColor(Color(hex: "999999"))
-                .multilineTextAlignment(.center)
+      
+            TextField("Name", text: $inputText, onEditingChanged: {_ in
+                print("Changed")
+                model.onNameChanged(name: inputText)
+                
+            })
+
+            .onChange(of: inputText, perform: { newValue in
+                model.onNameChanged(name: newValue)
+               
+            })
+            .font(.montserrat(.medium, size: 18))
+            .foregroundColor(Color(hex: "C1C1C1"))
+            .multilineTextAlignment(.center)
+            
             Rectangle()
                 .foregroundColor(MyColor.red)
                 .background(MyColor.red)
@@ -116,25 +107,102 @@ struct SignupInfoView: View {
                 .frame(maxWidth: .infinity)
         }
     }
-
+    
+    @ViewBuilder
+    func inputBirthdateView(index: Int) -> some View {
+        HStack(spacing: 0){
+            VStack{
+                TextField("", text: $birthday[index], onEditingChanged: { _ in
+                    
+                })
+                .placeholder(when: birthday[index].isEmpty && field?.rawValue != index) {
+                        Text(allBirthdayFields[index].playHolder)
+                            .font(.montserrat(.semiBold, size: 16))
+                            .foregroundColor(Color(hex: "#C1C1C1"))
+                    }
+                    .font(.montserrat(.semiBold, size: 16))
+                    .focused($field, equals: allBirthdayFields[index])
+                    .foregroundColor(Color(hex: "#C1C1C1"))
+                    .multilineTextAlignment(.center)
+//                    .onReceive(Just($birthday[index])) { _ in
+//                        
+//                    }
+                    .onChange(of: birthday[index]) { newValue in
+                        let number = Int(newValue) ?? 100
+                        
+                        if number <= allBirthdayFields[index].max {
+                            if newValue.count >= 1 {
+                                birthday[index] = String(newValue.prefix(1))
+                                field = BirthdayField(rawValue: index + 1)
+                            } else {
+                                birthday[index] = newValue
+                            }
+                        } else {
+                            birthday[index] = ""
+                        }
+                        
+                        model.onAddBithday(values: birthday)
+                    }
+                
+                Rectangle()
+                    .foregroundColor(field?.rawValue == index ? MyColor.red : MyColor.red.opacity(0.5))
+                    .frame(height: 3)
+                    .frame(maxWidth: .infinity)
+            }
+            .frame(width: 14, height: 40, alignment: .center)
+            
+            if index == 1 || index == 3 {
+                VStack{
+                    Text("/")
+                        .font(.montserrat(.medium, size: 15))
+                        .foregroundColor(Color(hex: "#C1C1C1"))
+                        .multilineTextAlignment(.center)
+                        .padding(.vertical, 5)
+                    Spacer()
+                }
+                .frame(width: 12, height: 40, alignment: .center)
+            }
+        }
+    }
+    
     var selectGenderView: some View {
         VStack(spacing: 20) {
             Button {
-                
+                model.onSelectGender(.female)
             } label: {
                 buildButton(with: "FEMALE")
+                    .opacity(model.gender == .female ? 1 : 0.5)
             }
             
             
             Button {
-                
+                model.onSelectGender(.male)
+
             } label: {
                 buildButton(with: "MALE")
+                    .opacity(model.gender == .male ? 1 : 0.5)
                 
             }
         }
         .frame(width: 260, alignment: .center)
         .padding(.vertical, 20)
+    }
+    
+    var bioView: some View {
+        TextField("", text: $model.bio)
+            .placeholder(when: model.bio.isEmpty ) {
+                    Text("Type here...")
+                    .multilineTextAlignment(.center)
+                    .font(.openSans(.regular, size: 15))
+                        .foregroundColor(Color(hex: "#999999"))
+                }
+            .font(.openSans(.semiBold, fixedSize: 15))
+            .multilineTextAlignment(.center)
+            .foregroundColor(Color(hex: "#C1C1C1"))
+            .padding(.horizontal, 20)
+            .onChange(of: model.bio) { newValue in
+                model.onBioChange(newValue)
+            }
     }
     
     var selectProfileImages: some View {

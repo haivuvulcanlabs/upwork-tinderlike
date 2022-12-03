@@ -27,6 +27,16 @@
 		2112A8C0293B4C1B00129304 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2112A8BC293B4C1B00129304 /* Roboto-Black.ttf */; };
 		2112A8C1293B4C1B00129304 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2112A8BD293B4C1B00129304 /* Roboto-Bold.ttf */; };
 		2112A8C2293B4C1B00129304 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2112A8BE293B4C1B00129304 /* Roboto-Regular.ttf */; };
+		2112A8C9293B563000129304 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2112A8C4293B563000129304 /* Montserrat-SemiBold.ttf */; };
+		2112A8CA293B563000129304 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2112A8C5293B563000129304 /* Montserrat-Medium.ttf */; };
+		2112A8CB293B563000129304 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2112A8C6293B563000129304 /* Montserrat-Bold.ttf */; };
+		2112A8CC293B563000129304 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2112A8C7293B563000129304 /* Montserrat-Regular.ttf */; };
+		2112A8CD293B563000129304 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2112A8C8293B563000129304 /* Montserrat-Black.ttf */; };
+		2112A8D1293BA12F00129304 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 2112A8D0293BA12F00129304 /* countries.json */; };
+		2112A8D4293BA15700129304 /* CountryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2112A8D3293BA15700129304 /* CountryManager.swift */; };
+		2112A8D6293BA17700129304 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2112A8D5293BA17700129304 /* Country.swift */; };
+		2112A8D8293BA19600129304 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2112A8D7293BA19600129304 /* Configuration.swift */; };
+		2112A8DA293BA23600129304 /* CountyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2112A8D9293BA23600129304 /* CountyPicker.swift */; };
 		214A0FEB29379445002D2EE3 /* upwork_matchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214A0FEA29379445002D2EE3 /* upwork_matchApp.swift */; };
 		214A0FED29379445002D2EE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214A0FEC29379445002D2EE3 /* ContentView.swift */; };
 		214A0FEF29379446002D2EE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 214A0FEE29379446002D2EE3 /* Assets.xcassets */; };
@@ -74,8 +84,6 @@
 		21E41D2029399F4A00227BAA /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D1F29399F4A00227BAA /* SigninView.swift */; };
 		21E41D242939A11000227BAA /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D232939A11000227BAA /* SignInViewModel.swift */; };
 		21E41D262939A61100227BAA /* AdaptsToKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D252939A61100227BAA /* AdaptsToKeyboard.swift */; };
-		21E41D282939AEBF00227BAA /* InputPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D272939AEBF00227BAA /* InputPhoneView.swift */; };
-		21E41D2A2939AECA00227BAA /* InputVerifyCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D292939AECA00227BAA /* InputVerifyCodeView.swift */; };
 		21E41D2D2939BF9C00227BAA /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D2C2939BF9C00227BAA /* SignupView.swift */; };
 		21E41D2F2939BFBF00227BAA /* SignupInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D2E2939BFBF00227BAA /* SignupInfoView.swift */; };
 		21E41D312939C1C400227BAA /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D302939C1C400227BAA /* PageControl.swift */; };
@@ -104,6 +112,16 @@
 		2112A8BD293B4C1B00129304 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		2112A8BE293B4C1B00129304 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		2112A8C3293B508800129304 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2112A8C4293B563000129304 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		2112A8C5293B563000129304 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		2112A8C6293B563000129304 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		2112A8C7293B563000129304 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		2112A8C8293B563000129304 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		2112A8D0293BA12F00129304 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		2112A8D3293BA15700129304 /* CountryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryManager.swift; sourceTree = "<group>"; };
+		2112A8D5293BA17700129304 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		2112A8D7293BA19600129304 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		2112A8D9293BA23600129304 /* CountyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountyPicker.swift; sourceTree = "<group>"; };
 		214A0FE729379445002D2EE3 /* upwork-match.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "upwork-match.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		214A0FEA29379445002D2EE3 /* upwork_matchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = upwork_matchApp.swift; sourceTree = "<group>"; };
 		214A0FEC29379445002D2EE3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -151,8 +169,6 @@
 		21E41D1F29399F4A00227BAA /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
 		21E41D232939A11000227BAA /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		21E41D252939A61100227BAA /* AdaptsToKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptsToKeyboard.swift; sourceTree = "<group>"; };
-		21E41D272939AEBF00227BAA /* InputPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPhoneView.swift; sourceTree = "<group>"; };
-		21E41D292939AECA00227BAA /* InputVerifyCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputVerifyCodeView.swift; sourceTree = "<group>"; };
 		21E41D2C2939BF9C00227BAA /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		21E41D2E2939BFBF00227BAA /* SignupInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInfoView.swift; sourceTree = "<group>"; };
 		21E41D302939C1C400227BAA /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
@@ -202,6 +218,17 @@
 			path = SwiftGen;
 			sourceTree = "<group>";
 		};
+		2112A8D2293BA13F00129304 /* CountryPicker */ = {
+			isa = PBXGroup;
+			children = (
+				2112A8D3293BA15700129304 /* CountryManager.swift */,
+				2112A8D5293BA17700129304 /* Country.swift */,
+				2112A8D7293BA19600129304 /* Configuration.swift */,
+				2112A8D9293BA23600129304 /* CountyPicker.swift */,
+			);
+			path = CountryPicker;
+			sourceTree = "<group>";
+		};
 		214A0FDE29379445002D2EE3 = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +272,7 @@
 		214A0FF829379478002D2EE3 /* AppModules */ = {
 			isa = PBXGroup;
 			children = (
+				2112A8D2293BA13F00129304 /* CountryPicker */,
 				2112A8AB293B2B4A00129304 /* Chats */,
 				2112A89A293AEFC600129304 /* EditPhoto */,
 				21E41D2B2939BF8C00227BAA /* Signup */,
@@ -315,6 +343,7 @@
 		216E2F1E29384B23006FF871 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2112A8D0293BA12F00129304 /* countries.json */,
 				214A0FEE29379446002D2EE3 /* Assets.xcassets */,
 				2112A8B2293B4A6800129304 /* Colors.xcassets */,
 				216E2F1F29384B2B006FF871 /* Fonts */,
@@ -325,6 +354,11 @@
 		216E2F1F29384B2B006FF871 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				2112A8C8293B563000129304 /* Montserrat-Black.ttf */,
+				2112A8C6293B563000129304 /* Montserrat-Bold.ttf */,
+				2112A8C5293B563000129304 /* Montserrat-Medium.ttf */,
+				2112A8C7293B563000129304 /* Montserrat-Regular.ttf */,
+				2112A8C4293B563000129304 /* Montserrat-SemiBold.ttf */,
 				2112A8BC293B4C1B00129304 /* Roboto-Black.ttf */,
 				2112A8BD293B4C1B00129304 /* Roboto-Bold.ttf */,
 				2112A8BB293B4C1B00129304 /* Roboto-Medium.ttf */,
@@ -377,8 +411,6 @@
 				21E41D1D293995DA00227BAA /* CreateAccountViewModel.swift */,
 				21E41D1F29399F4A00227BAA /* SigninView.swift */,
 				21E41D232939A11000227BAA /* SignInViewModel.swift */,
-				21E41D272939AEBF00227BAA /* InputPhoneView.swift */,
-				21E41D292939AECA00227BAA /* InputVerifyCodeView.swift */,
 			);
 			path = CreateAccount;
 			sourceTree = "<group>";
@@ -461,6 +493,7 @@
 			files = (
 				2112A8BF293B4C1B00129304 /* Roboto-Medium.ttf in Resources */,
 				2112A8B3293B4A6800129304 /* Colors.xcassets in Resources */,
+				2112A8CC293B563000129304 /* Montserrat-Regular.ttf in Resources */,
 				216E2F2F29384B38006FF871 /* OpenSans-Medium.ttf in Resources */,
 				216E2F3029384B38006FF871 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				216E2F3729384B38006FF871 /* OpenSans-SemiBold.ttf in Resources */,
@@ -469,14 +502,19 @@
 				216E2F3329384B38006FF871 /* OpenSans-Italic.ttf in Resources */,
 				216E2F3529384B38006FF871 /* OpenSans-MediumItalic.ttf in Resources */,
 				216E2F2D29384B38006FF871 /* OpenSans-SemiBoldItalic.ttf in Resources */,
+				2112A8CA293B563000129304 /* Montserrat-Medium.ttf in Resources */,
 				216E2F3429384B38006FF871 /* OpenSans-LightItalic.ttf in Resources */,
 				214A0FF229379446002D2EE3 /* Preview Assets.xcassets in Resources */,
 				214A0FEF29379446002D2EE3 /* Assets.xcassets in Resources */,
 				216E2F3229384B38006FF871 /* OpenSans-BoldItalic.ttf in Resources */,
+				2112A8C9293B563000129304 /* Montserrat-SemiBold.ttf in Resources */,
+				2112A8CD293B563000129304 /* Montserrat-Black.ttf in Resources */,
 				2112A8C1293B4C1B00129304 /* Roboto-Bold.ttf in Resources */,
 				2112A8C2293B4C1B00129304 /* Roboto-Regular.ttf in Resources */,
 				216E2F2E29384B38006FF871 /* OpenSans-Bold.ttf in Resources */,
 				216E2F3629384B38006FF871 /* OpenSans-Regular.ttf in Resources */,
+				2112A8CB293B563000129304 /* Montserrat-Bold.ttf in Resources */,
+				2112A8D1293BA12F00129304 /* countries.json in Resources */,
 				216E2F2C29384B38006FF871 /* OpenSans-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +528,7 @@
 			files = (
 				21E41D242939A11000227BAA /* SignInViewModel.swift in Sources */,
 				21E41D0C2938B57D00227BAA /* EditViewModel.swift in Sources */,
+				2112A8DA293BA23600129304 /* CountyPicker.swift in Sources */,
 				21E41D262939A61100227BAA /* AdaptsToKeyboard.swift in Sources */,
 				21E41D312939C1C400227BAA /* PageControl.swift in Sources */,
 				2112A8AD293B2B6C00129304 /* ChatListView.swift in Sources */,
@@ -498,6 +537,7 @@
 				214A100929379A6A002D2EE3 /* ProfileView.swift in Sources */,
 				216E2F42293873EA006FF871 /* CustomAlert.swift in Sources */,
 				214A0FFB2937948B002D2EE3 /* DiscoverView.swift in Sources */,
+				2112A8D6293BA17700129304 /* Country.swift in Sources */,
 				2112A8B1293B310D00129304 /* ChatListModelView.swift in Sources */,
 				214A100D2937A4A7002D2EE3 /* HomeViewModel.swift in Sources */,
 				214A0FED29379445002D2EE3 /* ContentView.swift in Sources */,
@@ -508,7 +548,9 @@
 				21E41D1C293995CF00227BAA /* CreateAccountView.swift in Sources */,
 				2112A89E293AF0AE00129304 /* ZoomableScrollView.swift in Sources */,
 				21E41D2D2939BF9C00227BAA /* SignupView.swift in Sources */,
+				2112A8D8293BA19600129304 /* Configuration.swift in Sources */,
 				2112A89C293AEFD600129304 /* EditPhotoView.swift in Sources */,
+				2112A8D4293BA15700129304 /* CountryManager.swift in Sources */,
 				21E41D172938FC6400227BAA /* AppSetting.swift in Sources */,
 				2112A8A8293AF82600129304 /* ImageModifier.swift in Sources */,
 				214A1005293799CA002D2EE3 /* TabBarView.swift in Sources */,
@@ -519,13 +561,11 @@
 				21C723E229389D5D00C4B961 /* EditProfileView.swift in Sources */,
 				21E41D192938FE2200227BAA /* SettingViewModel.swift in Sources */,
 				21E41D332939C6E600227BAA /* SignUpViewModel.swift in Sources */,
-				21E41D2A2939AECA00227BAA /* InputVerifyCodeView.swift in Sources */,
 				214A10002937966E002D2EE3 /* Extentions.swift in Sources */,
 				21E41D142938F8B800227BAA /* ReorderableForEach.swift in Sources */,
 				2112A8A0293AF16500129304 /* Utilities.swift in Sources */,
 				216E2F3C29384DD3006FF871 /* ProfileFilterSheet.swift in Sources */,
 				2112A8A6293AF54000129304 /* ImageCropperView.swift in Sources */,
-				21E41D282939AEBF00227BAA /* InputPhoneView.swift in Sources */,
 				214A0FEB29379445002D2EE3 /* upwork_matchApp.swift in Sources */,
 				21E41D1E293995DA00227BAA /* CreateAccountViewModel.swift in Sources */,
 				2112A8B7293B4AFF00129304 /* Accessor.fonts.swift in Sources */,

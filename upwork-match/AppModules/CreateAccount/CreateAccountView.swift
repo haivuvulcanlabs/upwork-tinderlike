@@ -70,6 +70,7 @@ extension View {
     @ViewBuilder
     func buildButton(with text: String) -> some View {
         Text(text)
+            .font(.montserrat(.semiBold, size: 16))
             .foregroundColor(MyColor.red)
             .frame(height: 48)
             .frame(minWidth: 0, maxWidth: .infinity)

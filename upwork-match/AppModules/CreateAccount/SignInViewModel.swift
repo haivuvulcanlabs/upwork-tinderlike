@@ -17,9 +17,18 @@ class SignInViewModel: ObservableObject {
             step = .inputCode
         }
     }
+    
+    func onVerifyCodeChanged(_ values: [String]) {
+        
+    }
 }
 
 
 enum SignInStep: Int, CaseIterable {
     case inputPhone = 0, inputCode
+}
+
+enum VerifyCodeField: Int, Hashable, CaseIterable {
+    case num1 = 0, num2, num3, num4, num5, num6
+
 }

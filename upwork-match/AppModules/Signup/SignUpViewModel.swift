@@ -29,11 +29,69 @@ class SignUpViewModel: ObservableObject {
     @Published var selectedGridItem: GridData = GridData(id: -1, thumbURL: "")
     
     @Published var birthdayModel = BirthdateViewModel()
+    @Published var gender: Gender?
+    @Published var bio: String = ""
     
-    func onAddBithday() {
+    @Published var isVerified = false
+    @Published var errorMessage: String?
+    
+    func onAddBithday(values: [String]) {
+        isVerified = false
+        let numbers: [Int] = values.compactMap({Int($0) ?? -1})
         
+        guard !numbers.contains(-1) else {
+            return
+        }
+        
+        let dateString = String(format: "%d%d/%d%d/%d%d%d%d", numbers[0],numbers[1],numbers[2],numbers[3],numbers[4],numbers[5],numbers[6],numbers[7])
+        let date = dateString.toDate(format: "dd/MM/yyyy")
+        let deltaTime = Date().timeIntervalSince1970 - date.timeIntervalSince1970
+        guard deltaTime >= 18 * 365 * 24 * 60 * 60 else {
+            errorMessage = "Minimum age requirement is 18."
+            return
+        }
+        
+        guard deltaTime < 100 * 365 * 24 * 60 * 60 else {
+            errorMessage = "Maximum age requirement is 100."
+            return
+        }
+        isVerified = true
+        errorMessage = nil
+
+        debugPrint("hai -- date \(dateString)")
     }
     
+    func onNameChanged(name: String) {
+        guard name.count >= 2 else {
+            isVerified = false
+            errorMessage = "Name must be at lest two letters."
+            return
+        }
+
+        let decimalCharacters = CharacterSet.decimalDigits
+
+        let decimalRange = name.rangeOfCharacter(from: decimalCharacters)
+
+        if decimalRange != nil {
+            isVerified = false
+            errorMessage = "Please enter only letters."
+            return
+        }
+        
+        errorMessage = nil
+
+        isVerified = true
+    }
+    
+    func onSelectGender(_ value: Gender) {
+        gender = value
+        isVerified = gender != nil
+    }
+    
+    func onBioChange(_ value: String) {
+        bio = value
+        isVerified = true
+    }
 }
 
 enum SignupStep: Int, CaseIterable {
@@ -66,4 +124,8 @@ enum SignupStep: Int, CaseIterable {
             return nil
         }
     }
+}
+
+enum Gender: Int {
+    case male, female
 }

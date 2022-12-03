@@ -11,6 +11,11 @@ import SwiftUI
 struct SigninView: View {
     @StateObject private var model = SignInViewModel()
     @State private var code: String = ""
+    var verifyField: [VerifyCodeField] = VerifyCodeField.allCases
+    @FocusState var selectedField: VerifyCodeField?
+    @State var verifyCodes: [String] = ["","","","","",""]
+    @State private var selectedCountry: String = ""
+    @State var isShowPhonePicker = false
     var body: some View {
         
         ZStack {
@@ -18,48 +23,13 @@ struct SigninView: View {
                 BackButtonNavView(image: Image("ic-close-red"), text: "Sign in")
                 if model.step == .inputPhone {
                     Text("Enter your mobile number")
+                        .font(.montserrat(.semiBold, size: 22))
                         .foregroundColor(Color(hex: "C1C1C1"))
-                        .font(.system(size: 22, weight: .semibold))
+                        .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
+                    
+                    
                 } else if model.step == .inputCode {
-                    Text("Enter your code")
-                        .foregroundColor(Color(hex: "C1C1C1"))
-                        .font(.system(size: 22, weight: .semibold))
-                    HStack{
-                        Text("sent to +112345678")
-                            .foregroundColor(Color(hex: "C1C1C1"))
-                            .font(.system(size: 10, weight: .medium))
-                        Button {
-                            
-                        } label: {
-                            Text("Resend")
-                                .foregroundColor(Color(hex: "CBCBCB"))
-                                .font(.system(size: 12, weight: .semibold))
-                        }
-                    }
-                    .padding(.vertical, 2)
-                    
-                    HStack(spacing: 2){
-                        ForEach(0 ..< 6, id: \.self) { index in
-                            VStack{
-                                TextField("\(index)", text: $code)
-                                    .foregroundColor(Color(hex: "C1C1C1"))
-                                    .font(.system(size: 16, weight: .semibold))
-                                    .frame(width: 14, height: 28)
-
-                                Rectangle()
-                                    .foregroundColor(Color.red)
-                                    .background(Color.red)
-                                    .frame(width: 14, height: 3)
-                            }
-                        }
-                    }
-                    
-                    Text("The code you entered is invalid.")
-                        .foregroundColor(MyColor.red)
-                        .font(.system(size: 11))
-                        .multilineTextAlignment(.center)
-                        .frame(alignment: .center)
-
+                    inputVerifyCodeView
                 }
                 
                 
@@ -78,7 +48,73 @@ struct SigninView: View {
                 
             }
             .adaptsToKeyboard()
+            BottomSheet(isShowing: $isShowPhonePicker, content: AnyView(phonePicker))
+        }
+        .onAppear{
+            isShowPhonePicker = true
         }
         .myBackColor()
+    }
+    
+    var inputVerifyCodeView: some View {
+        VStack {
+            Text("Enter your code")
+                .foregroundColor(Color(hex: "C1C1C1"))
+                .font(.montserrat(.semiBold, size: 22))
+                .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
+            HStack{
+                Text("sent to +112345678")
+                    .foregroundColor(Color(hex: "C1C1C1"))
+                    .font(.system(size: 10, weight: .medium))
+                Button {
+                    
+                } label: {
+                    Text("Resend")
+                        .foregroundColor(Color(hex: "CBCBCB"))
+                        .font(.system(size: 12, weight: .semibold))
+                }
+            }
+            .padding(.vertical, 2)
+            
+            HStack(spacing: 2){
+                ForEach(0 ..< verifyCodes.count, id: \.self) { index in
+                    VStack{
+                        TextField("", text: $verifyCodes[index])
+                            .font(.montserrat(.semiBold, size: 16))
+                            .focused($selectedField, equals: verifyField[index])
+                            .foregroundColor(Color(hex: "#C1C1C1"))
+                            .multilineTextAlignment(.center)
+                        
+                            .frame(width: 14, height: 28)
+                            .onChange(of: verifyCodes[index]) { newValue in
+                                if newValue.count >= 1 {
+                                    verifyCodes[index] = String(newValue.prefix(1))
+                                    selectedField = VerifyCodeField(rawValue: index + 1)
+                                } else {
+                                    verifyCodes[index] = newValue
+                                }
+                                
+                                model.onVerifyCodeChanged(verifyCodes)
+                            }
+                        
+                        Rectangle()
+                            .foregroundColor(selectedField?.rawValue == index ? MyColor.red : MyColor.red.opacity(0.5))
+                            .frame(height: 3)
+                            .frame(maxWidth: .infinity)
+                    }
+                }
+            }
+            
+            Text("The code you entered is invalid.")
+                .foregroundColor(MyColor.red)
+                .font(.system(size: 11))
+                .multilineTextAlignment(.center)
+                .frame(alignment: .center)
+        }
+    }
+    
+    var phonePicker: some View {
+        CountyPicker()
+            .frame(width: Device.width, height: Device.height/2, alignment: .bottom)
     }
 }
