@@ -14,22 +14,42 @@ struct SigninView: View {
     var verifyField: [VerifyCodeField] = VerifyCodeField.allCases
     @FocusState var selectedField: VerifyCodeField?
     @State var verifyCodes: [String] = ["","","","","",""]
-    @State private var selectedCountry: String = ""
     @State var isShowPhonePicker = false
+    @State var selectedCountry: Country = Country(phoneCode: "1", isoCode: "US")
+    var countries: [Country] = CountryManager.shared.getCountries()
+
     var body: some View {
         
         ZStack {
             VStack {
                 BackButtonNavView(image: Image("ic-close-red"), text: "Sign in")
                 if model.step == .inputPhone {
-                    Text("Enter your mobile number")
+                    Text("Enter your mobile\nnumber")
                         .font(.montserrat(.semiBold, size: 22))
                         .foregroundColor(Color(hex: "C1C1C1"))
                         .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
                     
                     
+                    HStack(spacing: 2){
+                        Text("\(selectedCountry.isoCode)+\(selectedCountry.phoneCode)")
+                            .font(.montserrat(.medium, size: 14))
+                            .foregroundColor(Color(hex: "999999"))
+                            .onTapGesture {
+                                isShowPhonePicker = true
+                            }
+                        Asset.Assets.icDownArrow.image.resizable()
+                            .scaledToFit()
+                            .frame(width: 5, height: 8, alignment: .center)
+                        Text("99999999")
+                            .font(.montserrat(.medium, size: 14))
+                            .foregroundColor(Color(hex: "999999"))
+                    }
+                    .padding(.vertical, 10)
+                    
                 } else if model.step == .inputCode {
-                    inputVerifyCodeView
+                    withAnimation {
+                        inputVerifyCodeView
+                    }
                 }
                 
                 
@@ -43,6 +63,7 @@ struct SigninView: View {
                 Button {
                     model.tappedContinueButton()
                 } label: {
+                   
                     buildButton(with: "CONTINUE")
                 }
                 
@@ -50,9 +71,7 @@ struct SigninView: View {
             .adaptsToKeyboard()
             BottomSheet(isShowing: $isShowPhonePicker, content: AnyView(phonePicker))
         }
-        .onAppear{
-            isShowPhonePicker = true
-        }
+       
         .myBackColor()
     }
     
@@ -114,7 +133,7 @@ struct SigninView: View {
     }
     
     var phonePicker: some View {
-        CountyPicker()
+        CountyPicker(selectedCountry: $selectedCountry, countries: countries)
             .frame(width: Device.width, height: Device.height/2, alignment: .bottom)
     }
 }

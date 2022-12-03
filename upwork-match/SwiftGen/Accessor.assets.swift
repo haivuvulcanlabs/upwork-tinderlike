@@ -25,6 +25,7 @@ internal enum Asset {
     internal static let icCloseRed = ImageAsset(name: "ic-close-red")
     internal static let icCloseWhite = ImageAsset(name: "ic-close-white")
     internal static let icDiscover = ImageAsset(name: "ic-discover")
+    internal static let icDownArrow = ImageAsset(name: "ic-down-arrow")
     internal static let icDrawer = ImageAsset(name: "ic-drawer")
     internal static let icEditProfile = ImageAsset(name: "ic-edit-profile")
     internal static let icFilter = ImageAsset(name: "ic-filter")

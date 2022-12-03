@@ -10,15 +10,10 @@ import SwiftUI
 
 struct CountyPicker: View {
     @State var query: String = ""
-    @State var countries: [Country] = []
     @State var filteredCountries: [Country] = []
-    @State var selectedCountry: Country?
-    
-    init() {
-        countries = CountryManager.shared.getCountries()
-        filteredCountries = countries
-    }
-    
+    @Binding var selectedCountry: Country
+    var countries: [Country]
+
     var body: some View {
         ZStack {
             VStack {
@@ -99,12 +94,16 @@ struct CountyPicker: View {
                 .listStyle(PlainListStyle())
             }
         }
+        .task(delayText)
         .background(Color(hex: "#181818").opacity(0.94))
         .onAppear{
-            if countries.isEmpty {
-                countries = CountryManager.shared.getCountries()
-                filteredCountries = countries
-            }
+           
         }
     }
+    
+    private func delayText() async {
+           // Delay of 7.5 seconds (1 second = 1_000_000_000 nanoseconds)
+           try? await Task.sleep(nanoseconds: 100_000_000)
+            self.filteredCountries = countries
+       }
 }
