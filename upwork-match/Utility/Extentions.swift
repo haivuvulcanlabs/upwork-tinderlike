@@ -26,24 +26,24 @@ extension View {
         when shouldShow: Bool,
         alignment: Alignment = .leading,
         @ViewBuilder placeholder: () -> Content) -> some View {
-
-        ZStack(alignment: alignment) {
-            placeholder().opacity(shouldShow ? 1 : 0)
-            self
+            
+            ZStack(alignment: alignment) {
+                placeholder().opacity(shouldShow ? 1 : 0)
+                self
+            }
         }
-    }
     
     func snapshot(color: Color = MyColor.whiteBGTab) -> UIImage {
         
         let controller = UIHostingController(rootView: self)
         let view = controller.view
-
+        
         let targetSize = controller.view.intrinsicContentSize
         view?.bounds = CGRect(origin: .zero, size: targetSize)
         view?.backgroundColor = UIColor(color)
-
+        
         let renderer = UIGraphicsImageRenderer(size: targetSize)
-
+        
         return renderer.image { _ in
             view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
         }
@@ -53,11 +53,11 @@ extension View {
         
         let controller = UIHostingController(rootView: self)
         let view = controller.view
-
+        
         let targetSize = controller.view.intrinsicContentSize
         view?.bounds = CGRect(origin: .zero, size: targetSize)
         view?.backgroundColor = UIColor(color)
-
+        
         let renderer = UIGraphicsImageRenderer(size: targetSize)
         DispatchQueue.main.async {
             let image = renderer.image { _ in
@@ -70,9 +70,9 @@ extension View {
     
     func grayBackground() -> some View {
         self
-        .padding(15)
-        .background(MyColor.whiteBGTab)
-        .cornerRadius(12)
+            .padding(15)
+            .background(MyColor.whiteBGTab)
+            .cornerRadius(12)
     }
 }
 
@@ -107,17 +107,28 @@ extension Text {
 
 //MARK: -  String
 extension String {
-
+    
     var parseJSONString: AnyObject? {
-
+        
         let data = self.data(using: .utf8, allowLossyConversion: false)
-
+        
         if let jsonData = data {
             let json = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) as AnyObject
             return json
         } else {
             return nil
         }
+    }
+    var isValidPhone: Bool {
+        let phoneRegex = "^[0-9+]{0,1}+[0-9]{5,16}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+        return phoneTest.evaluate(with: self)
+    }
+    
+    var isValidEmail: Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: self)
     }
 }
 func verifyUrl(urlString: String?) -> Bool {
@@ -160,27 +171,27 @@ extension Int {
 
 //MARK: -  Array
 extension Array where Element: Equatable {
-  
-  mutating func removeEqualItems(_ item: Element) {
-    self = self.filter { (currentItem: Element) -> Bool in
-      return currentItem != item
+    
+    mutating func removeEqualItems(_ item: Element) {
+        self = self.filter { (currentItem: Element) -> Bool in
+            return currentItem != item
+        }
     }
-  }
-
-  mutating func removeFirstEqualItem(_ item: Element) {
-    guard var currentItem = self.first else { return }
-    var index = 0
-    while currentItem != item {
-      index += 1
-      currentItem = self[index]
+    
+    mutating func removeFirstEqualItem(_ item: Element) {
+        guard var currentItem = self.first else { return }
+        var index = 0
+        while currentItem != item {
+            index += 1
+            currentItem = self[index]
+        }
+        self.remove(at: index)
     }
-    self.remove(at: index)
-  }
-  
+    
     mutating func addRemoveToggle(_ item: Element) {
         if self.contains(item) {
             self = self.filter { (currentItem: Element) -> Bool in
-              return currentItem != item
+                return currentItem != item
             }
         } else {
             self.append(item)
@@ -219,18 +230,18 @@ extension String {
 
 extension Double {
     func convertSecondsToHMmSs()-> String {
-            let s:Int = Int(self.truncatingRemainder(dividingBy: 60));
-            
-            let m:Int = Int((self / 60).truncatingRemainder(dividingBy: 60));
-            
-            let h:Int = Int(((self / 60) / 60).truncatingRemainder(dividingBy: 60));
-            
-            if (m >= 59) || h > 0 {
-                return "\(String.init(format: "%02d:%02d", arguments: [h, m]))"
-            }
-            return "\(String.init(format:"%02d:%02d", m, s))"
+        let s:Int = Int(self.truncatingRemainder(dividingBy: 60));
+        
+        let m:Int = Int((self / 60).truncatingRemainder(dividingBy: 60));
+        
+        let h:Int = Int(((self / 60) / 60).truncatingRemainder(dividingBy: 60));
+        
+        if (m >= 59) || h > 0 {
+            return "\(String.init(format: "%02d:%02d", arguments: [h, m]))"
         }
-
+        return "\(String.init(format:"%02d:%02d", m, s))"
+    }
+    
 }
 extension Color {
     init(hex: String) {
@@ -248,7 +259,7 @@ extension Color {
         default:
             (a, r, g, b) = (1, 1, 1, 0)
         }
-
+        
         self.init(
             .sRGB,
             red: Double(r) / 255,
@@ -274,15 +285,15 @@ extension URL {
         }
         return nil
     }
-
+    
     var fileSize: UInt64 {
         return attributes?[.size] as? UInt64 ?? UInt64(0)
     }
-
+    
     var fileSizeString: String {
         return ByteCountFormatter.string(fromByteCount: Int64(fileSize), countStyle: .file)
     }
-
+    
     var creationDate: Date? {
         return attributes?[.creationDate] as? Date
     }
@@ -325,24 +336,24 @@ extension Character {
         guard let firstScalar = unicodeScalars.first else { return false }
         return firstScalar.properties.isEmoji && firstScalar.value > 0x238C
     }
-
+    
     /// Checks if the scalars will be merged into an emoji
     var isCombinedIntoEmoji: Bool { unicodeScalars.count > 1 && unicodeScalars.first?.properties.isEmoji ?? false }
-
+    
     var isEmoji: Bool { isSimpleEmoji || isCombinedIntoEmoji }
 }
 
 extension String {
     var isSingleEmoji: Bool { count == 1 && containsEmoji }
-
+    
     var containsEmoji: Bool { contains { $0.isEmoji } }
-
+    
     var containsOnlyEmoji: Bool { !isEmpty && !contains { !$0.isEmoji } }
-
+    
     var emojiString: String { emojis.map { String($0) }.reduce("", +) }
-
+    
     var emojis: [Character] { filter { $0.isEmoji } }
-
+    
     var emojiScalars: [UnicodeScalar] { filter { $0.isEmoji }.flatMap { $0.unicodeScalars } }
 }
 
@@ -359,6 +370,7 @@ struct DragBack: ViewModifier {
             }))
     }
 }
+
 extension View {
     @ViewBuilder
     func dragAndBack(_ on: Bool = true) -> some View {
@@ -371,7 +383,7 @@ extension View {
 }
 
 extension View {
-   
+    
     @ViewBuilder
     func ios16<Content: View>(
         modifier: (Self) -> Content
@@ -386,7 +398,7 @@ extension View {
     @ViewBuilder
     func ios16TextEditor() -> some View {
         if #available(iOS 16.0, *) {
-//            self.scrollContentBackground(.hidden)
+            //            self.scrollContentBackground(.hidden)
         } else {
             self
         }

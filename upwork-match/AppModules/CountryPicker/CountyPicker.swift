@@ -9,11 +9,15 @@ import Foundation
 import SwiftUI
 
 struct CountyPicker: View {
+    let alphabet: [String] =  "abcdefghijklmnopqrstuvwxyz".compactMap { String($0) }
+    
     @State var query: String = ""
-    @State var filteredCountries: [Country] = []
+    @State var filteredCountries: [String: [Country]] = [:]
     @Binding var selectedCountry: Country
-    var countries: [Country]
+    @Binding var isShowing: Bool
 
+    var countries: [Country]
+    
     var body: some View {
         ZStack {
             VStack {
@@ -31,7 +35,7 @@ struct CountyPicker: View {
                     .font(.montserrat(.semiBold, size: 17))
                     .foregroundColor(.white)
                     .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
-              
+                
                 HStack {
                     Spacer()
                     HStack {
@@ -46,13 +50,10 @@ struct CountyPicker: View {
                                     .font(.montserrat(.regular, size: 17))
                                     .foregroundColor(Color(hex: "999999"))
                             })
+                            .foregroundColor(.white)
                             .font(.montserrat(.regular, size: 17))
                             .onChange(of: query) { newValue in
-                                if newValue.isEmpty {
-                                    filteredCountries = countries
-                                } else {
-                                    filteredCountries = countries.filter({$0.localizedName.contains(newValue)})
-                                }
+                                onTextChanged(newValue: newValue)
                             }
                     }
                     .frame(width: Device.width - 40, height: 50, alignment: .center)
@@ -63,31 +64,29 @@ struct CountyPicker: View {
                 .padding(.horizontal, 20)
                 .padding(.vertical, 8)
                 
-
                 
-                ScrollView {
-                    ForEach(0..<filteredCountries.count, id: \.self) { index in
-                        VStack(spacing: 0){
-                            Rectangle()
-                                .frame(width: Device.width - 40, height: 1, alignment: .center)
-                                .foregroundColor(Color(hex: "#5A5A5A"))
-                            HStack{
-                                Text(filteredCountries[index].localizedName)
+                
+                List() {
+                    ForEach(0..<alphabet.count, id: \.self) { index in
+                        let key = alphabet[index]
+                        let _countries = filteredCountries[key] ?? []
+                        if !_countries.isEmpty {
+                            
+                            VStack(alignment: .leading) {
+                                
+                                Text(key)
                                     .font(.montserrat(.semiBold, size: 12))
                                     .foregroundColor(.white)
-                                Spacer()
-                                Text(filteredCountries[index].phoneCode)
-                                    .font(.montserrat(.semiBold, size: 12))
-                                    .foregroundColor(.white)
+                                    .listRowBackground(Color(hex: "181818"))
+                                    .padding(.horizontal, 20)
+                                
+                                
+                                ForEach(0..<_countries.count, id: \.self) { idx in
+                                    buildRowView(country: _countries[idx])
+                                }
                             }
-                            .frame(height: 38)
-                            .padding(.horizontal, 20)
-                            .listRowBackground(Color.black)
-                            .onTapGesture {
-                                selectedCountry = filteredCountries[index]
-                            }
+                            .listRowBackground(Color(hex: "181818"))
                         }
-                       
                     }
                 }
                 .background(Color(hex: "#1F1F1F"))
@@ -97,13 +96,60 @@ struct CountyPicker: View {
         .task(delayText)
         .background(Color(hex: "#181818").opacity(0.94))
         .onAppear{
-           
+            
         }
     }
     
+    @ViewBuilder
+    func buildRowView(country: Country) -> some View {
+        VStack(spacing: 0){
+            Rectangle()
+                .frame(width: Device.width - 40, height: 1, alignment: .center)
+                .foregroundColor(Color(hex: "#5A5A5A"))
+            HStack{
+                Text(country.localizedName)
+                    .font(.montserrat(.semiBold, size: 12))
+                    .foregroundColor(.white)
+                Spacer()
+                Text(country.phoneCode)
+                    .font(.montserrat(.semiBold, size: 12))
+                    .foregroundColor(.white)
+            }
+            .frame(height: 38)
+            .padding(.horizontal, 20)
+            .listRowBackground(Color.black)
+            .onTapGesture {
+                selectedCountry = country
+                isShowing = false
+            }
+        }
+        .listRowBackground(Color(hex: "181818"))
+        
+    }
+    
     private func delayText() async {
-           // Delay of 7.5 seconds (1 second = 1_000_000_000 nanoseconds)
-           try? await Task.sleep(nanoseconds: 100_000_000)
-            self.filteredCountries = countries
-       }
+        // Delay of 7.5 seconds (1 second = 1_000_000_000 nanoseconds)
+        try? await Task.sleep(nanoseconds: 100_000_000)
+        groupCountries(with: countries)
+    }
+    
+    func groupCountries(with countries: [Country]) {
+        for char in alphabet {
+            self.filteredCountries[char] = countries.filter({$0.localizedName.lowercased().starts(with: char)})
+        }
+    }
+    
+    func onTextChanged(newValue: String) {
+        if newValue.isEmpty {
+            
+            groupCountries(with: countries)
+            
+        } else {
+            
+            let _countries = countries.filter({$0.localizedName.contains(newValue)})
+            
+            groupCountries(with: _countries)
+            
+        }
+    }
 }

@@ -23,6 +23,10 @@ public struct Country: Codable {
             self.phoneCode = country.phoneCode
         }
     }
+    
+    var displayText: String {
+        return String(format: "%@ +%@", isoCode, phoneCode)
+    }
 }
 
 public extension Country {

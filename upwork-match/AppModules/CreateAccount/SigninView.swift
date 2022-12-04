@@ -15,9 +15,8 @@ struct SigninView: View {
     @FocusState var selectedField: VerifyCodeField?
     @State var verifyCodes: [String] = ["","","","","",""]
     @State var isShowPhonePicker = false
-    @State var selectedCountry: Country = Country(phoneCode: "1", isoCode: "US")
     var countries: [Country] = CountryManager.shared.getCountries()
-
+    
     var body: some View {
         
         ZStack {
@@ -30,19 +29,44 @@ struct SigninView: View {
                         .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
                     
                     
-                    HStack(spacing: 2){
-                        Text("\(selectedCountry.isoCode)+\(selectedCountry.phoneCode)")
-                            .font(.montserrat(.medium, size: 14))
-                            .foregroundColor(Color(hex: "999999"))
-                            .onTapGesture {
-                                isShowPhonePicker = true
+                    HStack(spacing: 12){
+                        Spacer()
+                        VStack {
+                            HStack() {
+                                Text(model.selectedCountry.displayText)
+                                    .font(.montserrat(.medium, size: 14))
+                                    .foregroundColor(Color(hex: "999999"))
+                                    .onTapGesture {
+                                        isShowPhonePicker = true
+                                    }
+                                Asset.Assets.icDownArrow.image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 10, height: 10, alignment: .center)
+                                    .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
                             }
-                        Asset.Assets.icDownArrow.image.resizable()
-                            .scaledToFit()
-                            .frame(width: 5, height: 8, alignment: .center)
-                        Text("99999999")
-                            .font(.montserrat(.medium, size: 14))
-                            .foregroundColor(Color(hex: "999999"))
+                            
+                            Rectangle()
+                                .foregroundColor(MyColor.red50)
+                                .frame(width: 63 * (CGFloat(model.selectedCountry.displayText.count) / 5.0),height: 2)
+
+                        }
+                        .frame(width: 63 * (CGFloat(model.selectedCountry.displayText.count) / 5.0))
+
+                        VStack{
+                            TextField("", text: $model.phoneNumber)
+                                .keyboardType(.phonePad)
+                                .font(.montserrat(.medium, size: 14))
+                                .foregroundColor(Color(hex: "999999"))
+                                .frame(width: 104)
+                                .onChange(of: model.phoneNumber) { newValue in
+                                    model.onPhoneNumberChanged(newValue)
+                                }
+                            Rectangle()
+                                .foregroundColor(MyColor.red50)
+                                .frame(width: 104, height: 2)
+                        }
+                        Spacer()
                     }
                     .padding(.vertical, 10)
                     
@@ -63,15 +87,17 @@ struct SigninView: View {
                 Button {
                     model.tappedContinueButton()
                 } label: {
-                   
+                    
                     buildButton(with: "CONTINUE")
+                        .opacity(model.isVerified ? 1 : 0.5)
                 }
+                .disabled(!model.isVerified)
                 
             }
             .adaptsToKeyboard()
             BottomSheet(isShowing: $isShowPhonePicker, content: AnyView(phonePicker))
         }
-       
+        
         .myBackColor()
     }
     
@@ -86,7 +112,7 @@ struct SigninView: View {
                     .foregroundColor(Color(hex: "C1C1C1"))
                     .font(.system(size: 10, weight: .medium))
                 Button {
-                    
+                    model.tappedResend()
                 } label: {
                     Text("Resend")
                         .foregroundColor(Color(hex: "CBCBCB"))
@@ -99,6 +125,7 @@ struct SigninView: View {
                 ForEach(0 ..< verifyCodes.count, id: \.self) { index in
                     VStack{
                         TextField("", text: $verifyCodes[index])
+                            .keyboardType(.numberPad)
                             .font(.montserrat(.semiBold, size: 16))
                             .focused($selectedField, equals: verifyField[index])
                             .foregroundColor(Color(hex: "#C1C1C1"))
@@ -121,19 +148,24 @@ struct SigninView: View {
                             .frame(height: 3)
                             .frame(maxWidth: .infinity)
                     }
+                    .frame(width: 14, height: 40, alignment: .center)
+                    
                 }
             }
             
-            Text("The code you entered is invalid.")
-                .foregroundColor(MyColor.red)
-                .font(.system(size: 11))
-                .multilineTextAlignment(.center)
-                .frame(alignment: .center)
+            if let errorMessage = model.errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(MyColor.red)
+                    .font(.system(size: 11))
+                    .multilineTextAlignment(.center)
+                    .frame(alignment: .center)
+            }
+            
         }
     }
     
     var phonePicker: some View {
-        CountyPicker(selectedCountry: $selectedCountry, countries: countries)
+        CountyPicker(selectedCountry: $model.selectedCountry, isShowing: $isShowPhonePicker, countries: countries)
             .frame(width: Device.width, height: Device.height/2, alignment: .bottom)
     }
 }
