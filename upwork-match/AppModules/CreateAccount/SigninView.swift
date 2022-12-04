@@ -82,7 +82,10 @@ struct SigninView: View {
                 if model.step == .inputPhone {
                     
                     Text("When you tap \"Continue\", Tinder will send a text with verification code. Message and data rates may apply. The verified phone number can be used to login.")
+                        .multilineTextAlignment(.center)
+                        .font(.montserrat(.semiBold, size: 10))
                         .foregroundColor(Color(hex: "CCCCCC"))
+                        .padding(.horizontal, 60)
                 }
                 
                 Button {
@@ -97,6 +100,8 @@ struct SigninView: View {
             }
             .adaptsToKeyboard()
             BottomSheet(isShowing: $isShowPhonePicker, content: AnyView(phonePicker))
+            .adaptsToKeyboard()
+
         }
         
         .myBackColor()

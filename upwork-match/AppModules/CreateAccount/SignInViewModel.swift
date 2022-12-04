@@ -18,21 +18,29 @@ class SignInViewModel: ObservableObject {
 
     func tappedContinueButton() {
         if step == .inputPhone {
-            step = .inputCode
-        } else {
-            let phoneNumberWithCode = selectedCountry.phoneCode + phoneNumber
+            let phoneNumberWithCode = "+\(selectedCountry.phoneCode + phoneNumber)"
 
+            debugPrint("hai inputphone \(phoneNumberWithCode)")
             PhoneAuthProvider.provider()
               .verifyPhoneNumber(phoneNumberWithCode, uiDelegate: nil) { verificationID, error in
                   if let error = error {
                       self.errorMessage = error.localizedDescription
+                      debugPrint("hai inputphone \(error.localizedDescription)")
+
                     return
                   }
                   // Sign in using the verificationID and the code sent to the user
                   // ...
                   debugPrint("verificationID \(verificationID)")
+                  self.step = .inputCode
+
+                  //
+//                  AKf9Wb2X_YuhUVPqwj3ja_HbVAjAc3lG6RzVK6NiT0c2PebbJtEjlgmWFasSy5_eNGwVRGpiK4LCZvTQKOje_cpTnS68BZdE8JjcU7ZSp9BjFDBsPZUqqOsmSCCWK1xw-bpqtHF1C_n311EEzbvYqK2a75psB6fPOA
               }
-//            AppFlow.shared.isLoggedIn = true
+            
+        } else {
+        
+            AppFlow.shared.isLoggedIn = true
 
         }
     }

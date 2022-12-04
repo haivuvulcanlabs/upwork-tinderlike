@@ -15,7 +15,7 @@ struct CountyPicker: View {
     @State var filteredCountries: [String: [Country]] = [:]
     @Binding var selectedCountry: Country
     @Binding var isShowing: Bool
-
+    
     var countries: [Country]
     
     var body: some View {
@@ -83,6 +83,10 @@ struct CountyPicker: View {
                                 
                                 ForEach(0..<_countries.count, id: \.self) { idx in
                                     buildRowView(country: _countries[idx])
+                                    .onTapGesture {
+                                        selectedCountry = _countries[idx]
+                                        isShowing = false
+                                    }
                                 }
                             }
                             .listRowBackground(Color(hex: "181818"))
@@ -95,9 +99,6 @@ struct CountyPicker: View {
         }
         .task(delayText)
         .background(Color(hex: "#181818").opacity(0.94))
-        .onAppear{
-            
-        }
     }
     
     @ViewBuilder
@@ -118,15 +119,12 @@ struct CountyPicker: View {
             .frame(height: 38)
             .padding(.horizontal, 20)
             .listRowBackground(Color.black)
-            .onTapGesture {
-                selectedCountry = country
-                isShowing = false
-            }
         }
         .listRowBackground(Color(hex: "181818"))
         
     }
     
+    @Sendable
     private func delayText() async {
         // Delay of 7.5 seconds (1 second = 1_000_000_000 nanoseconds)
         try? await Task.sleep(nanoseconds: 100_000_000)
