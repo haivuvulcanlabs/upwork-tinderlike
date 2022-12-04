@@ -56,6 +56,7 @@ struct HomeView: View {
                 TabView(selection: $selectedTab) {
                     DiscoverView().tag(0)
                     DiscoverView().tag(1)
+                    DiscoverView().tag(2)
                 }.tabViewStyle(.page(indexDisplayMode: .never))
                 
                 VStack{

@@ -38,10 +38,10 @@ struct CustomAlert: View {
 
                         // alert title
                         Text(alertType.title())
-                            .font(.system(size: 17, weight: .black))
+                            .font(.roboto(.black, size: 17))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
-                            .frame(height: 25)
+                            .frame(height: 22)
                             .padding(.top, 16)
                             .padding(.bottom, 8)
                             .padding(.horizontal, 16)
@@ -50,12 +50,11 @@ struct CustomAlert: View {
                     // alert message
                     Text(alertType.message())
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                        .font(.system(size: 13))
+                        .font(.roboto(.regular, size: 13))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 16)
                         .padding(.bottom, 16)
-                        .minimumScaleFactor(0.5)
 
                     Divider()
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 0.5)
@@ -70,7 +69,7 @@ struct CustomAlert: View {
                                 leftButtonAction?(index)
                             } label: {
                                 Text(optionTexts[index])
-                                    .font(.system(size: 17))
+                                    .font(.roboto(.regular, size: 17))
                                     .foregroundColor(.white)
                                     .multilineTextAlignment(.center)
                                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
@@ -90,8 +89,8 @@ struct CustomAlert: View {
                                 leftButtonAction?(index)
                             } label: {
                                 Text(optionTexts[index])
-                                    .font(.system(size: 17))
-                                    .foregroundColor(.white)
+                                    .font(.roboto(.regular, size: 17))
+                                    .foregroundColor(Asset.Colors.hex0A84FF.color)
                                     .multilineTextAlignment(.center)
                                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                             }
@@ -135,26 +134,8 @@ enum AlertType {
             return message
         }
     }
-    
-    /// Left button action text for the alert view
-    var leftActionText: String {
-        switch self {
-        case .success:
-            return "Go"
-        case .error(_, _):
-            return "Go"
-        }
-    }
-    
-    /// Right button action text for the alert view
-    var rightActionText: String {
-        switch self {
-        case .success:
-            return "Cancel"
-        case .error(_, _):
-            return "Cancel"
-        }
-    }
+
+
     
     func height(isShowVerticalButtons: Bool = false) -> CGFloat {
         switch self {

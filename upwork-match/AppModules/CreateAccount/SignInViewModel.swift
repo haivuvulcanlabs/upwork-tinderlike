@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-
+import FirebaseAuth
 
 class SignInViewModel: ObservableObject {
     @Published var step: SignInStep = .inputPhone
@@ -20,7 +20,20 @@ class SignInViewModel: ObservableObject {
         if step == .inputPhone {
             step = .inputCode
         } else {
-            AppFlow.shared.isLoggedIn = true
+            let phoneNumberWithCode = selectedCountry.phoneCode + phoneNumber
+
+            PhoneAuthProvider.provider()
+              .verifyPhoneNumber(phoneNumberWithCode, uiDelegate: nil) { verificationID, error in
+                  if let error = error {
+                      self.errorMessage = error.localizedDescription
+                    return
+                  }
+                  // Sign in using the verificationID and the code sent to the user
+                  // ...
+                  debugPrint("verificationID \(verificationID)")
+              }
+//            AppFlow.shared.isLoggedIn = true
+
         }
     }
     
@@ -52,6 +65,8 @@ class SignInViewModel: ObservableObject {
     func tappedResend() {
         
     }
+    
+    
 }
 
 

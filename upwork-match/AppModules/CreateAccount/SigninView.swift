@@ -26,6 +26,7 @@ struct SigninView: View {
                     Text("Enter your mobile\nnumber")
                         .font(.montserrat(.semiBold, size: 22))
                         .foregroundColor(Color(hex: "C1C1C1"))
+                        .multilineTextAlignment(.center)
                         .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
                     
                     

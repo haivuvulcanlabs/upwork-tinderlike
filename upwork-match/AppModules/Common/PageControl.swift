@@ -11,15 +11,15 @@ import SwiftUI
 struct PageControl: View {
     
     var numberOfPages: Int
-    
     @Binding var currentPage: Int
-    
+    var currentColor: Color = MyColor.red
+    var tintColor: Color = Color(hex: "404040")
     var body: some View {
         HStack {
             ForEach(0..<numberOfPages) { index in
                 Circle()
                     .frame(width: 6, height: 6)
-                    .foregroundColor(index == self.currentPage ? MyColor.red : (index < currentPage ? MyColor.red.opacity(0.5) : Color(hex: "404040")))
+                    .foregroundColor(index == self.currentPage ? currentColor : (index < currentPage ? currentColor.opacity(0.5) : tintColor))
                     .onTapGesture(perform: { self.currentPage = index })
             }
         }

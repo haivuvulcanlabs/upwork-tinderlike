@@ -21,6 +21,7 @@ internal enum Asset {
     internal static let imProfileFull = ImageAsset(name: "im-profile-full")
     internal static let icBackRed = ImageAsset(name: "ic-back-red")
     internal static let icBigFillHeart = ImageAsset(name: "ic-big-fill-heart")
+    internal static let icChatActive = ImageAsset(name: "ic-chat-active")
     internal static let icChat = ImageAsset(name: "ic-chat")
     internal static let icCloseRed = ImageAsset(name: "ic-close-red")
     internal static let icCloseWhite = ImageAsset(name: "ic-close-white")
@@ -38,10 +39,13 @@ internal enum Asset {
     internal static let icRightArrow = ImageAsset(name: "ic-right-arrow")
     internal static let icSearch = ImageAsset(name: "ic-search")
     internal static let icSetting = ImageAsset(name: "ic-setting")
+    internal static let icShieldRed = ImageAsset(name: "ic-shield-red")
     internal static let icShield = ImageAsset(name: "ic-shield")
     internal static let icTrash = ImageAsset(name: "ic-trash")
   }
   internal enum Colors {
+    internal static let hex0A84FF = ColorAsset(name: "hex0A84FF")
+    internal static let hex252525 = ColorAsset(name: "hex252525")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

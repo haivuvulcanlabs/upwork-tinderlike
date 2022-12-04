@@ -11,19 +11,20 @@ import UIKit
 
 struct ProfileAndLikeView: View {
     @Environment(\.presentationMode) var presentationMode
-
+    
     @State private var showingOptions = false
     @State private var selection = "None"
     @State private var showingBlockAlert = false
     @State private var showingReportAlert = false
     
     @State private var animateLike = false
+    @State private var currentPicIndex: Int = 0
     
     var body: some View {
         ZStack(alignment: .top) {
             ScrollView{
                 LazyHStack {
-                    PageView()
+                    ProfilePickPageView(selectedTab: $currentPicIndex)
                 }
                 
             }
@@ -31,33 +32,39 @@ struct ProfileAndLikeView: View {
             .edgesIgnoringSafeArea(.all)
             
             
-            ScrollView {
-                VStack(){
-                    EmptyView()
-                        .frame(height: Device.height - 200)
-                    HStack{
-                        Text("Elisabeth")
+            VStack {
+                Spacer()
+                ScrollView {
+                    VStack(){
+                        EmptyView()
+                            .frame(height: Device.height - 200)
+                        HStack{
+                            Text("Elisabeth")
+                                .font(.montserrat(.bold, size: 32))
+                                .foregroundColor(.white)
+                            Text("22")
+                                .font(.montserrat(.regular, size: 26))
+                                .foregroundColor(.white)
+                            Spacer()
+                        }
+                        HStack{
+                            Asset.Assets.icPin.image
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 22, height: 22)
+                            Text("10 km away")
+                                .font(.montserrat(.regular, size: 16))
+                                .foregroundColor(.white)
+                            
+                            Spacer()
+                        }
+                        Text("I am not the type of girl you have to hold in farts for, but rather the type of girl you want to hold in farts for!")
+                            .font(.montserrat(.regular, size: 16))
                             .foregroundColor(.white)
-                        Text("22")
-                            .foregroundColor(.white)
-                        Spacer()
                     }
-                    HStack{
-                        Image("ic-pin")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 22, height: 22)
-                        Text("10 km away")
-                            .foregroundColor(.white)
-                        
-                        Spacer()
-                    }
-                    Text("I am not the type of girl you have to hold in farts for, but rather the type of girl you want to hold in farts for!")
-                        .foregroundColor(.white)
+                    .padding(.horizontal, 14)
                 }
-                .frame(height: Device.height, alignment: .bottom)
-                .padding(.horizontal, 14)
-                
+                .frame(height: 200, alignment: .bottom)
             }
             
             VStack{
@@ -65,22 +72,29 @@ struct ProfileAndLikeView: View {
                 Spacer()
                 HStack{
                     Spacer()
-                    Image("ic-chat")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 35, height: 35, alignment: .center)
-                        .padding(.horizontal, 10)
+                    NavigationLink(destination: ChattingView()) {
+                        Asset.Assets.icChatActive.image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30, height: 30, alignment: .center)
+                            .padding(.horizontal, 10)
+                    }
                     
                     Button {
-                        withAnimation(Animation.easeInOut(duration: 1).repeatCount(5, autoreverses: true)) {
+                        withAnimation(.easeInOut(duration: 1).repeatCount(5, autoreverses: true)) {
+                            
                             animateLike = true
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
+                                animateLike = false
+                            }
                         }
                         
                     } label: {
-                        Image("ic-heart")
+                        Asset.Assets.icHeart.image
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 35, height: 35, alignment: .center)
+                            .frame(width: 30, height: 30, alignment: .center)
                     }
                     .padding(.horizontal, 10)
                     Spacer()
@@ -109,12 +123,11 @@ struct ProfileAndLikeView: View {
             if animateLike {
                 VStack{
                     Spacer()
-                    Image("ic-big-fill-heart")
+                    Asset.Assets.icBigFillHeart.image
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 150, height: 150, alignment: .center)
-                        .scaleEffect(animateLike ? 1 : 0.5)
-                        .opacity(animateLike ? 1 : 0.5)
+                        .frame(width: animateLike ? 150 : 50, height: animateLike ? 150 : 50, alignment: .center)
+                        .opacity(animateLike ? 1 : 0.2)
                     Spacer()
                 }
             }
@@ -127,7 +140,7 @@ struct ProfileAndLikeView: View {
             Button {
                 presentationMode.wrappedValue.dismiss()
             } label: {
-                Image("ic-close-white")
+                Asset.Assets.icCloseWhite.image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 12, height: 12, alignment: .center)
@@ -137,10 +150,12 @@ struct ProfileAndLikeView: View {
             .padding(.horizontal, 10)
             
             Spacer()
+            PageControl(numberOfPages: 6, currentPage: $currentPicIndex, currentColor: .white, tintColor: Color.white.opacity(0.5))
+            Spacer()
             Button {
                 showingOptions.toggle()
             } label: {
-                Image("ic-shield")
+                Asset.Assets.icShield.image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 18, height: 18, alignment: .center)
@@ -167,9 +182,10 @@ struct ProfileAndLikeView: View {
 }
 
 
-struct PageView: View {
+struct ProfilePickPageView: View {
+    @Binding var selectedTab: Int
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             ForEach(0..<30) { i in
                 ZStack {
                     Color.black
@@ -193,12 +209,13 @@ struct ProfileOptionView: View {
                 onSelectProfileOption?(.report)
             } label: {
                 Text("Report")
+                    .font(.roboto(.regular, size: 20))
                     .foregroundColor(.red)
-                    .background(Color(hex: "#252525"))
+                    .background(Asset.Colors.hex252525.color)
                     .frame(height: 60, alignment: .center)
             }
             .frame(maxWidth: .infinity, maxHeight: 60)
-            .background(Color(hex: "#252525"))
+            .background(Asset.Colors.hex252525.color)
             .cornerRadius(13, corners: [.topLeft, .topRight])
             
             Divider()
@@ -207,12 +224,13 @@ struct ProfileOptionView: View {
                 
             } label: {
                 Text("Block")
+                    .font(.roboto(.regular, size: 20))
                     .foregroundColor(.red)
-                    .background(Color(hex: "#252525"))
+                    .background(Asset.Colors.hex252525.color)
                     .frame(height: 60, alignment: .center)
             }
             .frame(maxWidth: .infinity, maxHeight: 60)
-            .background(Color(hex: "#252525"))
+            .background(Asset.Colors.hex252525.color)
             .cornerRadius(13, corners: [.bottomLeft, .bottomRight])
             
             Divider()
@@ -225,13 +243,14 @@ struct ProfileOptionView: View {
                 
             } label: {
                 Text("Cancel")
+                    .font(.roboto(.regular, size: 20))
                     .foregroundColor(.white)
-                    .background(Color(hex: "#252525"))
+                    .background(Asset.Colors.hex252525.color)
                     .frame(height: 60, alignment: .center)
                 
             }
             .frame(maxWidth: .infinity, maxHeight: 60)
-            .background(Color(hex: "#252525"))
+            .background(Asset.Colors.hex252525.color)
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             .cornerRadius(13, corners: [.bottomLeft, .bottomRight, .topLeft, .topRight])
             

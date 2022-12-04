@@ -54,25 +54,32 @@ struct DiscoverView: View {
             model.fetchData()
         }
     }
-}
-
-func photoView(post : Profile,index : Int) -> some View {
     
-    ZStack(alignment: .topLeading) {
-        Image("ic-thumb-1")
-            .resizable()
-            .scaledToFill()
-            .frame(width: Device.width/3, height: Device.width/3, alignment: .center)
-        VStack{
-            Spacer()
-            HStack{
-                Text("Anna")
-                    .foregroundColor(MyColor.white)
-                    .padding(EdgeInsets(top: 0, leading: 2, bottom: 2, trailing: 0))
-                Spacer()
-            }
-        }
+    func photoView(post : Profile,index : Int) -> some View {
         
+        ZStack(alignment: .topLeading) {
+            Image("ic-thumb-1")
+                .resizable()
+                .scaledToFill()
+                .frame(width: Device.width/3, height: Device.width/3, alignment: .center)
+            VStack{
+                Spacer()
+                HStack(spacing: 3){
+                    Text("Anna")
+                        .font(.openSans(.semiBold, size: 18))
+                        .foregroundColor(MyColor.white)
+                        .padding(EdgeInsets(top: 0, leading: 4, bottom: 2, trailing: 0))
+                    
+                    Circle()
+                        .foregroundColor(Color(hex: "#6CF32D"))
+                        .frame(width: 5, height: 5)
+                    Spacer()
+                }
+            }
+            
+        }
     }
+
+
 }
 

@@ -12,34 +12,21 @@ struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var model = SettingViewModel()
 
+    @State var isPushSettingActive = false
     var body: some View {
         ZStack {
+            NavigationLink("", isActive: $isPushSettingActive) {
+                PushNotiSettingView()
+            }
             VStack {
-                HStack {
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image("ic-back-red")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 12, height: 20, alignment: .center)
-                    }
-                    .frame(width: 35, height: 35, alignment: .center)
-                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
-                    Spacer()
-                    
-                    Text("SETTINGS")
-                        .foregroundColor(MyColor.red)
-                    Spacer()
-                }
-                .frame(width: Device.width, height: 44, alignment: .center)
-                
+                BackButtonNavView(image: Asset.Assets.icBackRed.image, text: "SETTINGS")
                 VStack(spacing: 40){
                     ForEach(0..<model.items.count,id: \.self) { index in
                         let group = model.items[index]
                         VStack(alignment: .leading, spacing: 10) {
                             HStack{
                                 Text(group.text)
+                                    .font(.openSans(.bold, fixedSize: 14))
                                     .foregroundColor(Color(hex: "AFAFAF"))
                                 Spacer()
                             }
@@ -47,8 +34,10 @@ struct SettingsView: View {
                             
                             VStack{
                                 ForEach(0..<group.items.count, id:\.self) { index2 in
+                                    let setting = group.items[index2]
                                     HStack{
-                                        Text(group.items[index2].text)
+                                        Text(setting.text)
+                                            .font(.roboto(.regular, fixedSize: 17))
                                             .foregroundColor(Color(hex: "D7D7D7"))
                                             .frame(height: 48, alignment: .leading)
                                         Spacer()
@@ -58,6 +47,18 @@ struct SettingsView: View {
                                             .frame(width: 12, height: 12, alignment: .center)
                                     }
                                     .padding(.horizontal, 16)
+                                    .onTapGesture {
+                                        if setting == .pushNotification {
+                                            isPushSettingActive.toggle()
+                                        }
+                                    }
+                                    if index2 < group.items.count - 1 {
+                                        Rectangle()
+                                            .foregroundColor(Color(hex: "A5A5A5"))
+                                            .frame(minWidth: 0, maxWidth: .infinity)
+                                            .frame(height: 0.5)
+
+                                    }
 
                                 }
                             }
@@ -70,6 +71,18 @@ struct SettingsView: View {
 
 
                     }
+                    
+                    Spacer()
+                    
+                    HStack{
+                        Text("Sign out")
+                            .multilineTextAlignment(.center)
+                            .font(.roboto(.regular, fixedSize: 17))
+                            .foregroundColor(Color(hex: "D7D7D7"))
+                            .frame(height: 48, alignment: .center)
+                    }
+                    .padding(.horizontal, 16)
+                    .background(Color(hex: "2C2C2E"))
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
                 .padding(EdgeInsets(top: 30, leading: 16, bottom: 0, trailing: 16))
