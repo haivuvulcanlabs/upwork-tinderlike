@@ -43,7 +43,7 @@ struct CountyPicker: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 16, height: 16)
-                            .padding(.horizontal, 5)
+                            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 5))
                         TextField("", text: $query)
                             .placeholder(when: query.isEmpty, placeholder: {
                                 Text("Search")

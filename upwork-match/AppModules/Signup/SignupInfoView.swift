@@ -17,6 +17,7 @@ struct SignupInfoView: View {
     @State var birthday: [String] = ["","","","","","","",""]
     @FocusState var field: BirthdayField?
     var allBirthdayFields: [BirthdayField] = BirthdayField.allCases
+    @State var isCameraOn = false
     
     var body: some View {
         ZStack{
@@ -79,22 +80,25 @@ struct SignupInfoView: View {
         .fullScreenCover(isPresented: $model.isCameraOn) {
             ImagePicker(image: $model.selfie, filename: Binding.constant(""), imagePickerType: .camera, videoURL: .constant(URL(string: "www.retrytech.com")!))
         }
+        .fullScreenCover(isPresented: $isCameraOn, content: {
+            CameraView()
+        })
         .myBackColor()
     }
     
     @ViewBuilder
     func inputTextView() -> some View {
         VStack{
-      
+            
             TextField("Name", text: $inputText, onEditingChanged: {_ in
                 print("Changed")
                 model.onNameChanged(name: inputText)
                 
             })
-
+            
             .onChange(of: inputText, perform: { newValue in
                 model.onNameChanged(name: newValue)
-               
+                
             })
             .font(.montserrat(.medium, size: 18))
             .foregroundColor(Color(hex: "C1C1C1"))
@@ -116,33 +120,34 @@ struct SignupInfoView: View {
                     
                 })
                 .placeholder(when: birthday[index].isEmpty && field?.rawValue != index) {
-                        Text(allBirthdayFields[index].playHolder)
-                            .font(.montserrat(.semiBold, size: 16))
-                            .foregroundColor(Color(hex: "#C1C1C1"))
-                    }
-                    .font(.montserrat(.semiBold, size: 16))
-                    .focused($field, equals: allBirthdayFields[index])
-                    .foregroundColor(Color(hex: "#C1C1C1"))
-                    .multilineTextAlignment(.center)
-//                    .onReceive(Just($birthday[index])) { _ in
-//                        
-//                    }
-                    .onChange(of: birthday[index]) { newValue in
-                        let number = Int(newValue) ?? 100
-                        
-                        if number <= allBirthdayFields[index].max {
-                            if newValue.count >= 1 {
-                                birthday[index] = String(newValue.prefix(1))
-                                field = BirthdayField(rawValue: index + 1)
-                            } else {
-                                birthday[index] = newValue
-                            }
+                    Text(allBirthdayFields[index].playHolder)
+                        .font(.montserrat(.semiBold, size: 16))
+                        .foregroundColor(Color(hex: "#C1C1C1"))
+                }
+                .font(.montserrat(.semiBold, size: 16))
+                .focused($field, equals: allBirthdayFields[index])
+                .foregroundColor(Color(hex: "#C1C1C1"))
+                .multilineTextAlignment(.center)
+                //                    .onReceive(Just($birthday[index])) { _ in
+                //
+                //                    }
+                .keyboardType(.numberPad)
+                .onChange(of: birthday[index]) { newValue in
+                    let number = Int(newValue) ?? 100
+                    
+                    if number <= allBirthdayFields[index].max {
+                        if newValue.count >= 1 {
+                            birthday[index] = String(newValue.prefix(1))
+                            field = BirthdayField(rawValue: index + 1)
                         } else {
-                            birthday[index] = ""
+                            birthday[index] = newValue
                         }
-                        
-                        model.onAddBithday(values: birthday)
+                    } else {
+                        birthday[index] = ""
                     }
+                    
+                    model.onAddBithday(values: birthday)
+                }
                 
                 Rectangle()
                     .foregroundColor(field?.rawValue == index ? MyColor.red : MyColor.red.opacity(0.5))
@@ -177,7 +182,7 @@ struct SignupInfoView: View {
             
             Button {
                 model.onSelectGender(.male)
-
+                
             } label: {
                 buildButton(with: "MALE")
                     .opacity(model.gender == .male ? 1 : 0.5)
@@ -191,11 +196,12 @@ struct SignupInfoView: View {
     var bioView: some View {
         TextField("", text: $model.bio)
             .placeholder(when: model.bio.isEmpty ) {
-                    Text("Type here...")
+                Text("Type here...")
+                    .frame(minWidth: 0, maxWidth: .infinity)
                     .multilineTextAlignment(.center)
                     .font(.openSans(.regular, size: 15))
-                        .foregroundColor(Color(hex: "#999999"))
-                }
+                    .foregroundColor(Color(hex: "#999999"))
+            }
             .font(.openSans(.semiBold, fixedSize: 15))
             .multilineTextAlignment(.center)
             .foregroundColor(Color(hex: "#C1C1C1"))
@@ -236,8 +242,12 @@ struct SignupInfoView: View {
             CustomActionSheet(onSelectProfileOption: { index in
                 switch index {
                 case 0:
+                    isCameraOn = true
+                    //                                        model.isCameraOn = true
+                    
+                case 1:
                     model.isFilePicker = true
-                case 1: break
+                    
                 default: break
                     
                 }
@@ -245,7 +255,6 @@ struct SignupInfoView: View {
         }
         .background(Color.clear)
         .ignoresSafeArea()
-        
     }
     
     var deleteSheet : some View {
@@ -258,7 +267,6 @@ struct SignupInfoView: View {
             }
         }, options: ["Delete"])
         .ignoresSafeArea()
-        
     }
 }
 

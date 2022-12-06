@@ -62,6 +62,19 @@
 		214A100F2937A99D002D2EE3 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214A100E2937A99D002D2EE3 /* Profile.swift */; };
 		214A10122937AA63002D2EE3 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 214A10112937AA63002D2EE3 /* SDWebImageSwiftUI */; };
 		214A10152937B597002D2EE3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214A10142937B597002D2EE3 /* HomeView.swift */; };
+		2155A7D6293F90FB00E6D3DF /* PhotoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7C8293F90FB00E6D3DF /* PhotoCollection.swift */; };
+		2155A7D7293F90FB00E6D3DF /* PhotoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7C9293F90FB00E6D3DF /* PhotoAsset.swift */; };
+		2155A7D8293F90FB00E6D3DF /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7CA293F90FB00E6D3DF /* CameraView.swift */; };
+		2155A7D9293F90FB00E6D3DF /* ThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7CB293F90FB00E6D3DF /* ThumbnailView.swift */; };
+		2155A7DA293F90FB00E6D3DF /* CachedImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7CC293F90FB00E6D3DF /* CachedImageManager.swift */; };
+		2155A7DB293F90FB00E6D3DF /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7CD293F90FB00E6D3DF /* DataModel.swift */; };
+		2155A7DC293F90FB00E6D3DF /* PhotoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7CE293F90FB00E6D3DF /* PhotoItemView.swift */; };
+		2155A7DD293F90FB00E6D3DF /* PhotoAssetCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7CF293F90FB00E6D3DF /* PhotoAssetCollection.swift */; };
+		2155A7DE293F90FB00E6D3DF /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7D0293F90FB00E6D3DF /* Camera.swift */; };
+		2155A7DF293F90FB00E6D3DF /* PhotoLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7D1293F90FB00E6D3DF /* PhotoLibrary.swift */; };
+		2155A7E1293F90FB00E6D3DF /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7D3293F90FB00E6D3DF /* ViewfinderView.swift */; };
+		2155A7E2293F90FB00E6D3DF /* PhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7D4293F90FB00E6D3DF /* PhotoCollectionView.swift */; };
+		2155A7E3293F90FB00E6D3DF /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7D5293F90FB00E6D3DF /* PhotoView.swift */; };
 		216E2F2C29384B38006FF871 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 216E2F2029384B38006FF871 /* OpenSans-ExtraBold.ttf */; };
 		216E2F2D29384B38006FF871 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 216E2F2129384B38006FF871 /* OpenSans-SemiBoldItalic.ttf */; };
 		216E2F2E29384B38006FF871 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 216E2F2229384B38006FF871 /* OpenSans-Bold.ttf */; };
@@ -152,6 +165,19 @@
 		214A100C2937A4A7002D2EE3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		214A100E2937A99D002D2EE3 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		214A10142937B597002D2EE3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2155A7C8293F90FB00E6D3DF /* PhotoCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollection.swift; sourceTree = "<group>"; };
+		2155A7C9293F90FB00E6D3DF /* PhotoAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAsset.swift; sourceTree = "<group>"; };
+		2155A7CA293F90FB00E6D3DF /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		2155A7CB293F90FB00E6D3DF /* ThumbnailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailView.swift; sourceTree = "<group>"; };
+		2155A7CC293F90FB00E6D3DF /* CachedImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedImageManager.swift; sourceTree = "<group>"; };
+		2155A7CD293F90FB00E6D3DF /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		2155A7CE293F90FB00E6D3DF /* PhotoItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoItemView.swift; sourceTree = "<group>"; };
+		2155A7CF293F90FB00E6D3DF /* PhotoAssetCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAssetCollection.swift; sourceTree = "<group>"; };
+		2155A7D0293F90FB00E6D3DF /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		2155A7D1293F90FB00E6D3DF /* PhotoLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibrary.swift; sourceTree = "<group>"; };
+		2155A7D3293F90FB00E6D3DF /* ViewfinderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
+		2155A7D4293F90FB00E6D3DF /* PhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionView.swift; sourceTree = "<group>"; };
+		2155A7D5293F90FB00E6D3DF /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		216E2F2029384B38006FF871 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		216E2F2129384B38006FF871 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		216E2F2229384B38006FF871 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -296,6 +322,7 @@
 		214A0FF829379478002D2EE3 /* AppModules */ = {
 			isa = PBXGroup;
 			children = (
+				2155A7C1293F8EBB00E6D3DF /* CameraView */,
 				2112A8D2293BA13F00129304 /* CountryPicker */,
 				2112A8AB293B2B4A00129304 /* Chats */,
 				2112A89A293AEFC600129304 /* EditPhoto */,
@@ -362,6 +389,26 @@
 				214A10142937B597002D2EE3 /* HomeView.swift */,
 			);
 			path = HomeView;
+			sourceTree = "<group>";
+		};
+		2155A7C1293F8EBB00E6D3DF /* CameraView */ = {
+			isa = PBXGroup;
+			children = (
+				2155A7CC293F90FB00E6D3DF /* CachedImageManager.swift */,
+				2155A7D0293F90FB00E6D3DF /* Camera.swift */,
+				2155A7CA293F90FB00E6D3DF /* CameraView.swift */,
+				2155A7CD293F90FB00E6D3DF /* DataModel.swift */,
+				2155A7C9293F90FB00E6D3DF /* PhotoAsset.swift */,
+				2155A7CF293F90FB00E6D3DF /* PhotoAssetCollection.swift */,
+				2155A7C8293F90FB00E6D3DF /* PhotoCollection.swift */,
+				2155A7D4293F90FB00E6D3DF /* PhotoCollectionView.swift */,
+				2155A7CE293F90FB00E6D3DF /* PhotoItemView.swift */,
+				2155A7D1293F90FB00E6D3DF /* PhotoLibrary.swift */,
+				2155A7D5293F90FB00E6D3DF /* PhotoView.swift */,
+				2155A7CB293F90FB00E6D3DF /* ThumbnailView.swift */,
+				2155A7D3293F90FB00E6D3DF /* ViewfinderView.swift */,
+			);
+			path = CameraView;
 			sourceTree = "<group>";
 		};
 		216E2F1E29384B23006FF871 /* Resources */ = {
@@ -568,6 +615,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2155A7DC293F90FB00E6D3DF /* PhotoItemView.swift in Sources */,
 				21E41D242939A11000227BAA /* SignInViewModel.swift in Sources */,
 				21E41D0C2938B57D00227BAA /* EditViewModel.swift in Sources */,
 				2112A8DA293BA23600129304 /* CountyPicker.swift in Sources */,
@@ -580,26 +628,34 @@
 				214A100929379A6A002D2EE3 /* ProfileView.swift in Sources */,
 				216E2F42293873EA006FF871 /* CustomAlert.swift in Sources */,
 				214A0FFB2937948B002D2EE3 /* DiscoverView.swift in Sources */,
+				2155A7E1293F90FB00E6D3DF /* ViewfinderView.swift in Sources */,
+				2155A7DD293F90FB00E6D3DF /* PhotoAssetCollection.swift in Sources */,
 				2112A8D6293BA17700129304 /* Country.swift in Sources */,
 				2112A8E4293CC60500129304 /* PushNotiSettingView.swift in Sources */,
 				2112A8B1293B310D00129304 /* ChatListModelView.swift in Sources */,
 				214A100D2937A4A7002D2EE3 /* HomeViewModel.swift in Sources */,
 				214A0FED29379445002D2EE3 /* ContentView.swift in Sources */,
 				21E41D0E2938B5F600227BAA /* ImagePicker.swift in Sources */,
+				2155A7D6293F90FB00E6D3DF /* PhotoCollection.swift in Sources */,
 				21C723DE2938932200C4B961 /* MyPlusView.swift in Sources */,
 				216E2F3E29385213006FF871 /* SwiftUISlider.swift in Sources */,
+				2155A7DB293F90FB00E6D3DF /* DataModel.swift in Sources */,
 				21E41D2029399F4A00227BAA /* SigninView.swift in Sources */,
 				21E41D1C293995CF00227BAA /* CreateAccountView.swift in Sources */,
 				2112A89E293AF0AE00129304 /* ZoomableScrollView.swift in Sources */,
 				21E41D2D2939BF9C00227BAA /* SignupView.swift in Sources */,
 				2112A89C293AEFD600129304 /* EditPhotoView.swift in Sources */,
 				21E41D172938FC6400227BAA /* AppSetting.swift in Sources */,
+				2155A7D9293F90FB00E6D3DF /* ThumbnailView.swift in Sources */,
 				2112A8A8293AF82600129304 /* ImageModifier.swift in Sources */,
 				214A1005293799CA002D2EE3 /* TabBarView.swift in Sources */,
+				2155A7E2293F90FB00E6D3DF /* PhotoCollectionView.swift in Sources */,
 				2112A8B8293B4AFF00129304 /* Accessor.assets.swift in Sources */,
 				216E2F402938596D006FF871 /* ProfileAndLikeView.swift in Sources */,
 				21E41D122938B99400227BAA /* CustomActionSheet.swift in Sources */,
+				2155A7E3293F90FB00E6D3DF /* PhotoView.swift in Sources */,
 				21E41D102938B63600227BAA /* Functions.swift in Sources */,
+				2155A7D7293F90FB00E6D3DF /* PhotoAsset.swift in Sources */,
 				21C723E229389D5D00C4B961 /* EditProfileView.swift in Sources */,
 				21E41D192938FE2200227BAA /* SettingViewModel.swift in Sources */,
 				2112A8DC293C45C900129304 /* CountryManager.swift in Sources */,
@@ -610,8 +666,11 @@
 				2112A8A0293AF16500129304 /* Utilities.swift in Sources */,
 				216E2F3C29384DD3006FF871 /* ProfileFilterSheet.swift in Sources */,
 				2112A8A6293AF54000129304 /* ImageCropperView.swift in Sources */,
+				2155A7DE293F90FB00E6D3DF /* Camera.swift in Sources */,
 				214A0FEB29379445002D2EE3 /* upwork_matchApp.swift in Sources */,
+				2155A7D8293F90FB00E6D3DF /* CameraView.swift in Sources */,
 				21E41D1E293995DA00227BAA /* CreateAccountViewModel.swift in Sources */,
+				2155A7DF293F90FB00E6D3DF /* PhotoLibrary.swift in Sources */,
 				2112A8E2293CC05200129304 /* ChatingViewModel.swift in Sources */,
 				2112A8B7293B4AFF00129304 /* Accessor.fonts.swift in Sources */,
 				2112A8A4293AF54000129304 /* CropperView.swift in Sources */,
@@ -619,6 +678,7 @@
 				214A100F2937A99D002D2EE3 /* Profile.swift in Sources */,
 				214A10152937B597002D2EE3 /* HomeView.swift in Sources */,
 				214A0FFD2937963E002D2EE3 /* SplashScreenView.swift in Sources */,
+				2155A7DA293F90FB00E6D3DF /* CachedImageManager.swift in Sources */,
 				2112A8A5293AF54000129304 /* CropperRatio.swift in Sources */,
 				2112A899293A608C00129304 /* WellcomeView.swift in Sources */,
 				2112A8AF293B30AA00129304 /* Chat.swift in Sources */,
@@ -760,6 +820,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "upwork-match/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "NSCamera Usage Description";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "NSPhotoLibrary Usage Description";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -793,6 +855,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "upwork-match/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "NSCamera Usage Description";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "NSPhotoLibrary Usage Description";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

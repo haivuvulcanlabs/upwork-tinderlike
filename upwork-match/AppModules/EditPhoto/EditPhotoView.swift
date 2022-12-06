@@ -9,12 +9,13 @@ import Foundation
 import SwiftUI
 
 struct EditPhotoView: View {
+    var viewfinderImage: Image?
     @State private var imageSize: CGSize = .zero
     
     var body: some View {
         ZStack {
             VStack {
-                BackButtonNavView(image: Image("ic-back-red"), text: "Move and Scale", rightText: "DONE")
+                BackButtonNavView(image: Asset.Assets.icBackRed.image, text: "Move and Scale", rightText: "DONE")
                 
                 //                ZoomableScrollView {
                 //                    Image("im-profile-full")
@@ -23,16 +24,17 @@ struct EditPhotoView: View {
                 //                }
                 //                .clipped()
                 //                .background(Color.red)
-                if let uiImage = UIImage(named: "im-profile-full") {
+                if let uiImage = viewfinderImage {
                     
-                    GeometryReader { proxy in
-                        Image(uiImage: uiImage)
+                    GeometryReader { geometry in
+//                        Image(uiImage: uiImage)
+                        uiImage
                             .resizable()
                             .onAppear {
-                                self.imageSize = uiImage.size
+                                self.imageSize = uiImage.asUIImage().size
                             }
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: proxy.size.width, height: proxy.size.height)
+                            .frame(width: geometry.size.width, height: geometry.size.height)
                             .clipShape(Rectangle())
                             .modifier(ImageModifier(contentSize: imageSize))
                         
@@ -48,6 +50,9 @@ struct EditPhotoView: View {
         }
         .edgesIgnoringSafeArea(.bottom)
         .myBackColor()
+        .onAppear {
+            AppFlow.shared.isLoggedIn = true
+        }
     }
     
     var gridView: some View {
@@ -91,3 +96,4 @@ struct EditPhotoView: View {
         }
     }
 }
+

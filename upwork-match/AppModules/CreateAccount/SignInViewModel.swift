@@ -33,7 +33,7 @@ class SignInViewModel: ObservableObject {
                   // ...
                   debugPrint("verificationID \(verificationID)")
                   self.step = .inputCode
-
+                  self.isVerified = false
                   //
 //                  AKf9Wb2X_YuhUVPqwj3ja_HbVAjAc3lG6RzVK6NiT0c2PebbJtEjlgmWFasSy5_eNGwVRGpiK4LCZvTQKOje_cpTnS68BZdE8JjcU7ZSp9BjFDBsPZUqqOsmSCCWK1xw-bpqtHF1C_n311EEzbvYqK2a75psB6fPOA
               }

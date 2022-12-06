@@ -70,6 +70,7 @@ struct EditProfileView: View {
                         .foregroundColor(MyColor.hex4d4d4d)
 
                     TextField("Type here", text: $aboutmeText)
+                        .multilineTextAlignment(.center)
                         .foregroundColor(MyColor.hex4d4d4d)
                         .font(.system(size: 17, weight: .semibold))
                         .padding(.horizontal, 10)

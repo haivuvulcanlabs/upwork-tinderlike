@@ -41,6 +41,7 @@ internal enum Asset {
     internal static let icSetting = ImageAsset(name: "ic-setting")
     internal static let icShieldRed = ImageAsset(name: "ic-shield-red")
     internal static let icShield = ImageAsset(name: "ic-shield")
+    internal static let icSwitchCamera = ImageAsset(name: "ic-switch-camera")
     internal static let icTrash = ImageAsset(name: "ic-trash")
   }
   internal enum Colors {

@@ -32,33 +32,37 @@ struct SettingsView: View {
                             }
                             .frame(height: 25, alignment: .leading)
                             
-                            VStack{
+                            VStack(){
                                 ForEach(0..<group.items.count, id:\.self) { index2 in
                                     let setting = group.items[index2]
-                                    HStack{
-                                        Text(setting.text)
-                                            .font(.roboto(.regular, fixedSize: 17))
-                                            .foregroundColor(Color(hex: "D7D7D7"))
-                                            .frame(height: 48, alignment: .leading)
-                                        Spacer()
-                                        Image("ic-right-arrow")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 12, height: 12, alignment: .center)
-                                    }
-                                    .padding(.horizontal, 16)
-                                    .onTapGesture {
-                                        if setting == .pushNotification {
-                                            isPushSettingActive.toggle()
+                                    VStack(alignment: .center, spacing: 0) {
+                                        HStack(alignment: .center){
+                                            Text(setting.text)
+                                                .font(.roboto(.regular, fixedSize: 17))
+                                                .foregroundColor(Color(hex: "D7D7D7"))
+                                            Spacer()
+                                            Image("ic-right-arrow")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 12, height: 12, alignment: .center)
+                                        }
+                                        .frame(height: 48, alignment: .leading)
+                                        .padding(.horizontal, 16)
+                                        .onTapGesture {
+                                            if setting == .pushNotification {
+                                                isPushSettingActive.toggle()
+                                            }
+                                        }
+                                        if index2 < group.items.count - 1 {
+                                           Divider()
+                                                .frame(minWidth: 0, maxWidth: .infinity)
+                                                .frame(height: 0.5)
+                                                .overlay{
+                                                    Color(hex: "A5A5A5")
+                                                }
                                         }
                                     }
-                                    if index2 < group.items.count - 1 {
-                                        Rectangle()
-                                            .foregroundColor(Color(hex: "A5A5A5"))
-                                            .frame(minWidth: 0, maxWidth: .infinity)
-                                            .frame(height: 0.5)
-
-                                    }
+                                    .frame(height: 48, alignment: .leading)
 
                                 }
                             }
