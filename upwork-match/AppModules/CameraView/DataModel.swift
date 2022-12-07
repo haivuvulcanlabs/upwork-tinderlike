@@ -5,6 +5,7 @@ See the License.txt file for this sample’s licensing information.
 import AVFoundation
 import SwiftUI
 import os.log
+import UIKit
 
 final class DataModel: ObservableObject {
     let camera = Camera()
@@ -13,6 +14,8 @@ final class DataModel: ObservableObject {
     @Published var viewfinderImage: Image?
     @Published var thumbnailImage: Image?
     @Published var didCapturePhoto: Bool = false
+    @Published var profileImage = ProfileImage()
+
     var isPhotosLoaded = false
     
     init() {
@@ -43,10 +46,17 @@ final class DataModel: ObservableObject {
         for await photoData in unpackedPhotoStream {
             Task { @MainActor in
                 thumbnailImage = photoData.thumbnailImage
-                didCapturePhoto = true
 
             }
-            savePhoto(imageData: photoData.imageData)
+//            savePhoto(imageData: photoData.imageData)
+            Task {
+                DispatchQueue.main.async {
+                    self.profileImage.imageData = photoData.imageData
+                    self.didCapturePhoto = true
+                }
+                
+            }
+           
         }
     }
     

@@ -8,21 +8,26 @@
 import Foundation
 import SwiftUI
 
-struct SigninView: View {
+struct InputPhoneNumberView: View {
     @StateObject private var model = SignInViewModel()
-    @State private var code: String = ""
+    var isLoginFlow = true //false = signup
+    var step: SignInStep
+
+    @Binding var tabIndex: Int
+
+    @State private var code: String = ""    
     var verifyField: [VerifyCodeField] = VerifyCodeField.allCases
     @FocusState var selectedField: VerifyCodeField?
     @State var verifyCodes: [String] = ["","","","","",""]
     @State var isShowPhonePicker = false
-    var countries: [Country] = CountryManager.shared.getCountries()
     
+    var countries: [Country] = CountryManager.shared.getCountries()
+
     var body: some View {
         
         ZStack {
             VStack {
-                BackButtonNavView(image: Image("ic-close-red"), text: "Sign in")
-                if model.step == .inputPhone {
+                if step == .inputPhone {
                     Text("Enter your mobile\nnumber")
                         .font(.montserrat(.semiBold, size: 22))
                         .foregroundColor(Color(hex: "C1C1C1"))
@@ -71,7 +76,7 @@ struct SigninView: View {
                     }
                     .padding(.vertical, 10)
                     
-                } else if model.step == .inputCode {
+                } else if step == .inputCode {
                     withAnimation {
                         inputVerifyCodeView
                     }
@@ -79,7 +84,7 @@ struct SigninView: View {
                 
                 
                 Spacer()
-                if model.step == .inputPhone {
+                if step == .inputPhone {
                     
                     Text("When you tap \"Continue\", Tinder will send a text with verification code. Message and data rates may apply. The verified phone number can be used to login.")
                         .multilineTextAlignment(.center)
@@ -89,21 +94,37 @@ struct SigninView: View {
                 }
                 
                 Button {
-                    model.tappedContinueButton()
+                    if step == .inputPhone {
+                        model.onVerifyPhoneNumber { finished in
+                            if finished {
+                                tabIndex = 1
+                            }
+                        }
+                    } else if step == .inputCode {
+                        model.onVerifyCode { finished in
+                            if isLoginFlow {
+                                if finished {
+                                    withoutAnimation {
+                                        AppFlow.shared.isLoggedIn = true
+                                    }
+                                }
+                            } else {
+                                if finished {
+                                    tabIndex = 2
+                                }
+                            }
+                           
+                        }
+                    }
                 } label: {
-                    
                     buildButton(with: "CONTINUE")
                         .opacity(model.isVerified ? 1 : 0.5)
                 }
                 .disabled(!model.isVerified)
-                
             }
-            .adaptsToKeyboard()
             BottomSheet(isShowing: $isShowPhonePicker, content: AnyView(phonePicker))
-            .adaptsToKeyboard()
-
         }
-        
+//        .adaptsToKeyboard()
         .myBackColor()
     }
     

@@ -10,7 +10,8 @@ struct CameraView: View {
     @StateObject private var model = DataModel()
  
     private static let barHeightFactor = 0.15
-    
+    @Binding var image: UIImage?
+    @Binding var isActive: Bool
     
     var body: some View {
         
@@ -18,9 +19,6 @@ struct CameraView: View {
             GeometryReader { geometry in
                 ViewfinderView(image:  $model.viewfinderImage )
                     .overlay(alignment: .top) {
-//                        Color.black
-//                            .opacity(0.75)
-//                            .frame(height: geometry.size.height * Self.barHeightFactor)
                         HStack {
                             Button {
                                 present.wrappedValue.dismiss()
@@ -63,7 +61,15 @@ struct CameraView: View {
             .ignoresSafeArea()
             .statusBar(hidden: true)
             .fullScreenCover(isPresented: $model.didCapturePhoto) {
-                EditPhotoView(viewfinderImage: model.viewfinderImage)
+//                EditPhotoView(viewfinderImage: model.capturedImage)
+                PhotoCropper(profileImage: $model.profileImage) { data in
+                    if let notNilData = data {
+                        image = UIImage(data: notNilData)
+                        withoutAnimation {
+                            isActive = false
+                        }
+                    }
+                }
             }
         }
     }

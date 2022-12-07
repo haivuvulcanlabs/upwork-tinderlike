@@ -75,14 +75,21 @@ struct SignupInfoView: View {
             BottomSheet(isShowing: $model.isShowingDelete, bgColor: .clear, content: AnyView(deleteSheet))
         }
         .fullScreenCover(isPresented: $model.isFilePicker, content: {
-            ImagePicker(image: $model.profileImages[0], filename: $model.fileName, imagePickerType: .photoLibrary, videoURL: .constant(URL(string: "www.retrytech.com")!))
+            if let selected = model.profileImageId,
+                let index = model.profileImageData.firstIndex(where: {$0.id == selected}) {
+
+                ImagePicker(image: $model.profileImageData[index].uiImage, filename: $model.fileName, imagePickerType: .photoLibrary, videoURL: .constant(URL(string: "www.retrytech.com")!))
+            }
         })
         .fullScreenCover(isPresented: $model.isCameraOn) {
             ImagePicker(image: $model.selfie, filename: Binding.constant(""), imagePickerType: .camera, videoURL: .constant(URL(string: "www.retrytech.com")!))
         }
         .fullScreenCover(isPresented: $isCameraOn, content: {
-            CameraView()
+            if let selectedId = model.profileImageId, let profileImage = model.profileImageData.firstIndex(where: {$0.id == selectedId}) {
+                CameraView(image: $model.profileImageData[profileImage].uiImage, isActive:  $isCameraOn)
+            }
         })
+        .tapAndHideKeyboard()
         .myBackColor()
     }
     
@@ -214,17 +221,17 @@ struct SignupInfoView: View {
     var selectProfileImages: some View {
         VStack {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 0) {
-                if model.profileImages.isEmpty {
+                if model.profileImageData.isEmpty {
                     EmptyView()
                 } else {
                     
                     ReorderableForEach(items: model.profileImageData) { item in
-                        ProfileImageView(item: item, imagePicker: $model.imagePicker, isDelete: $model.isShowingDelete) {
-                            model.selectedGridItem = item
+                        GridSelectImageView(item: item, imagePicker: $model.imagePicker, isDelete: $model.isShowingDelete) {
+                            model.profileImageId = item.id
                         }
                         .background(.red)
                     } moveAction: { from, to in
-                        model.profileImages.move(fromOffsets: from, toOffset: to)
+                        model.profileImageData.move(fromOffsets: from, toOffset: to)
                     }
                 }
             }
@@ -243,13 +250,14 @@ struct SignupInfoView: View {
                 switch index {
                 case 0:
                     isCameraOn = true
-                    //                                        model.isCameraOn = true
-                    
+                    //model.isCameraOn = true
                 case 1:
                     model.isFilePicker = true
-                    
                 default: break
-                    
+                }
+                
+                withoutAnimation {
+                    model.imagePicker = false
                 }
             }, options: ["Camera", "Gallery"])
         }
@@ -260,15 +268,18 @@ struct SignupInfoView: View {
     var deleteSheet : some View {
         CustomActionSheet(onSelectProfileOption: { index in
             switch index {
-            case 0: break
-            case 1: break
+            case 0://delete
+               
+                model.onRemoveProfileImage()
             default: break
                 
+            }
+            
+            withoutAnimation {
+                model.isShowingDelete = false
             }
         }, options: ["Delete"])
         .ignoresSafeArea()
     }
 }
-
-
 

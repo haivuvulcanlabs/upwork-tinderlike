@@ -10,9 +10,14 @@ import SwiftUI
 
 class SignUpViewModel: ObservableObject {
     static let shared = SignUpViewModel()
-    @Published var profileImages: [UIImage] = [UIImage(), UIImage(), UIImage(), UIImage(), UIImage(), UIImage()]
-
-    @Published var profileImageData: [GridData] = ["","", "", "", "", ""].compactMap({GridData(id: Int.random(in: 0...100), thumbURL: $0)})
+//    @Published var profileImages: [UIImage] = [UIImage(), UIImage(), UIImage(), UIImage(), UIImage(), UIImage()]
+    @Published var profileImageId: Int? = -1
+    
+    @Published var profileImageData: [GridImageData] = [GridImageData(id: 1, uiImage: nil), GridImageData(id: 2, uiImage: nil), GridImageData(id: 3, uiImage: nil), GridImageData(id: 4, uiImage: nil), GridImageData(id: 5, uiImage: nil), GridImageData(id: 6, uiImage: nil)] {
+        didSet {
+            
+        }
+    }
     
     @Published var isShowingDelete = false
     @Published var imagePicker = false
@@ -24,14 +29,13 @@ class SignUpViewModel: ObservableObject {
     @Published var fileName = ""
     @Published var docImage = UIImage()
     @Published var isCameraOn = false
-    @Published var selfie = UIImage()
+    @Published var selfie: UIImage? = UIImage()
     @Published var isFilePicker = false
-    @Published var selectedGridItem: GridData = GridData(id: -1, thumbURL: "")
     
     @Published var birthdayModel = BirthdateViewModel()
     @Published var gender: Gender?
     @Published var bio: String = ""
-    
+
     @Published var isVerified = false
     @Published var errorMessage: String?
     
@@ -90,6 +94,22 @@ class SignUpViewModel: ObservableObject {
     
     func onBioChange(_ value: String) {
         bio = value
+        isVerified = true
+    }
+    
+    func onRemoveProfileImage() {
+        guard let profileImageId = profileImageId else { return }
+        profileImageData.removeAll(where: {$0.id == profileImageId})
+    }
+    
+    func onProfileImagesChanged() {
+        let images = profileImageData.filter({$0.uiImage != nil})
+        
+        guard images.count >= 2 else {
+            isVerified = false
+            return
+        }
+        
         isVerified = true
     }
 }

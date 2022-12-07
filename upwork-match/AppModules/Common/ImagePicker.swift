@@ -9,7 +9,7 @@ import SwiftUI
 /// Import this class in your file
 
 struct ImagePicker : UIViewControllerRepresentable {
-    @Binding var image : UIImage
+    @Binding var image : UIImage?
     @Binding var filename : String
     var imagePickerType : UIImagePickerController.SourceType = .photoLibrary
     @Binding var videoURL : URL

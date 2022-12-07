@@ -118,8 +118,9 @@ struct ProfileImageView: View {
     var selectHandler: (()->())?
     var body: some View {
         ZStack {
-            if !item.thumbURL.isEmpty {
-                Image(item.thumbURL)
+//            if !item.thumbURL.isEmpty {
+            if let uiimage = item.uiImage {
+                Image(uiImage: uiimage)
                     .resizable()
                     .scaledToFit()
                     .frame(width: Device.width/3, height: Device.width/3, alignment: .center)
@@ -131,15 +132,13 @@ struct ProfileImageView: View {
                             isDelete = true
                             selectHandler?()
                         } label: {
-                            Image("ic-remove")
+                            Asset.Assets.icRemove.image
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 20, height: 20, alignment: .center)
                             
                         }
                         .frame(width: 30, height: 30, alignment: .center)
-//                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 10))
-
                     }
                     Spacer()
                 }
@@ -148,7 +147,7 @@ struct ProfileImageView: View {
                     imagePicker = true
                     selectHandler?()
                 } label: {
-                    Image("ic-plus")
+                    Asset.Assets.icPlus.image
                         .resizable()
                         .scaledToFit()
                         .frame(width: 15, height: 15, alignment: .center)
@@ -165,4 +164,5 @@ struct ProfileImageView: View {
 struct GridData: Identifiable, Equatable {
     let id: Int
     let thumbURL: String
+    var uiImage: UIImage?
 }

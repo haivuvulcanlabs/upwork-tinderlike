@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct EditPhotoView: View {
-    var viewfinderImage: Image?
+    var viewfinderImage: UIImage?
     @State private var imageSize: CGSize = .zero
     
     var body: some View {
@@ -17,31 +17,30 @@ struct EditPhotoView: View {
             VStack {
                 BackButtonNavView(image: Asset.Assets.icBackRed.image, text: "Move and Scale", rightText: "DONE")
                 
-                //                ZoomableScrollView {
-                //                    Image("im-profile-full")
-                //                        .resizable()
-                //                        .aspectRatio(contentMode: .fill)
-                //                }
-                //                .clipped()
-                //                .background(Color.red)
+               
                 if let uiImage = viewfinderImage {
                     
-                    GeometryReader { geometry in
-//                        Image(uiImage: uiImage)
-                        uiImage
+                    ZoomableScrollView {
+                        Image(uiImage: uiImage)
                             .resizable()
-                            .onAppear {
-                                self.imageSize = uiImage.asUIImage().size
-                            }
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width, height: geometry.size.height)
-                            .clipShape(Rectangle())
-                            .modifier(ImageModifier(contentSize: imageSize))
-                        
                     }
+                    .clipped()
+                    .background(Color.red)
+//                    GeometryReader { geometry in
+//                        Image(uiImage: uiImage)
+//                            .resizable()
+//                            .onAppear {
+//                                self.imageSize = uiImage.size
+//                            }
+//                            .aspectRatio(contentMode: .fill)
+//                            .frame(width: geometry.size.width, height: geometry.size.height)
+//                            .clipShape(Rectangle())
+//                            .modifier(ImageModifier(contentSize: uiImage.size))
+//
+//                    }
                     .overlay {
                         gridView
-                           
                     }
                 }
                 

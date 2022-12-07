@@ -51,7 +51,7 @@ struct BackButtonNavView: View {
     var image: Image?
     var text: String? = nil
     var rightText: String? = nil
-    
+    var tappedRightButton: (()->())?
     var body: some View {
         HStack {
             if let leftImage = image {
@@ -78,7 +78,7 @@ struct BackButtonNavView: View {
             
             if let rightText = rightText {
                 Button {
-                    presentationMode.wrappedValue.dismiss()
+                    tappedRightButton?()
                 } label: {
                     Text(rightText)
                         .foregroundColor(MyColor.red)

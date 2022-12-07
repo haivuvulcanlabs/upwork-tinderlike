@@ -43,7 +43,7 @@ struct CreateAccountView: View {
                     .padding(.vertical, 15)
                     
                     NavigationLink {
-                        SigninView()
+                        SignInView()
                     } label: {
                         buildButton(with: "SIGN IN")
                     }
