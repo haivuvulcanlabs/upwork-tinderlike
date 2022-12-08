@@ -17,28 +17,35 @@ struct SignupView: View {
     var body: some View {
         ZStack {
             VStack {
-                ZStack {
-                    BackButtonNavView(image: Image("ic-back-red"))
-                    HStack {
-                        Spacer()
-                        if selectedTab < 2 {
-                            Text("Sign up")
-                                .font(.openSans(.bold, size: 14))
-                                .foregroundColor(MyColor.red)
-                        } else {
-                            PageControl(numberOfPages: 4, currentPage: $selectedTab)
-                        }
-                        Spacer()
-                        if selectedTab >= 3 {
-                            Button {
-                                AppFlow.shared.isLoggedIn = true
-                            } label: {
-                                Text("SKIP")
+                if selectedTab < 7 {
+                    ZStack {
+                            BackButtonNavView(image: Image("ic-back-red"))
+    //                    HStack {
+                            Spacer()
+                            if selectedTab < 2 {
+                                Text("Sign up")
+                                    .font(.openSans(.bold, size: 14))
                                     .foregroundColor(MyColor.red)
-                                    .font(.system(size: 14, weight: .bold))
-                                    .padding(.horizontal, 5)
+                            } else{
+                                
+                                PageControl(numberOfPages: 7, currentPage: $selectedTab)
                             }
-                        }
+    //                        Spacer()
+                            if selectedTab >= 3{
+                                HStack {
+                                    Spacer()
+                                    Button {
+                                        AppFlow.shared.isLoggedIn = true
+                                    } label: {
+                                        Text("SKIP")
+                                            .foregroundColor(MyColor.red)
+                                            .font(.system(size: 14, weight: .bold))
+                                            .padding(.horizontal, 5)
+                                    }
+                                }
+
+                            }
+    //                    }
                     }
                 }
                 

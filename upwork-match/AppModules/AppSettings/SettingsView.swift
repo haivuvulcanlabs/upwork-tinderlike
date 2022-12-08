@@ -41,7 +41,7 @@ struct SettingsView: View {
                                                 .font(.roboto(.regular, fixedSize: 17))
                                                 .foregroundColor(Color(hex: "D7D7D7"))
                                             Spacer()
-                                            Image("ic-right-arrow")
+                                            Asset.Assets.icRightArrow.image
                                                 .resizable()
                                                 .scaledToFit()
                                                 .frame(width: 12, height: 12, alignment: .center)
@@ -78,15 +78,21 @@ struct SettingsView: View {
                     
                     Spacer()
                     
-                    HStack{
+                    Button(action: {
+                        AppFlow.shared.isLoggedIn = false
+                    }, label: {
+                        Spacer()
                         Text("Sign out")
                             .multilineTextAlignment(.center)
                             .font(.roboto(.regular, fixedSize: 17))
                             .foregroundColor(Color(hex: "D7D7D7"))
                             .frame(height: 48, alignment: .center)
-                    }
+                        Spacer()
+                    })
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
                     .padding(.horizontal, 16)
                     .background(Color(hex: "2C2C2E"))
+                    .cornerRadius(13)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
                 .padding(EdgeInsets(top: 30, leading: 16, bottom: 0, trailing: 16))

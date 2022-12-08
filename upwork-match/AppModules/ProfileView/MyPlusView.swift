@@ -13,12 +13,13 @@ struct MyPlusView: View {
 
     var optionTexts: [String] = ["Unlimited likes", "Unlimited messages", "Don´t show my age", "Don´t show my distance", "Hide my profile"]
     
-    @State private var showGreeting = true
+    @State private var showGreeting: [Bool] = [false, false, false, false, false, false]
     var body: some View {
         VStack {
             HStack{
                 Spacer()
                 Text("MY PLUS")
+                    .font(.openSans(.bold, size: 14))
                     .foregroundColor(MyColor.red)
                 Spacer()
                 
@@ -26,6 +27,7 @@ struct MyPlusView: View {
                     presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("DONE")
+                        .font(.openSans(.bold, size: 14))
                         .foregroundColor(MyColor.red)
                 }
                 .padding(.horizontal, 10)
@@ -37,11 +39,12 @@ struct MyPlusView: View {
                 ForEach(0..<optionTexts.count,id: \.self) { index in
                     HStack{
                         Text(optionTexts[index])
+                            .font(.roboto(.regular, fixedSize: 16))
                             .foregroundColor(Color(hex: "#D7D7D7"))
                             .padding(EdgeInsets(top: 0, leading: 13, bottom: 0, trailing: 0))
                         Spacer()
                         
-                        Toggle("", isOn: $showGreeting)
+                        Toggle("", isOn: $showGreeting[index])
                             .toggleStyle(SwitchToggleStyle(tint: .red))
                             .padding(.horizontal, 13)
 
@@ -53,7 +56,7 @@ struct MyPlusView: View {
                 }
             }
             .background(Color(hex: "#2C2C2E"))
-            .cornerRadius(13, corners: [.topLeft, .topRight, .bottomLeft, .bottomRight])
+            .cornerRadius(13)
 
             Spacer()
         }
@@ -62,3 +65,5 @@ struct MyPlusView: View {
 
     }
 }
+
+

@@ -11,18 +11,13 @@ import GrowingTextView
 struct ChattingTextEditor: View {
     var placeholder : String
     @Binding var text : String
-    @State var height : CGFloat = 37
+    @State var height : CGFloat = 33
     var color = Color.white
     var body: some View {
         ZStack {
             MyTextView(placeholder: placeholder, text: $text, height: $height,color: color)
                 .frame(height: height)
-                .padding(.top,2)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 18.5)
-                        .stroke(lineWidth: 2)
-                        .foregroundColor(.red)
-                }
+                .padding(EdgeInsets(top: 3, leading: 5, bottom: 3, trailing: 5))
         }
     }
 }
@@ -78,8 +73,8 @@ struct MyTextView : UIViewRepresentable {
         
         textView.trimWhiteSpaceWhenEndEditing = false
         textView.placeholder = placeholder
-        textView.font = UIFont(name: MyFont.GilroyMedium, size: 14)
-        textView.placeholderColor = UIColor(MyColor.white.opacity(0.5))
+        textView.font = UIFont(name: "Roboto-Regular", size: 15)
+        textView.placeholderColor = UIColor(Color(hex: "777777"))
         textView.textColor = UIColor(color)
         textView.minHeight = 33
         textView.maxHeight = 95.0

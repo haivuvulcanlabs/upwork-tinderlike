@@ -11,7 +11,7 @@ import SwiftUI
 struct ChattingView: View {
     @Environment(\.presentationMode) var present
     @StateObject var model = ChattingViewModel()
-    
+    @State var my_identity = "hai_vu"
     var body: some View {
         ZStack {
             VStack {
@@ -22,16 +22,18 @@ struct ChattingView: View {
                     ScrollView(.vertical, showsIndicators: false) {
                         
                         ForEach(0..<model.chatMessages.count, id: \.self) { index in
-                            buildChatMessageView(chat: model.chatMessages[index])
+                            let chatMessage = model.chatMessages[index]
+                            let isMyMsg = chatMessage.senderUser.user_identity == my_identity
+                            TextChatRow(isMyMsg: isMyMsg, chatData: chatMessage)
                         }
                         
                     }.padding(.horizontal,10)
-                  
-                    .background(MyColor.darkBG)
+                    
+                        .background(MyColor.darkBG)
                 }
-
+                
                 HStack {
-                    ChattingTextEditor(placeholder:"Messages", text: $model.chatString)
+                    ChattingTextEditor(placeholder:"Type a message...", text: $model.chatString)
                         .padding(.leading,10)
                     
                     Button {
@@ -52,9 +54,15 @@ struct ChattingView: View {
                         } .padding(4)
                     }
                 }
-                
-                .background(MyColor.whiteBGTab.opacity(0.4))
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .padding(.horizontal, 24)
+//                .background(MyColor.red.opacity(0.15))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 18)
+                        .stroke(lineWidth: 2)
+                        .foregroundColor(.red)
+                        .padding(.horizontal, 24)
+
+                }
             }
         }
         .dragAndBack()
@@ -97,23 +105,49 @@ struct ChattingView: View {
         }
         .frame(width: Device.width, height: 44, alignment: .center)
     }
-    
-    
-    @ViewBuilder
-    func buildChatMessageView(chat: ChatMessage) -> some View {
-        HStack {
-            Spacer()
-            HStack {
-                Text(chat.message)
-                    .font(.openSans(.regular, size: 15))
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.trailing)
-                    .lineLimit(100)
-                    .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+}
+
+
+struct TextChatRow : View {
+    var isMyMsg : Bool  //chatData.senderUser.user_identity == user.user_identity
+    var chatData : ChatMessage
+    var body: some View {
+        HStack{
+            if !isMyMsg {
+                VStack() {
+                    Asset.Assets.icThumb1.image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30, alignment: .center)
+                        .clipShape(Circle())
+                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                    Spacer()
+                }
+                
+                
+                text
+                //            ChatTime(time: chatData.time)
+                Spacer()
+            } else {
+                //            ChatTime(time: chatData.time)
+                
+                Spacer()
+                
+                text
             }
-            .frame(minHeight: 32, alignment: .center)
-            .background(.red)
-            .cornerRadius(16)
         }
+    }
+    
+    var text : some View {
+        Text(chatData.message)
+            .foregroundColor(MyColor.white)
+            .font(.openSans(.regular, size: 15))
+            .padding(8)
+            .multilineTextAlignment(.leading)
+            .fixedSize(horizontal: false, vertical: true)
+            .lineSpacing(2)
+            .background(!isMyMsg ? MyColor.red.opacity(0.6) : MyColor.red.opacity(1))
+            .cornerRadius(16)
+            .padding(1)
     }
 }

@@ -12,7 +12,7 @@ struct PushNotiSettingView: View {
     @Environment(\.presentationMode) var present
 
     var optionTexts: [PushOption] = PushOption.allCases
-    @State var showGreeting = false
+    @State var optionConfigs: [Bool] = [false, false]
     
     var body: some View {
         VStack {
@@ -26,7 +26,7 @@ struct PushNotiSettingView: View {
                             .padding(EdgeInsets(top: 0, leading: 13, bottom: 0, trailing: 0))
                         Spacer()
                         
-                        Toggle("", isOn: $showGreeting)
+                        Toggle("", isOn: $optionConfigs[index])
                             .toggleStyle(SwitchToggleStyle(tint: .red))
                             .padding(.horizontal, 13)
 
