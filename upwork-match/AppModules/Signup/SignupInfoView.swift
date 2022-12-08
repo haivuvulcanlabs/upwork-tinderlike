@@ -63,11 +63,12 @@ struct SignupInfoView: View {
                 Spacer()
                 
                 Button {
-                    
+                    hideKeyboard()
                     tabIndex += 1
                     
                 } label: {
                     buildButton(with: "CONTINUE")
+                        .opacity(model.isVerified ? 1 : 0.5)
                 }.disabled(!model.isVerified)
             }
             

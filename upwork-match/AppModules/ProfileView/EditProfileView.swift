@@ -23,12 +23,14 @@ struct EditProfileView: View {
                         Button {
                         } label: {
                             Text("PREVIEW")
+                                .font(.openSans(.bold, size: 14))
                                 .foregroundColor(MyColor.red)
                         }
                         .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
                         Spacer()
                         
                         Text("EDIT PROFILE")
+                            .font(.openSans(.bold, size: 14))
                             .foregroundColor(MyColor.red)
                         Spacer()
                         
@@ -37,6 +39,7 @@ struct EditProfileView: View {
                             
                         } label: {
                             Text("DONE")
+                                .font(.openSans(.bold, size: 14))
                                 .foregroundColor(MyColor.red)
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))

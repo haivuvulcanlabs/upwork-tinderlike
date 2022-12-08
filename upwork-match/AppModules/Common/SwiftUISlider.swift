@@ -33,14 +33,17 @@ struct SwiftUISlider: UIViewRepresentable {
     var maxTrackColor: UIColor?
     
     @Binding var value: Double
-    
+    @Binding var minValue: Double
+    @Binding var maxValue: Double
+
     func makeUIView(context: Context) -> UISlider {
         let slider = UISlider(frame: .zero)
         slider.thumbTintColor = thumbColor
         slider.minimumTrackTintColor = minTrackColor
         slider.maximumTrackTintColor = maxTrackColor
         slider.value = Float(value)
-        
+        slider.minimumValue = Float(minValue)
+        slider.maximumValue = Float(maxValue)
         slider.addTarget(
             context.coordinator,
             action: #selector(Coordinator.valueChanged(_:)),

@@ -10,14 +10,15 @@ import SwiftUI
 
 class HomeViewModel: NSObject,ObservableObject {
     @Published var isLoading = false
-    @Published var allPosts = [Profile]()
+    @Published var allProfiles = [Profile]()
 
     
     func fetchData() {
         
         for i in 0 ..< 100 {
-            let profile = Profile(id: i, thumbnail: "thumb_\(i)")
-            allPosts.append(profile)
+            let thumbIndex = i % 5 + 1
+            let profile = Profile(id: i, thumbnail: "ic-thumb-\(thumbIndex)")
+            allProfiles.append(profile)
         }
     }
 }

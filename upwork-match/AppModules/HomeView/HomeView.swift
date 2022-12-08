@@ -12,7 +12,7 @@ struct HomeView: View {
     @State var selectedTab = 0
     @State var isActive : Bool = false
     @State var isShowingBottomSheet = false
-
+    
     var body: some View {
         VStack {
             HStack {
@@ -51,21 +51,50 @@ struct HomeView: View {
             }
             .padding(.horizontal,10)
             .frame(height: 55, alignment: .center)
-            ZStack {
-                
-                TabView(selection: $selectedTab) {
-                    DiscoverView().tag(0)
-                    DiscoverView().tag(1)
-                    DiscoverView().tag(2)
-                }.tabViewStyle(.page(indexDisplayMode: .never))
-                
-                VStack{
+            //            ZStack {
+            
+            TabView(selection: $selectedTab) {
+                DiscoverView().tag(0)
+                DiscoverView().tag(1)
+                DiscoverView().tag(2)
+            }.tabViewStyle(.page(indexDisplayMode: .never))
+            
+            //                VStack{
+            //                    Spacer()
+            //
+            //
+            //                }
+            //            }
+        }
+        .fullScreenCover(isPresented: $isShowingBottomSheet, content: {
+            //            ProfileFilterView(isActive: $isShowingBottomSheet)
+            ZStack{
+                Color.black.opacity(0.5).edgesIgnoringSafeArea(.all)
+                VStack(spacing: 0) {
                     Spacer()
                     BottomSheet(isShowing: $isShowingBottomSheet, content: AnyView(ProfileFilterSheet()))
-
+                    
+                   Rectangle()
+                        .foregroundColor(Color.black)
+                        .frame(height: Device.bottomSafeArea + 5, alignment: .center)
+                    
                 }
             }
-        }
+            .background(BackgroundBlurView())
+        })
         .myBackColor()
     }
+}
+
+struct BackgroundBlurView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = .clear
+        }
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
 }

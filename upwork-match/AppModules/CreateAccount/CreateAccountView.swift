@@ -11,17 +11,27 @@ import SwiftUI
 struct CreateAccountView: View {
     @StateObject private var model = CreateAccountViewModel()
     @State private var showingBottomView: Bool = false
+    @State private var scale = 1.0
     
     var body: some View {
         ZStack{
-            VStack {
-                
-                Image("ic-logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200, height: 200, alignment: .center)
-                
-            }
+                VStack {
+                    Image("ic-logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80 * scale, height: 80 * scale, alignment: .center)
+//                        .scaleEffect(scale)
+//                        .animation(.linear(duration: 1), value: scale)
+                        .animation(.easeInOut(duration: 1), value: scale)
+
+//                        .offset(x: 0, y: Device.height/3 - (80 * scale) / 2 )
+                    
+                        .offset(x: 0, y: Device.height/3 - (80 * scale) / 2 )
+                        .onAppear {
+                            scale = 2.5
+                        }
+                    Spacer()
+                }
             
             VStack {
                 VStack {
@@ -29,11 +39,20 @@ struct CreateAccountView: View {
                         .foregroundColor(Color(hex: "CCCCCC"))
                         .multilineTextAlignment(.center)
                         .padding(.vertical, 20)
-                    NavigationLink {
-                        EditPhotoView()
+//                    NavigationLink {
+//                        EditPhotoView()
+//                    } label: {
+//                        buildButton(with: "SIGN IN WITH APPLE")
+//                    }
+                    
+                    Button {
+                        withAnimation(.spring()) {
+                            AppFlow.shared.isLoggedIn = true
+                        }
                     } label: {
                         buildButton(with: "SIGN IN WITH APPLE")
                     }
+
                     
                     NavigationLink {
                         SignupView()
@@ -61,7 +80,7 @@ struct CreateAccountView: View {
             }
             
         }
-       
+        
         .myBackColor()
     }
 }

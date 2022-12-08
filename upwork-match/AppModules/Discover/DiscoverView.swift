@@ -10,6 +10,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct DiscoverView: View {
+    @State private var refresh: Bool = false
     
     @StateObject var model = HomeViewModel()
     
@@ -17,19 +18,24 @@ struct DiscoverView: View {
         VStack {
             ZStack(alignment: .top) {
                 ScrollView(showsIndicators: false) {
-                    
+                    PullToRefreshSwiftUI(needRefresh: $refresh,
+                                         coordinateSpaceName: "pullToRefresh") {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation { refresh = false }
+                        }
+                    }
                     VStack {
                         LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 0) {
-                            if model.allPosts.isEmpty && model.isLoading {
+                            if model.allProfiles.isEmpty && model.isLoading {
                                 EmptyView()
                             } else {
-                                ForEach(0..<model.allPosts.count,id: \.self) { index in
+                                ForEach(0..<model.allProfiles.count,id: \.self) { index in
                                     NavigationLink {
                                         ProfileAndLikeView()
                                     } label: {
-                                        photoView(post: model.allPosts[index], index: index)
+                                        photoView(post: model.allProfiles[index], index: index)
                                             .onAppear {
-                                                if model.allPosts.last?.id == model.allPosts[index].id {
+                                                if model.allProfiles.last?.id == model.allProfiles[index].id {
                                                 }
                                             }
                                             .contextMenu {
@@ -51,6 +57,7 @@ struct DiscoverView: View {
         .navigationBarHidden(true)
         .background(MyColor.whiteBGTab.ignoresSafeArea())
         .onAppear {
+            refresh = false
             model.fetchData()
         }
     }
@@ -58,7 +65,7 @@ struct DiscoverView: View {
     func photoView(post : Profile,index : Int) -> some View {
         
         ZStack(alignment: .topLeading) {
-            Image("ic-thumb-1")
+            Image(post.thumbnail)
                 .resizable()
                 .scaledToFill()
                 .frame(width: Device.width/3, height: Device.width/3, alignment: .center)
@@ -79,7 +86,5 @@ struct DiscoverView: View {
             
         }
     }
-
-
 }
 
