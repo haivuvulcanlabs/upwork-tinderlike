@@ -65,9 +65,7 @@ struct CameraView: View {
                 PhotoCropper(profileImage: $model.profileImage) { data in
                     if let notNilData = data {
                         image = UIImage(data: notNilData)
-                        withoutAnimation {
-                            isActive = false
-                        }
+                        isActive = false
                     }
                 }
             }

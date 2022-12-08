@@ -104,9 +104,7 @@ struct InputPhoneNumberView: View {
                         model.onVerifyCode { finished in
                             if isLoginFlow {
                                 if finished {
-                                    withoutAnimation {
-                                        AppFlow.shared.isLoggedIn = true
-                                    }
+                                    AppFlow.shared.isLoggedIn = true
                                 }
                             } else {
                                 if finished {

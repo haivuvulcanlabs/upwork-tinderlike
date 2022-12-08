@@ -256,9 +256,7 @@ struct SignupInfoView: View {
                 default: break
                 }
                 
-                withoutAnimation {
-                    model.imagePicker = false
-                }
+                model.imagePicker = false
             }, options: ["Camera", "Gallery"])
         }
         .background(Color.clear)
@@ -275,9 +273,7 @@ struct SignupInfoView: View {
                 
             }
             
-            withoutAnimation {
-                model.isShowingDelete = false
-            }
+            model.isShowingDelete = false
         }, options: ["Delete"])
         .ignoresSafeArea()
     }

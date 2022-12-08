@@ -10,12 +10,11 @@ import SwiftUI
 
 class SignUpViewModel: ObservableObject {
     static let shared = SignUpViewModel()
-//    @Published var profileImages: [UIImage] = [UIImage(), UIImage(), UIImage(), UIImage(), UIImage(), UIImage()]
     @Published var profileImageId: Int? = -1
     
     @Published var profileImageData: [GridImageData] = [GridImageData(id: 1, uiImage: nil), GridImageData(id: 2, uiImage: nil), GridImageData(id: 3, uiImage: nil), GridImageData(id: 4, uiImage: nil), GridImageData(id: 5, uiImage: nil), GridImageData(id: 6, uiImage: nil)] {
         didSet {
-            
+            onProfileImagesChanged()
         }
     }
     

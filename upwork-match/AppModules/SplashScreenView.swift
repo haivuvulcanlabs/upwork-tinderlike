@@ -32,16 +32,16 @@ struct SplashScreenView: View {
                 .scaledToFit()
                 .frame(width: Device.width-120)
                 .padding(.bottom)
+                .hidden()
         }
         .onAppear(perform: {
-            UIApplication.shared.isIdleTimerDisabled = true
-            model.fetchAllAPI()
+            model.fetchAllAPI {
+                withoutAnimation {
+                    model.isDataLoaded = true
+                }
+            }
         })
         .myBackColor()
         .ignoresSafeArea()
-
-//        .onChange(of: model.coins) { newValue in
-//            coins = newValue
-//        }
     }
 }

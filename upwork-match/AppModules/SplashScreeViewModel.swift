@@ -13,9 +13,9 @@ class SplashScreeViewModel: ObservableObject {
     @Published var isFullScreenCover = false
     static var shared = SplashScreeViewModel()
 
-    func fetchAllAPI() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.isDataLoaded = true
+    func fetchAllAPI(completion: (()->())?) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            completion?()
         }
     }
 }

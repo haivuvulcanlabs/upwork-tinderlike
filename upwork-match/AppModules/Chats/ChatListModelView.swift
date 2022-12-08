@@ -24,4 +24,8 @@ class ChatListModelView: ObservableObject {
     func removeChat(at index: Int) {
         chats.remove(at: index)
     }
+    
+    func removeChat(by id: Int) {
+        chats.removeAll(where: {$0.id == id})
+    }
 }
