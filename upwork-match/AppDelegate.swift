@@ -21,6 +21,8 @@ class AppDelegate: NSObject,UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
         registerForPushNotifications()
+        PurchaseViewModel.shared.loadProducts()
+
         return true
     }
     
@@ -39,6 +41,10 @@ class AppDelegate: NSObject,UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         NotificationCenter.default.post(name: NSNotification.appTerminated, object: nil, userInfo: [:])
     }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+    }
+    
     
     func setupAppgleSignin() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()

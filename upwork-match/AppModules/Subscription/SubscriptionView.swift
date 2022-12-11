@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct SubscriptionView: View {
+    @StateObject var model = PurchaseViewModel()
+    
     var body: some View {
         ZStack {
             VStack(alignment: .center) {
@@ -16,24 +18,38 @@ struct SubscriptionView: View {
                     .font(.montserrat(.medium, size: 10))
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
+                    .padding(.horizontal, 10)
                 
                 VStack {
                     Text("Get plus".uppercased())
                         .font(.montserrat(.semiBold, size: 17))
                         .foregroundColor(MyColor.white)
+                        .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
+
                     
                     GetPlusPageView()
                     
-                    HStack(spacing: 5) {
-                        ForEach(0..<3) { index in
-                            IAPItemView()
+                    HStack(spacing: 8) {
+                        ForEach(0..<model.items.count, id: \.self) { index in
+                            let item =  model.items[index]
+                            let selected = item.product.productIdentifier == model.selectedItem?.product.productIdentifier
+                            
+                            IAPItemView(item: item, isSelected: selected)
+                                .onTapGesture {
+                                    model.onSelectItem(item)
+                                }
                         }
                     }
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 30, trailing: 0))
                     
                     Button {
+                        model.onPurchased(item: model.selectedItem) { status in
+                            
+                        }
                     } label: {
                         buildButton(with: "CONTINUE")
                     }
+                    .disabled(model.selectedItem == nil)
                     
                     Button {
                     } label: {
@@ -48,34 +64,53 @@ struct SubscriptionView: View {
                 .background(.black)
             }
         }
+        .onAppear {
+            model.getCoinPlans()
+        }
     }
 }
 
 
 struct IAPItemView: View {
+    let item: StoreItem
+    var isSelected: Bool
+    
     var body: some View {
-        VStack {
-            Text("SAVE $50")
-                .font(.montserrat(.semiBold, size: 9))
-                .foregroundColor(MyColor.red)
-            Text("6")
+        VStack(spacing: 0) {
+           
+
+            HStack {
+                Text(item.config.title ?? "")
+                    .font(.montserrat(.semiBold, size: 9))
+                    .foregroundColor(item.promoted ? Color.white : MyColor.red)
+//                    .frame(width: (Device.width - 15 * 4)/3, height: 30)
+            }
+            .frame(height: 26, alignment: .center)
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .background(item.promoted ? Color.red : Color.clear)
+
+            Text("\(item.config.duration)")
                 .font(.montserrat(.semiBold, size: 30))
                 .foregroundColor(MyColor.white)
+                .padding(.vertical, 8)
             
-            Text("Month")
+            Text(item.config.durationText)
                 .font(.montserrat(.semiBold, size: 12))
                 .foregroundColor(MyColor.white)
             
-            Text("$16.67/month")
+            Text("\(item.product.price)/month")
                 .font(.montserrat(.semiBold, size: 12))
                 .foregroundColor(MyColor.white)
+                .padding(EdgeInsets(top: 5, leading: 0, bottom: 8, trailing: 0))
         }
+        .frame(width: (Device.width - 15 * 4)/3)
+        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+        .cornerRadius(15)
         .overlay {
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 15)
                 .stroke(lineWidth: 2)
-                .foregroundColor(MyColor.red50)
-                .padding(.horizontal, 30)
-            
+                .foregroundColor(isSelected ? MyColor.red : MyColor.red50)
+                .clipped()
         }
     }
 }

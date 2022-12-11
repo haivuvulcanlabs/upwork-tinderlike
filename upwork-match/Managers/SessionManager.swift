@@ -9,7 +9,26 @@ import Foundation
 
 class SessionManager {
     static var shared = SessionManager()
+    //    //MARK: purchaseData
+    func setStoreConfigs(datum: [StoreConfig]) {
+        do {
+            let data = try JSONEncoder().encode(datum)
+            let dataString = String(decoding: data, as: UTF8.self)
+            setStringValue(value: dataString, key: "coin_plan_data")
+        } catch let err {
+            print(err.localizedDescription)
+        }
+        
+    }
     
+    func getStoreConfigs() -> [StoreConfig] {
+        let dataString = getStringValueForKey(key: "coin_plan_data")
+        let data = Data(dataString.utf8)
+        if let loaded = try? JSONDecoder().decode([StoreConfig].self, from: data) {
+            return loaded
+        }
+        return []
+    }
 }
 
 

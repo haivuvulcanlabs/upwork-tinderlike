@@ -106,6 +106,10 @@
 		219F498B2945AB8E00FED3E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 219F498A2945AB8E00FED3E5 /* GoogleService-Info.plist */; };
 		219F498D2945DBBA00FED3E5 /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F498C2945DBBA00FED3E5 /* DeleteAccountView.swift */; };
 		219F49902945E23A00FED3E5 /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F498F2945E23A00FED3E5 /* SubscriptionView.swift */; };
+		219F49972945FAA700FED3E5 /* PurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F49962945FAA700FED3E5 /* PurchaseViewModel.swift */; };
+		219F49992945FAC700FED3E5 /* StoreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F49982945FAC700FED3E5 /* StoreConfig.swift */; };
+		219F499B2945FAFA00FED3E5 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F499A2945FAFA00FED3E5 /* IAPManager.swift */; };
+		219F499E29460AB600FED3E5 /* StoreConfigs.json in Resources */ = {isa = PBXBuildFile; fileRef = 219F499D29460AB600FED3E5 /* StoreConfigs.json */; };
 		21C723DE2938932200C4B961 /* MyPlusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C723DD2938932200C4B961 /* MyPlusView.swift */; };
 		21C723E029389AF200C4B961 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C723DF29389AF200C4B961 /* SettingsView.swift */; };
 		21C723E229389D5D00C4B961 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C723E129389D5D00C4B961 /* EditProfileView.swift */; };
@@ -227,6 +231,10 @@
 		219F498A2945AB8E00FED3E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		219F498C2945DBBA00FED3E5 /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
 		219F498F2945E23A00FED3E5 /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
+		219F49962945FAA700FED3E5 /* PurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewModel.swift; sourceTree = "<group>"; };
+		219F49982945FAC700FED3E5 /* StoreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreConfig.swift; sourceTree = "<group>"; };
+		219F499A2945FAFA00FED3E5 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
+		219F499D29460AB600FED3E5 /* StoreConfigs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreConfigs.json; sourceTree = "<group>"; };
 		21C723DD2938932200C4B961 /* MyPlusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlusView.swift; sourceTree = "<group>"; };
 		21C723DF29389AF200C4B961 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		21C723E129389D5D00C4B961 /* EditProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
@@ -468,6 +476,7 @@
 				214A0FEE29379446002D2EE3 /* Assets.xcassets */,
 				2112A8B2293B4A6800129304 /* Colors.xcassets */,
 				216E2F1F29384B2B006FF871 /* Fonts */,
+				219F499D29460AB600FED3E5 /* StoreConfigs.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -551,6 +560,9 @@
 			isa = PBXGroup;
 			children = (
 				219F498F2945E23A00FED3E5 /* SubscriptionView.swift */,
+				219F49962945FAA700FED3E5 /* PurchaseViewModel.swift */,
+				219F49982945FAC700FED3E5 /* StoreConfig.swift */,
+				219F499A2945FAFA00FED3E5 /* IAPManager.swift */,
 			);
 			path = Subscription;
 			sourceTree = "<group>";
@@ -697,6 +709,7 @@
 				2112A8CA293B563000129304 /* Montserrat-Medium.ttf in Resources */,
 				216E2F3429384B38006FF871 /* OpenSans-LightItalic.ttf in Resources */,
 				214A0FF229379446002D2EE3 /* Preview Assets.xcassets in Resources */,
+				219F499E29460AB600FED3E5 /* StoreConfigs.json in Resources */,
 				214A0FEF29379446002D2EE3 /* Assets.xcassets in Resources */,
 				216E2F3229384B38006FF871 /* OpenSans-BoldItalic.ttf in Resources */,
 				2112A8C9293B563000129304 /* Montserrat-SemiBold.ttf in Resources */,
@@ -767,6 +780,7 @@
 				2112A8DA293BA23600129304 /* CountyPicker.swift in Sources */,
 				21E41D262939A61100227BAA /* AdaptsToKeyboard.swift in Sources */,
 				21E41D312939C1C400227BAA /* PageControl.swift in Sources */,
+				219F499B2945FAFA00FED3E5 /* IAPManager.swift in Sources */,
 				2112A8DE293C95E200129304 /* AnimationCompletionObserverModifier.swift in Sources */,
 				2112A8AD293B2B6C00129304 /* ChatListView.swift in Sources */,
 				214A100B29379AE8002D2EE3 /* SplashScreeViewModel.swift in Sources */,
@@ -791,6 +805,7 @@
 				21E41D1C293995CF00227BAA /* CreateAccountView.swift in Sources */,
 				2112A89E293AF0AE00129304 /* ZoomableScrollView.swift in Sources */,
 				219F49812945980900FED3E5 /* KeychainItem.swift in Sources */,
+				219F49992945FAC700FED3E5 /* StoreConfig.swift in Sources */,
 				219F498D2945DBBA00FED3E5 /* DeleteAccountView.swift in Sources */,
 				21E41D2D2939BF9C00227BAA /* SignupView.swift in Sources */,
 				2112A89C293AEFD600129304 /* EditPhotoView.swift in Sources */,
@@ -799,6 +814,7 @@
 				2155A7D9293F90FB00E6D3DF /* ThumbnailView.swift in Sources */,
 				2112A8A8293AF82600129304 /* ImageModifier.swift in Sources */,
 				214A1005293799CA002D2EE3 /* TabBarView.swift in Sources */,
+				219F49972945FAA700FED3E5 /* PurchaseViewModel.swift in Sources */,
 				217273F32940337E0069CD43 /* UIImage+Extensions.swift in Sources */,
 				217273F22940337E0069CD43 /* ViewSizeModel.swift in Sources */,
 				2155A7E2293F90FB00E6D3DF /* PhotoCollectionView.swift in Sources */,

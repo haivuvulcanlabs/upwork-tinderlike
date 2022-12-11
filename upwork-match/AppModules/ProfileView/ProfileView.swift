@@ -113,7 +113,7 @@ struct GetPlusPageView: View {
             ForEach(0..<plusTexts.count, id: \.self) { i in
                 let plusText = plusTexts[i]
                 ZStack {
-                    MyColor.darkBG
+                    MyColor.black
                     VStack{
                         plusText.icon
                             .resizable()
@@ -131,7 +131,6 @@ struct GetPlusPageView: View {
                 }
             }
         }
-        .background(Color.black)
         .tabViewStyle(.page(indexDisplayMode: .always))
         .frame(width: UIScreen.main.bounds.width, height: 150)
         .padding(.vertical, 10)
