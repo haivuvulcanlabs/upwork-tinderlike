@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 
 struct DiscoverView: View {
     @State private var refresh: Bool = false
-    
+    @State private var isShowSubscription = false
     @StateObject var model = HomeViewModel()
     
     var body: some View {
@@ -54,11 +54,21 @@ struct DiscoverView: View {
             }
             .background(MyColor.whiteBGTab)
         }
+        .fullScreenCover(isPresented: $isShowSubscription, content: {
+            //            ProfileFilterView(isActive: $isShowingBottomSheet)
+            ZStack{
+                Color.black.opacity(0.5).edgesIgnoringSafeArea(.all)
+                SubscriptionView()
+            }
+            .background(BackgroundBlurView())
+        })
+        
         .navigationBarHidden(true)
         .background(MyColor.whiteBGTab.ignoresSafeArea())
         .onAppear {
             refresh = false
             model.fetchData()
+            isShowSubscription = true
         }
     }
     

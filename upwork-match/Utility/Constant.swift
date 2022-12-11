@@ -119,7 +119,21 @@ struct MyImages {
 }
 //MARK: UserDefaults
 struct Defaults {
-   
+    static let authToken                        = "authToken"
+    static let userData                            = "user_data"
+    static let deviceToken                        = "device_token"
+    static let coins                            = "coins"
+    static let language                            = "language"
+    static let userID                            = "user_id"
+    static let userName                            = "user_name"
+    static let IsUserLogin                         = "is_user_login"
+    static let FireBaseNotificationTopic          = "firebase_notification_topic"
+    static let date                                = "date"
+    static let dailyMatchLimit                    = "daily_match_limit"
+    static let oneSignalUUID                    = "my_one_signal_id"
+    static let isPopupStoped                    = "is_popup_stoped"
+    static let favouriteSounds                    = "fav_sound"
+    //
     static func getBooleanValueForKey(key: String) -> Bool {
         if let value = UserDefaults.standard.value(forKey: key) as? Bool {
             return value
@@ -193,5 +207,11 @@ struct LoaderView: View {
 
 //MARK: Param
 struct Parameter {
+    static let identity                            = "identity"
+    static let fullname                            = "fullname"
+    static let loginType                        = "login_type"
+    static let username                            = "username"
+    static let deviceType                        = "device_type"
+    static let deviceToken                        = "device_token"
 
 }

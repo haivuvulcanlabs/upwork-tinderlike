@@ -13,7 +13,7 @@ import AVFoundation
 extension View {
     func myBackColor() -> some View {
         self
-            .background(MyColor.darkBG.frame(width: Device.width, height: Device.height, alignment: .center).ignoresSafeArea())
+            .background(MyColor.black.frame(width: Device.width, height: Device.height, alignment: .center).ignoresSafeArea())
             .navigationBarHidden(true)
     }
     

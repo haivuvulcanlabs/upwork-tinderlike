@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>345211163182-t3ulbe3ui9ulm701vfm3p9p8k6mu0a1h.apps.googleusercontent.com</string>
+	<string>1079778399430-ibrgq1ne6gu2d0n8r42jm5hiv5e11gdu.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.345211163182-t3ulbe3ui9ulm701vfm3p9p8k6mu0a1h</string>
+	<string>com.googleusercontent.apps.1079778399430-ibrgq1ne6gu2d0n8r42jm5hiv5e11gdu</string>
 	<key>API_KEY</key>
-	<string>AIzaSyApk2H78XQGuGNOfrBHOkrTS4SXcoUGzh0</string>
+	<string>AIzaSyB4vHIkJI-nOentGLLsSLXWHSkhbigMG5o</string>
 	<key>GCM_SENDER_ID</key>
-	<string>345211163182</string>
+	<string>1079778399430</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>co.vulcanlabs.co.upwork-match</string>
 	<key>PROJECT_ID</key>
-	<string>tinder-3f4ed</string>
+	<string>upwork-tinder</string>
 	<key>STORAGE_BUCKET</key>
-	<string>tinder-3f4ed.appspot.com</string>
+	<string>upwork-tinder.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:345211163182:ios:942ebb2637f942fae005bf</string>
+	<string>1:1079778399430:ios:ddd8c04283928f1be8f3c7</string>
 </dict>
 </plist>

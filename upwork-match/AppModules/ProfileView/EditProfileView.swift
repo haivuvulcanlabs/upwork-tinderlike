@@ -88,6 +88,7 @@ struct EditProfileView: View {
             BottomSheet(isShowing: $model.isShowingDelete, bgColor: .clear, content: AnyView(deleteSheet))
 
         }
+        .tapAndHideKeyboard()
         .myBackColor()
     }
     

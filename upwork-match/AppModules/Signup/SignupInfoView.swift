@@ -13,7 +13,7 @@ struct SignupInfoView: View {
     var step: SignupStep
     @Binding var tabIndex: Int
     @State private var inputText: String = ""
-    @StateObject var model = SignUpViewModel()
+    @StateObject var model = SignUpViewModel.shared
     @State var birthday: [String] = ["","","","","","","",""]
     @FocusState var field: BirthdayField?
     var allBirthdayFields: [BirthdayField] = BirthdayField.allCases

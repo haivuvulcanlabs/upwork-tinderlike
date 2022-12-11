@@ -13,11 +13,17 @@ struct SettingsView: View {
     @StateObject var model = SettingViewModel()
 
     @State var isPushSettingActive = false
+    @State var isDeleteAccountActive = false
+
     var body: some View {
         ZStack {
             NavigationLink("", isActive: $isPushSettingActive) {
                 PushNotiSettingView()
             }
+            NavigationLink("", isActive: $isDeleteAccountActive) {
+                DeleteAccountView()
+            }
+            
             VStack {
                 BackButtonNavView(image: Asset.Assets.icBackRed.image, text: "SETTINGS")
                 VStack(spacing: 40){
@@ -51,6 +57,8 @@ struct SettingsView: View {
                                         .onTapGesture {
                                             if setting == .pushNotification {
                                                 isPushSettingActive.toggle()
+                                            } else if setting == .deleteAccount {
+                                                isDeleteAccountActive.toggle()
                                             }
                                         }
                                         if index2 < group.items.count - 1 {
@@ -79,7 +87,8 @@ struct SettingsView: View {
                     Spacer()
                     
                     Button(action: {
-                        AppFlow.shared.isLoggedIn = false
+                        
+                        model.signOut()
                     }, label: {
                         Spacer()
                         Text("Sign out")

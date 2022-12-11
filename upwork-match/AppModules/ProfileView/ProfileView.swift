@@ -95,15 +95,16 @@ struct VerticleButton: View {
 
 struct GetPlusPageView: View {
     struct PlusText {
+        let icon: Image
         let title: String
         let subTitle: String
     }
     var plusTexts: [PlusText] = []
     
     init() {
-        let text1 = PlusText(title: "Unlimited message", subTitle: "Send as many messages you want")
-        let text2 = PlusText(title: "Unlimited likes", subTitle: "Like as much you want")
-        let text3 = PlusText(title: "Turn off adverts", subTitle: "Don´t get disturbed")
+        let text1 = PlusText(icon: Asset.Assets.icDoubleChat.image, title: "Unlimited message", subTitle: "Send as many messages you want")
+        let text2 = PlusText(icon: Asset.Assets.icHeart.image, title: "Unlimited likes", subTitle: "Like as much you want")
+        let text3 = PlusText(icon: Asset.Assets.icAds.image, title: "Turn off adverts", subTitle: "Don´t get disturbed")
         plusTexts = [text1, text2, text3]
     }
     
@@ -114,7 +115,7 @@ struct GetPlusPageView: View {
                 ZStack {
                     MyColor.darkBG
                     VStack{
-                        Image("ic-heart")
+                        plusText.icon
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 25, height: 25, alignment: .center)
@@ -130,6 +131,7 @@ struct GetPlusPageView: View {
                 }
             }
         }
+        .background(Color.black)
         .tabViewStyle(.page(indexDisplayMode: .always))
         .frame(width: UIScreen.main.bounds.width, height: 150)
         .padding(.vertical, 10)

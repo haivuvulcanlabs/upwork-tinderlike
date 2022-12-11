@@ -119,9 +119,9 @@ enum SignupStep: Int, CaseIterable {
     var titleText: String {
         switch self {
         case .phone:
-            return ""
+            return "Enter your mobile number"
         case .code:
-            return ""
+            return "Enter your code"
         case .name:
             return "My first name"
         case .birthday:

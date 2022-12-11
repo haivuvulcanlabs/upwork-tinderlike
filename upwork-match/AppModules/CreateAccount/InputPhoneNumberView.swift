@@ -133,7 +133,7 @@ struct InputPhoneNumberView: View {
                 .font(.montserrat(.semiBold, size: 22))
                 .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
             HStack{
-                Text("sent to +112345678")
+                Text("sent to \(model.phoneNumberWithCode)")
                     .foregroundColor(Color(hex: "C1C1C1"))
                     .font(.system(size: 10, weight: .medium))
                 Button {

@@ -10,6 +10,7 @@ import UIKit
 import FirebaseCore
 import FirebaseMessaging
 import FirebaseAuth
+import AuthenticationServices
 
 class AppDelegate: NSObject,UIApplicationDelegate {
     
@@ -37,6 +38,23 @@ class AppDelegate: NSObject,UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         NotificationCenter.default.post(name: NSNotification.appTerminated, object: nil, userInfo: [:])
+    }
+    
+    func setupAppgleSignin() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier) { (credentialState, error) in
+            switch credentialState {
+            case .authorized:
+                break // The Apple ID credential is valid.
+            case .revoked, .notFound:
+                // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
+                DispatchQueue.main.async {
+//                    self.window?.rootViewController?.showLoginViewController()
+                }
+            default:
+                break
+            }
+        }
     }
 }
 

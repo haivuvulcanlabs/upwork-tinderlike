@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import AuthenticationServices
 
 struct CreateAccountView: View {
     @StateObject private var model = CreateAccountViewModel()
@@ -39,21 +40,16 @@ struct CreateAccountView: View {
                         .foregroundColor(Color(hex: "CCCCCC"))
                         .multilineTextAlignment(.center)
                         .padding(.vertical, 20)
-//                    NavigationLink {
-//                        EditPhotoView()
-//                    } label: {
-//                        buildButton(with: "SIGN IN WITH APPLE")
-//                    }
-                    
                     Button {
-                        withAnimation(.spring()) {
-                            AppFlow.shared.isLoggedIn = true
-                        }
+                        model.signInWithApple()
                     } label: {
                         buildButton(with: "SIGN IN WITH APPLE")
                     }
 
-                    
+//                    SignInWithAppleButton(.signIn, onRequest: onRequest, onCompletion: onCompletion)
+//                        .signInWithAppleButtonStyle(.black)
+//                        .frame(height: 48)
+
                     NavigationLink {
                         SignupView()
                     } label: {
@@ -83,6 +79,7 @@ struct CreateAccountView: View {
         
         .myBackColor()
     }
+
 }
 
 extension View {
