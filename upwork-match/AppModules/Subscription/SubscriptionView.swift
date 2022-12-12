@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct SubscriptionView: View {
+    @Environment(\.presentationMode) var present
+
     @StateObject var model = PurchaseViewModel()
     
     var body: some View {
@@ -52,6 +54,7 @@ struct SubscriptionView: View {
                     .disabled(model.selectedItem == nil)
                     
                     Button {
+                        present.wrappedValue.dismiss()
                     } label: {
                         Text("NO THANKS")
                             .font(.montserrat(.semiBold, size: 16))
@@ -63,6 +66,9 @@ struct SubscriptionView: View {
                 }
                 .background(.black)
             }
+            
+            
+            LoaderView(isLoading: $model.isLoading)
         }
         .onAppear {
             model.getCoinPlans()

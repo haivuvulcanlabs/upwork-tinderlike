@@ -13,8 +13,8 @@ struct StoreConfig: Codable,Hashable {
     var title: String?
     var productID: String?
     var promoted: Bool
-    var durationText: String
     var duration: Int
+    var durationText: String
 }
 
 

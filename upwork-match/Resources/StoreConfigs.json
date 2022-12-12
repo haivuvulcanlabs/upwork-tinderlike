@@ -2,23 +2,22 @@
     {
         "title" : "SAVE $50",
         "productID": "co.upworkmatch.monthly1",
-        "promoted": false
-        "duration" : 1,
+        "promoted": false,
+        "duration": 1,
         "durationText": "month"
     },
     {
         "title" : "MOST POPULAR",
         "productID": "co.upworkmatch.monthly6",
         "promoted": true,
-        "duration" : 6,
+        "duration": 6,
         "durationText": "month"
     },
     {
         "title" : "SAVE $100",
         "productID": "co.upworkmatch.monthly12",
         "promoted": false,
-        "duration" : 12,
+        "duration": 12,
         "durationText": "month"
     }
-    
 ]

@@ -115,7 +115,7 @@ extension CreateAccountViewModel: ASAuthorizationControllerDelegate {
 //                     Parameter.deviceType : "2",
 //                     Parameter.username : userName] as [String : Any]
         
-        let user = UserProfile(id: identity, fullname: userFullname, username: username, email: email, profileImage: "", profileImages: [], loginType: loginType, identity: identity, deviceType: 2, deviceToken: "", bio: "", authToken: "")
+        let user = UserProfile(id: identity, fullname: userFullname, username: username, email: email, profileImage: "", profileImages: [], loginType: loginType, identity: identity, deviceType: 2, deviceToken: "", bio: "", authToken: "", plusSetting: .default)
         let ref = db.collection("/users/").whereField("identity", in: [identity])
         
         let newDocRef = db.collection("/users/").document(identity)

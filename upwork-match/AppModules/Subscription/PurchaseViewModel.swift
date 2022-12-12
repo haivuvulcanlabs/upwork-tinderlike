@@ -18,7 +18,7 @@ class PurchaseViewModel : ObservableObject {
     func loadProducts() {
         
         InAppPurchaseProducts.productIDs = ["co.upworkmatch.monthly1", "co.upworkmatch.monthly6", "co.upworkmatch.monthly12"]
-
+        
         
         InAppPurchaseProducts.store.requestProducts { success, products in
             if success {
@@ -36,9 +36,32 @@ class PurchaseViewModel : ObservableObject {
         }
         guard let data = try? Data(contentsOf: url) else { return [] }
         
-        let items: [StoreConfig] = (try? JSONDecoder().decode([StoreConfig].self, from: data)) ?? []
-
-        return items
+        let string = String(data: data, encoding: .utf8)
+        
+        
+        
+        do {
+            // process data
+            let items: [StoreConfig] = try JSONDecoder().decode([StoreConfig].self, from: data)
+            debugPrint("hai iap configs \(string) --\n \(items)")
+            
+            return items
+        } catch let DecodingError.dataCorrupted(context) {
+            print(context)
+        } catch let DecodingError.keyNotFound(key, context) {
+            print("hai iap configs Key '\(key)' not found:", context.debugDescription)
+            print("hai iap configs codingPath:", context.codingPath)
+        } catch let DecodingError.valueNotFound(value, context) {
+            print("hai iap configs Value '\(value)' not found:", context.debugDescription)
+            print("hai iap configs codingPath:", context.codingPath)
+        } catch let DecodingError.typeMismatch(type, context)  {
+            print("hai iap configs Type '\(type)' mismatch:", context.debugDescription)
+            print("hai iap configs codingPath:", context.codingPath)
+        } catch {
+            print("hai iap configs error: ", error)
+        }
+        
+        return []
     }
     
     func getCoinPlans() {
@@ -91,7 +114,7 @@ class PurchaseViewModel : ObservableObject {
         guard let item = item else {
             return
         }
-
+        
         for product in InAppPurchaseProducts.store.products {
             if product.productIdentifier == item.product.productIdentifier {
                 isLoading = true

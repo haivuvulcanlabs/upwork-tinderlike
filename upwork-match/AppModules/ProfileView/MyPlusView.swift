@@ -8,46 +8,77 @@
 import Foundation
 import SwiftUI
 
+enum MyPlus: Int, CaseIterable {
+    case unlimitedLike = 0, unlimitedMsg, dontShowAge, dontShowDistance, hideProfile
+    
+    var text: String {
+        switch self {
+        case .unlimitedLike:
+            return "Unlimited likes"
+        case .unlimitedMsg:
+            return "Unlimited messages"
+        case .dontShowAge:
+            return "Don´t show my age"
+        case .dontShowDistance:
+            return "Don´t show my distance"
+        case .hideProfile:
+            return "Hide my profile"
+        }
+    }
+}
+
 struct MyPlusView: View {
     @Environment(\.presentationMode) var presentationMode
-
-    var optionTexts: [String] = ["Unlimited likes", "Unlimited messages", "Don´t show my age", "Don´t show my distance", "Hide my profile"]
+    @StateObject var model = MyPlustViewModel()
+    @State private var isShowSubscription = false
     
-    @State private var showGreeting: [Bool] = [false, false, false, false, false, false]
+    var optionTexts: [MyPlus] = MyPlus.allCases
+    
+    @State private var plusSettings: [Bool] = [false, false, false, false, false, false]
     var body: some View {
         VStack {
-            HStack{
-                Spacer()
-                Text("MY PLUS")
-                    .font(.openSans(.bold, size: 14))
-                    .foregroundColor(MyColor.red)
-                Spacer()
-                
-                Button {
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    Text("DONE")
+            ZStack{
+                HStack{
+                    Spacer()
+                    Text("MY PLUS")
                         .font(.openSans(.bold, size: 14))
                         .foregroundColor(MyColor.red)
+                    Spacer()
                 }
-                .padding(.horizontal, 10)
-
+                
+                HStack{
+                    Spacer()
+                    
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("DONE")
+                            .font(.openSans(.bold, size: 14))
+                            .foregroundColor(MyColor.red)
+                    }
+                    .padding(.horizontal, 10)
+                }
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+            
             
             VStack{
                 ForEach(0..<optionTexts.count,id: \.self) { index in
                     HStack{
-                        Text(optionTexts[index])
+                        Text(optionTexts[index].text)
                             .font(.roboto(.regular, fixedSize: 16))
                             .foregroundColor(Color(hex: "#D7D7D7"))
                             .padding(EdgeInsets(top: 0, leading: 13, bottom: 0, trailing: 0))
                         Spacer()
                         
-                        Toggle("", isOn: $showGreeting[index])
+                        Toggle("", isOn: $plusSettings[index])
                             .toggleStyle(SwitchToggleStyle(tint: .red))
-                            .padding(.horizontal, 13)
-
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 13))
+                            .onChange(of: plusSettings[index]) { value in
+                                // action...
+                                print(value)
+                            }
+                        
                     }
                     .frame(height: 44, alignment: .leading)
                     if index < optionTexts.count - 1 {
@@ -57,12 +88,21 @@ struct MyPlusView: View {
             }
             .background(Color(hex: "#2C2C2E"))
             .cornerRadius(13)
-
             Spacer()
+        }
+        .fullScreenCover(isPresented: $isShowSubscription, content: {
+            ZStack{
+                Color.black.opacity(0.5).edgesIgnoringSafeArea(.all)
+                SubscriptionView()
+            }
+            .background(BackgroundBlurView())
+        })
+        .onAppear {
+            isShowSubscription = true
         }
         .padding(.horizontal, 11)
         .myBackColor()
-
+        
     }
 }
 

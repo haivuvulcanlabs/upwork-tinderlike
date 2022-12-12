@@ -113,6 +113,7 @@
 		21C723DE2938932200C4B961 /* MyPlusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C723DD2938932200C4B961 /* MyPlusView.swift */; };
 		21C723E029389AF200C4B961 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C723DF29389AF200C4B961 /* SettingsView.swift */; };
 		21C723E229389D5D00C4B961 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C723E129389D5D00C4B961 /* EditProfileView.swift */; };
+		21D527AD2946CAA500CF4D0F /* MyPlustViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D527AC2946CAA500CF4D0F /* MyPlustViewModel.swift */; };
 		21E41D0C2938B57D00227BAA /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D0B2938B57D00227BAA /* EditViewModel.swift */; };
 		21E41D0E2938B5F600227BAA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D0D2938B5F600227BAA /* ImagePicker.swift */; };
 		21E41D102938B63600227BAA /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E41D0F2938B63600227BAA /* Functions.swift */; };
@@ -238,6 +239,7 @@
 		21C723DD2938932200C4B961 /* MyPlusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlusView.swift; sourceTree = "<group>"; };
 		21C723DF29389AF200C4B961 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		21C723E129389D5D00C4B961 /* EditProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		21D527AC2946CAA500CF4D0F /* MyPlustViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlustViewModel.swift; sourceTree = "<group>"; };
 		21E41D0B2938B57D00227BAA /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		21E41D0D2938B5F600227BAA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		21E41D0F2938B63600227BAA /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 				21C723DD2938932200C4B961 /* MyPlusView.swift */,
 				21C723E129389D5D00C4B961 /* EditProfileView.swift */,
 				21E41D0B2938B57D00227BAA /* EditViewModel.swift */,
+				21D527AC2946CAA500CF4D0F /* MyPlustViewModel.swift */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -814,6 +817,7 @@
 				2155A7D9293F90FB00E6D3DF /* ThumbnailView.swift in Sources */,
 				2112A8A8293AF82600129304 /* ImageModifier.swift in Sources */,
 				214A1005293799CA002D2EE3 /* TabBarView.swift in Sources */,
+				21D527AD2946CAA500CF4D0F /* MyPlustViewModel.swift in Sources */,
 				219F49972945FAA700FED3E5 /* PurchaseViewModel.swift in Sources */,
 				217273F32940337E0069CD43 /* UIImage+Extensions.swift in Sources */,
 				217273F22940337E0069CD43 /* ViewSizeModel.swift in Sources */,

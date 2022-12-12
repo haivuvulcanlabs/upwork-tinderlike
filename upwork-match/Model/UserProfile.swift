@@ -19,6 +19,7 @@ struct UserProfile: Codable,Hashable {
     var bio: String?
     var authToken : String?
     
+    var plusSetting: PlusSetting
     func toJSON() -> [String: Any] {
         guard let data = try? JSONEncoder().encode(self) else {
             return [:]
@@ -31,4 +32,15 @@ struct UserProfile: Codable,Hashable {
 
         return json
     }
+}
+
+
+struct PlusSetting: Codable, Hashable {
+    let unlimitedLike:  Bool
+    let unlimitedMsg: Bool
+    let dontShowAge: Bool
+    let dontShowDistance: Bool
+    let hideMyProfile: Bool
+    
+    static let `default` = PlusSetting(unlimitedLike: false, unlimitedMsg: false, dontShowAge: false, dontShowDistance: false, hideMyProfile: false)
 }
