@@ -72,8 +72,6 @@
 		2155A7E1293F90FB00E6D3DF /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7D3293F90FB00E6D3DF /* ViewfinderView.swift */; };
 		2155A7E2293F90FB00E6D3DF /* PhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7D4293F90FB00E6D3DF /* PhotoCollectionView.swift */; };
 		2155A7E3293F90FB00E6D3DF /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7D5293F90FB00E6D3DF /* PhotoView.swift */; };
-		2157EDDC2947838A006A4BB1 /* DictionaryDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157EDDB2947838A006A4BB1 /* DictionaryDecoder.swift */; };
-		2157EDDE294783AD006A4BB1 /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157EDDD294783AD006A4BB1 /* DictionaryEncoder.swift */; };
 		2157EDE02947858A006A4BB1 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157EDDF2947858A006A4BB1 /* ProfileViewModel.swift */; };
 		216E2F2C29384B38006FF871 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 216E2F2029384B38006FF871 /* OpenSans-ExtraBold.ttf */; };
 		216E2F2D29384B38006FF871 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 216E2F2129384B38006FF871 /* OpenSans-SemiBoldItalic.ttf */; };
@@ -202,8 +200,6 @@
 		2155A7D3293F90FB00E6D3DF /* ViewfinderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
 		2155A7D4293F90FB00E6D3DF /* PhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionView.swift; sourceTree = "<group>"; };
 		2155A7D5293F90FB00E6D3DF /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
-		2157EDDB2947838A006A4BB1 /* DictionaryDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDecoder.swift; sourceTree = "<group>"; };
-		2157EDDD294783AD006A4BB1 /* DictionaryEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncoder.swift; sourceTree = "<group>"; };
 		2157EDDF2947858A006A4BB1 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		216E2F2029384B38006FF871 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		216E2F2129384B38006FF871 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -549,8 +545,6 @@
 			isa = PBXGroup;
 			children = (
 				21872A74294234C20075829E /* PullToRefreshSwiftUI.swift */,
-				2157EDDB2947838A006A4BB1 /* DictionaryDecoder.swift */,
-				2157EDDD294783AD006A4BB1 /* DictionaryEncoder.swift */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -864,7 +858,6 @@
 				214A0FEB29379445002D2EE3 /* upwork_matchApp.swift in Sources */,
 				2155A7D8293F90FB00E6D3DF /* CameraView.swift in Sources */,
 				21872A5F294186630075829E /* ChattingTextEditor.swift in Sources */,
-				2157EDDE294783AD006A4BB1 /* DictionaryEncoder.swift in Sources */,
 				21E41D1E293995DA00227BAA /* CreateAccountViewModel.swift in Sources */,
 				2155A7DF293F90FB00E6D3DF /* PhotoLibrary.swift in Sources */,
 				2112A8E2293CC05200129304 /* ChatingViewModel.swift in Sources */,
@@ -880,7 +873,6 @@
 				216E2F3A29384CD8006FF871 /* BottomSheet.swift in Sources */,
 				214A100229379693002D2EE3 /* Constant.swift in Sources */,
 				21C723E029389AF200C4B961 /* SettingsView.swift in Sources */,
-				2157EDDC2947838A006A4BB1 /* DictionaryDecoder.swift in Sources */,
 				2112A8BA293B4B2900129304 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

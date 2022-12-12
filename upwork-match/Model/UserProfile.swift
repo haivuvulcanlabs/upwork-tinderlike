@@ -36,13 +36,29 @@ struct UserProfile: Codable,Hashable {
     }
 }
 
+extension Encoder {
+    
+}
 
 struct PlusSetting: Codable, Hashable {
-    let unlimitedLike:  Bool
-    let unlimitedMsg: Bool
-    let dontShowAge: Bool
-    let dontShowDistance: Bool
-    let hideMyProfile: Bool
-    
     static let `default` = PlusSetting(unlimitedLike: false, unlimitedMsg: false, dontShowAge: false, dontShowDistance: false, hideMyProfile: false)
+
+    var unlimitedLike:  Bool
+    var unlimitedMsg: Bool
+    var dontShowAge: Bool
+    var dontShowDistance: Bool
+    var hideMyProfile: Bool
+    
+    func toJSON() -> [String: Any] {
+        guard let data = try? JSONEncoder().encode(self) else {
+            return [:]
+        }
+        
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]else {
+            
+            return [:]
+        }
+
+        return json
+    }
 }

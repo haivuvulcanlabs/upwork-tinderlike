@@ -22,8 +22,7 @@ class SplashScreeViewModel: ObservableObject {
         
         guard let currentUser = Auth.auth().currentUser else { return }
       
-        SessionManager.shared.getUser()
-        AppFlow.shared.isLoggedIn  = true
+//        SessionManager.shared.getUser()
 //        000451.e81eed052aff45f9b8f83367b2c12162.0527
         
         debugPrint("hai - signin - \(currentUser.uid)")
@@ -41,7 +40,7 @@ class SplashScreeViewModel: ObservableObject {
 //                    SessionManager.shared.profile = userProfile
                     SessionManager.shared.saveUser(profile: userProfile)
                     debugPrint("hai - signin - profile \(userProfile)")
-
+                    AppFlow.shared.isLoggedIn  = true
                 } catch {
                     print(error.localizedDescription)
                 }
