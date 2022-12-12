@@ -19,33 +19,30 @@ struct SignupView: View {
             VStack {
                 if selectedTab < 7 {
                     ZStack {
-                            BackButtonNavView(image: Image("ic-back-red"))
-    //                    HStack {
-                            Spacer()
-                            if selectedTab < 2 {
-                                Text("Sign up")
-                                    .font(.openSans(.bold, size: 14))
-                                    .foregroundColor(MyColor.red)
-                            } else{
-                                
-                                PageControl(numberOfPages: 7, currentPage: $selectedTab)
-                            }
-    //                        Spacer()
-                            if selectedTab >= 3{
-                                HStack {
-                                    Spacer()
-                                    Button {
-                                        AppFlow.shared.isLoggedIn = true
-                                    } label: {
-                                        Text("SKIP")
-                                            .foregroundColor(MyColor.red)
-                                            .font(.system(size: 14, weight: .bold))
-                                            .padding(.horizontal, 5)
-                                    }
+                        BackButtonNavView(image: Image("ic-back-red"))
+                        Spacer()
+                        if selectedTab < 2 {
+                            Text("Sign up")
+                                .font(.openSans(.bold, size: 14))
+                                .foregroundColor(MyColor.red)
+                        } else{
+                            
+                            PageControl(numberOfPages: 7, currentPage: $selectedTab)
+                        }
+                        if selectedTab >= 3{
+                            HStack {
+                                Spacer()
+                                Button {
+                                    selectedTab += 1
+                                } label: {
+                                    Text("SKIP")
+                                        .foregroundColor(MyColor.red)
+                                        .font(.openSans(.bold, size: 14))
+                                        .padding(.horizontal, 5)
                                 }
-
                             }
-    //                    }
+                            
+                        }
                     }
                 }
                 
@@ -53,7 +50,7 @@ struct SignupView: View {
                     InputPhoneNumberView(isLoginFlow: false, step: .inputPhone, tabIndex: $selectedTab).tag(0)
                     InputPhoneNumberView(isLoginFlow: false, step: .inputCode, tabIndex: $selectedTab).tag(1)
                     SignupInfoView(step: .name, tabIndex: $selectedTab).tag(2)                    .gesture(DragGesture())
-
+                    
                     SignupInfoView(step: .birthday, tabIndex: $selectedTab).tag(3)
                     SignupInfoView(step: .gender, tabIndex: $selectedTab).tag(4)
                     SignupInfoView(step: .bio, tabIndex: $selectedTab).tag(5)

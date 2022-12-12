@@ -9,6 +9,23 @@ import Foundation
 
 class SessionManager {
     static var shared = SessionManager()
+    var profile: UserProfile?
+    
+    func saveUser(profile: UserProfile) {
+        self.profile = profile
+        
+        let data = try? JSONEncoder().encode(profile)
+        UserDefaults.standard.set(data, forKey: "user_profile_data")
+    }
+    
+    func getUser() {
+        guard let data = UserDefaults.standard.data(forKey: "user_profile_data") else {
+            return
+        }
+        
+        profile = try? JSONDecoder().decode(UserProfile.self, from: data)
+    }
+    
     //    //MARK: purchaseData
     func setStoreConfigs(datum: [StoreConfig]) {
         do {

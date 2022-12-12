@@ -46,10 +46,6 @@ struct CreateAccountView: View {
                         buildButton(with: "SIGN IN WITH APPLE")
                     }
 
-//                    SignInWithAppleButton(.signIn, onRequest: onRequest, onCompletion: onCompletion)
-//                        .signInWithAppleButtonStyle(.black)
-//                        .frame(height: 48)
-
                     NavigationLink {
                         SignupView()
                     } label: {

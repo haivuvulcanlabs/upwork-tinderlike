@@ -12,7 +12,6 @@ import Combine
 struct SignupInfoView: View {
     var step: SignupStep
     @Binding var tabIndex: Int
-    @State private var inputText: String = ""
     @StateObject var model = SignUpViewModel.shared
     @State var birthday: [String] = ["","","","","","","",""]
     @FocusState var field: BirthdayField?
@@ -64,7 +63,15 @@ struct SignupInfoView: View {
                 
                 Button {
                     hideKeyboard()
-                    tabIndex += 1
+                    if tabIndex == 6 {
+                        model.onCreateProfile {finished in
+                            if finished {
+                                tabIndex += 1
+                            }
+                        }
+                    } else {
+                        tabIndex += 1
+                    }
                     
                 } label: {
                     buildButton(with: "CONTINUE")
@@ -74,6 +81,8 @@ struct SignupInfoView: View {
             
             BottomSheet(isShowing: $model.imagePicker, bgColor: .clear, content: AnyView(cameraActionSheet))
             BottomSheet(isShowing: $model.isShowingDelete, bgColor: .clear, content: AnyView(deleteSheet))
+            
+            LoaderView(isLoading: $model.isLoading)
         }
         .fullScreenCover(isPresented: $model.isFilePicker, content: {
             if let selected = model.profileImageId,
@@ -98,15 +107,12 @@ struct SignupInfoView: View {
     func inputTextView() -> some View {
         VStack{
             
-            TextField("Name", text: $inputText, onEditingChanged: {_ in
+            TextField("Name", text: $model.displayName, onEditingChanged: {_ in
                 print("Changed")
-                model.onNameChanged(name: inputText)
-                
+                model.onNameChanged(name: model.displayName)
             })
-            
-            .onChange(of: inputText, perform: { newValue in
+            .onChange(of: model.displayName, perform: { newValue in
                 model.onNameChanged(name: newValue)
-                
             })
             .font(.montserrat(.medium, size: 18))
             .foregroundColor(Color(hex: "C1C1C1"))
@@ -238,7 +244,7 @@ struct SignupInfoView: View {
             }
             
             Text("Hold, drag and drop to reorder your photos")
-                .font(.system(size: 12, weight: .semibold))
+                .font(.openSans(.semiBold, size: 12))
                 .foregroundColor(MyColor.hex4d4d4d)
                 .padding(.vertical, 20)
         }

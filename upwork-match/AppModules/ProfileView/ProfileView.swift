@@ -12,6 +12,7 @@ struct ProfileView: View {
     @State var selectedTab = 0
     @State var isCreateGroupChat = false
     @State var isActive : Bool = false
+    @StateObject var model = ProfileViewModel()
     
     var body: some View {
         VStack {
@@ -30,7 +31,7 @@ struct ProfileView: View {
                 .padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
             
             
-            Text("Jhon, 22")
+            Text("\(model.profile?.fullname ?? ""), \(model.profile?.age ?? 18)")
                 .font(.montserrat(.semiBold, size: 25))
                 .foregroundColor(MyColor.white)
                 .frame(alignment: .center)
@@ -38,11 +39,11 @@ struct ProfileView: View {
             HStack{
                 Spacer()
                 NavigationLink(destination: SettingsView()) {
-                    VerticleButton(image: Image("ic-setting"), text: "SETTINGS")
+                    VerticleButton(image: Asset.Assets.icSetting.image, text: "SETTINGS")
                 }
                 Spacer()
                 NavigationLink(destination: EditProfileView()) {
-                    VerticleButton(image: Image("ic-edit-profile"), text: "EDIT PROFILE")
+                    VerticleButton(image: Asset.Assets.icEditProfile.image, text: "EDIT PROFILE")
                 }
                 Spacer()
             }
@@ -66,6 +67,9 @@ struct ProfileView: View {
             }
             
             
+        }
+        .onAppear {
+            model.reloadUserProfile()
         }
         .myBackColor()
     }

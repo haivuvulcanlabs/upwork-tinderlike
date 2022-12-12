@@ -21,6 +21,7 @@ class CreateAccountViewModel: NSObject, ObservableObject {
     
     fileprivate var currentNonce: String?
     let db = Firestore.firestore()
+    let firebaserService = FirebaseServices()
     
     func signInWithApple() {
         let nonce = randomNonceString()
@@ -96,46 +97,17 @@ extension CreateAccountViewModel: ASAuthorizationControllerDelegate {
                 let firstName = appleIDCredential.fullName?.givenName
                 let lastName = appleIDCredential.fullName?.familyName
                 let fullName = "\(firstName ?? "John") \(lastName ?? "Deo")"
-                self.registerUser(username: email, identity: user.uid, email: email, userFullname: fullName, loginType: LoginType.apple.rawValue)
+                self.firebaserService.registerUser(username: email, identity: user.uid, userFullname: fullName, loginType: LoginType.apple.rawValue) { finished in
+                    if finished {
+                        AppFlow.shared.isLoggedIn = true
+                    }
+                }
             }
         }
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print(error.localizedDescription)
-    }
-    
-    func registerUser(username: String,identity: String, email: String, userFullname: String, loginType : Int) {
-        let userName = String(username.split(separator: "@").first ?? "")
-//        let oneSignalID = SessionManager.shared.getStringValueForKey(key: Defaults.oneSignalUUID)
-//        let param = [Parameter.fullname : userFullname,
-//                     Parameter.identity : identity,
-//                     Parameter.loginType : "\(loginType)",
-//                     Parameter.deviceToken : "WebServices.notificationToken",
-//                     Parameter.deviceType : "2",
-//                     Parameter.username : userName] as [String : Any]
-        
-        let user = UserProfile(id: identity, fullname: userFullname, username: username, email: email, profileImage: "", profileImages: [], loginType: loginType, identity: identity, deviceType: 2, deviceToken: "", bio: "", authToken: "", plusSetting: .default)
-        let ref = db.collection("/users/").whereField("identity", in: [identity])
-        
-        let newDocRef = db.collection("/users/").document(identity)
-        ref.getDocuments { querysnapshot, errr in
-            if let doc = querysnapshot?.documents, !doc.isEmpty {
-               //"Document is present."
-                AppFlow.shared.isLoggedIn = true
-
-            } else {
-                //
-                newDocRef.setData(user.toJSON()) { error in
-                    if let `error` = error {
-                        debugPrint("create user \(error.localizedDescription)")
-                    } else {
-                        AppFlow.shared.isLoggedIn = true
-                    }
-                }
-            }
-        }
-       
     }
 }
 

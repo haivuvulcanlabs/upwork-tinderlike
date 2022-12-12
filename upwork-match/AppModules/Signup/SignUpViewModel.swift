@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import FirebaseAuth
 
 class SignUpViewModel: ObservableObject {
     static let shared = SignUpViewModel()
@@ -30,14 +31,17 @@ class SignUpViewModel: ObservableObject {
     @Published var isCameraOn = false
     @Published var selfie: UIImage? = UIImage()
     @Published var isFilePicker = false
-    
+    @Published var displayName: String = ""
+
     @Published var birthdayModel = BirthdateViewModel()
     @Published var gender: Gender?
     @Published var bio: String = ""
-
     @Published var isVerified = false
     @Published var errorMessage: String?
+    @Published var isLoading: Bool = false
     
+    var bithday: String?
+    var age: Int?
     func onAddBithday(values: [String]) {
         isVerified = false
         let numbers: [Int] = values.compactMap({Int($0) ?? -1})
@@ -49,18 +53,21 @@ class SignUpViewModel: ObservableObject {
         let dateString = String(format: "%d%d/%d%d/%d%d%d%d", numbers[0],numbers[1],numbers[2],numbers[3],numbers[4],numbers[5],numbers[6],numbers[7])
         let date = dateString.toDate(format: "dd/MM/yyyy")
         let deltaTime = Date().timeIntervalSince1970 - date.timeIntervalSince1970
-        guard deltaTime >= 18 * 365 * 24 * 60 * 60 else {
+        let oneYearTime: Double = 365 * 24 * 60 * 60
+
+        guard deltaTime >= 18 * oneYearTime else {
             errorMessage = "Minimum age requirement is 18."
             return
         }
         
-        guard deltaTime < 100 * 365 * 24 * 60 * 60 else {
+        guard deltaTime < 100 * oneYearTime else {
             errorMessage = "Maximum age requirement is 100."
             return
         }
         isVerified = true
         errorMessage = nil
-
+        bithday = dateString
+        age = Int(deltaTime / oneYearTime)
         debugPrint("hai -- date \(dateString)")
     }
     
@@ -110,6 +117,16 @@ class SignUpViewModel: ObservableObject {
         }
         
         isVerified = true
+    }
+    
+    func onCreateProfile(completion: ((Bool)->())?) {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        isLoading = true
+        let fbService = FirebaseServices()
+        fbService.registerUser(username: displayName, identity: currentUser.uid, userFullname: displayName, bio: bio, bithday: bithday, age: age, loginType: LoginType.phone.rawValue) { finished in
+            self.isLoading = false
+            completion?(finished)
+        }
     }
 }
 

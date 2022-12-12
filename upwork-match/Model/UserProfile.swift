@@ -9,7 +9,7 @@ import Foundation
 
 struct UserProfile: Codable,Hashable {
     var id: String
-    var fullname, username, email, profileImage: String?
+    var fullname, username: String?
     var profileImages: [String]
     var loginType: Int?
     var identity: String?
@@ -17,6 +17,8 @@ struct UserProfile: Codable,Hashable {
     var deviceToken: String?
     var birthday: String?
     var bio: String?
+    var bithday: String?
+    var age: Int?
     var authToken : String?
     
     var plusSetting: PlusSetting

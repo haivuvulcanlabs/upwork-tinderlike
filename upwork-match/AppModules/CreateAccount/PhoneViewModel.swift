@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 import FirebaseAuth
 
-class SignInViewModel: ObservableObject {
-    static let shared = SignInViewModel()
+class PhoneViewModel: ObservableObject {
+    static let shared = PhoneViewModel()
     
     @Published var errorMessage: String?
     @Published var isVerified: Bool = false
@@ -83,7 +83,6 @@ class SignInViewModel: ObservableObject {
             self.isVerified = true
             completion?(true)
         }
-        
     }
     
     func onVerifyCodeChanged(_ values: [String]) {
@@ -120,8 +119,6 @@ class SignInViewModel: ObservableObject {
     func tappedResend() {
         
     }
-    
-    
 }
 
 

@@ -34,33 +34,10 @@ struct MyPlusView: View {
     
     var optionTexts: [MyPlus] = MyPlus.allCases
     
-    @State private var plusSettings: [Bool] = [false, false, false, false, false, false]
     var body: some View {
         VStack {
-            ZStack{
-                HStack{
-                    Spacer()
-                    Text("MY PLUS")
-                        .font(.openSans(.bold, size: 14))
-                        .foregroundColor(MyColor.red)
-                    Spacer()
-                }
-                
-                HStack{
-                    Spacer()
-                    
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Text("DONE")
-                            .font(.openSans(.bold, size: 14))
-                            .foregroundColor(MyColor.red)
-                    }
-                    .padding(.horizontal, 10)
-                }
-            }
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
-            
+          
+            navView
             
             VStack{
                 ForEach(0..<optionTexts.count,id: \.self) { index in
@@ -71,14 +48,14 @@ struct MyPlusView: View {
                             .padding(EdgeInsets(top: 0, leading: 13, bottom: 0, trailing: 0))
                         Spacer()
                         
-                        Toggle("", isOn: $plusSettings[index])
+                        Toggle("", isOn: $model.plusSettings[index])
                             .toggleStyle(SwitchToggleStyle(tint: .red))
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 13))
-                            .onChange(of: plusSettings[index]) { value in
+                            .onChange(of: model.plusSettings[index]) { value in
                                 // action...
                                 print(value)
+                                self.model.onUpdateSetting(at: index, value: value)
                             }
-                        
                     }
                     .frame(height: 44, alignment: .leading)
                     if index < optionTexts.count - 1 {
@@ -99,10 +76,37 @@ struct MyPlusView: View {
         })
         .onAppear {
             isShowSubscription = true
+            model.getProfileSetting()
         }
         .padding(.horizontal, 11)
         .myBackColor()
         
+    }
+    
+    var navView: some View {
+        ZStack{
+            HStack{
+                Spacer()
+                Text("MY PLUS")
+                    .font(.openSans(.bold, size: 14))
+                    .foregroundColor(MyColor.red)
+                Spacer()
+            }
+            
+            HStack{
+                Spacer()
+                
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Text("DONE")
+                        .font(.openSans(.bold, size: 14))
+                        .foregroundColor(MyColor.red)
+                }
+                .padding(.horizontal, 10)
+            }
+        }
+        .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
     }
 }
 
