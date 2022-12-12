@@ -11,7 +11,7 @@ class SessionManager {
     static var shared = SessionManager()
     var profile: UserProfile?
     
-    func saveUser(profile: UserProfile) {
+    func saveUser(profile: UserProfile?) {
         self.profile = profile
         
         let data = try? JSONEncoder().encode(profile)

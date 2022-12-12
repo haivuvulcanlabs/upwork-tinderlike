@@ -105,9 +105,12 @@ struct InputPhoneNumberView: View {
                             if isLoginFlow {
                                 if finished {
                                     AppFlow.shared.isLoggedIn = true
+                                    model.clearSession()
                                 }
                             } else {
+                                //signup
                                 if finished {
+                                    //go to next step
                                     tabIndex = 2
                                 }
                             }

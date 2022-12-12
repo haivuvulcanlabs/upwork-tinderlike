@@ -119,6 +119,14 @@ class PhoneViewModel: ObservableObject {
     func tappedResend() {
         
     }
+    
+    func clearSession() {
+        phoneNumber = ""
+        selectedCountry = Country(phoneCode: "1", isoCode: "US")
+        
+        verificationID = nil
+       verificationCode = nil
+    }
 }
 
 
