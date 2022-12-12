@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import FirebaseAuth
 
 struct DeleteAccountView: View {
     @Environment(\.presentationMode) var present
@@ -102,10 +103,21 @@ struct DeleteAccountView: View {
     }
     
     func deleteAccount() {
+        
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
         isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        user.delete { error in
             self.isLoading = false
-            self.isAccountDeleted = true
+
+            if let error = error {
+            // An error happened.
+            } else {
+            // Account deleted.
+                self.isAccountDeleted = true
+
+            }
         }
     }
 }
