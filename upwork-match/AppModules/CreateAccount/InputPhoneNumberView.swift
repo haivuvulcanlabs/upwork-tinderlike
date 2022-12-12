@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct InputPhoneNumberView: View {
-    @StateObject private var model = SignInViewModel()
+    @StateObject private var model = SignInViewModel.shared
     var isLoginFlow = true //false = signup
     var step: SignInStep
 
