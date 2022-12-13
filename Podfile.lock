@@ -1,16 +1,30 @@
 PODS:
+  - AWSCognito (2.19.1):
+    - AWSCore (= 2.19.1)
+  - AWSCore (2.19.1)
+  - AWSS3 (2.19.1):
+    - AWSCore (= 2.19.1)
   - GrowingTextView (0.7.2)
 
 DEPENDENCIES:
+  - AWSCognito
+  - AWSCore
+  - AWSS3
   - GrowingTextView
 
 SPEC REPOS:
   trunk:
+    - AWSCognito
+    - AWSCore
+    - AWSS3
     - GrowingTextView
 
 SPEC CHECKSUMS:
+  AWSCognito: f50de600804941d083af37a7568905f31a774727
+  AWSCore: 55c154ae27efc5c98bdc30a0eeea5a35d10a2ab5
+  AWSS3: 2272253b098d07803af8dd20ce6ce7302bcffb47
   GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
 
-PODFILE CHECKSUM: fa807c13a025add46d9054d006dfca8d43ea47fb
+PODFILE CHECKSUM: 81ab970ad7913f8f602e05663dc49c7418e2be07
 
 COCOAPODS: 1.11.3

@@ -30,6 +30,7 @@ struct SettingsView: View {
                     ForEach(0..<model.items.count,id: \.self) { index in
                         let group = model.items[index]
                         VStack(alignment: .leading, spacing: 10) {
+//                        GroupBox {
                             HStack{
                                 Text(group.text)
                                     .font(.openSans(.bold, fixedSize: 14))
@@ -79,6 +80,7 @@ struct SettingsView: View {
 
                             .cornerRadius(13, corners: .allCorners)
                         }
+//                        .groupBoxStyle(ColoredGroupBox())
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
 
 
@@ -109,5 +111,23 @@ struct SettingsView: View {
             }
         }
         .myBackColor()
+    }
+}
+
+
+struct ColoredGroupBox: GroupBoxStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack {
+            HStack {
+                configuration.label
+                    .font(.headline)
+                Spacer()
+            }
+            
+            configuration.content
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 13, style: .continuous)
+            .fill(Color(hex: "2C2C2E"))) // Set your color here!!
     }
 }

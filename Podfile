@@ -7,5 +7,7 @@ target 'upwork-match' do
 
   # Pods for upwork-match
 pod 'GrowingTextView'
-
+pod 'AWSS3'
+pod 'AWSCognito'
+pod 'AWSCore'
 end

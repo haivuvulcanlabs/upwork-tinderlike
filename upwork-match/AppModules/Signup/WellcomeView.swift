@@ -44,22 +44,22 @@ struct WellcomeView: View {
             
             Text("Welcome to name!")
                 .foregroundColor(MyColor.hexD1D1D1)
-                .font(.system(size: 20, weight: .bold))
+                .font(.montserrat(.bold, size: 20))
             Text("Please follow these House Rules.")
                 .foregroundColor(MyColor.hexD1D1D1)
-                .font(.system(size: 15, weight: .semibold))
+                .font(.montserrat(.semiBold, size: 15))
         }
     }
     var yourSelfView: some View {
         VStack(spacing: 5){
             Text("Be yourself.")
                 .foregroundColor(MyColor.red)
-                .font(.system(size: 15, weight: .bold))
+                .font(.montserrat(.bold, size: 15))
             Text("Make sure your photos, age, and bio are true to who you are.")
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
                 .foregroundColor(MyColor.hexD1D1D1)
-                .font(.system(size: 15, weight: .semibold))
+                .font(.montserrat(.semiBold, size: 15))
         }
         
     }
@@ -68,12 +68,12 @@ struct WellcomeView: View {
         VStack(spacing: 5){
             Text("Stay safe")
                 .foregroundColor(MyColor.red)
-                .font(.system(size: 15, weight: .bold))
+                .font(.montserrat(.bold, size: 15))
             Text("Don´t be too quick to give out personal information.")
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
                 .foregroundColor(MyColor.hexD1D1D1)
-                .font(.system(size: 15, weight: .semibold))
+                .font(.montserrat(.semiBold, size: 15))
         }
     }
     
@@ -81,12 +81,12 @@ struct WellcomeView: View {
         VStack(spacing: 5){
             Text("Play it cool")
                 .foregroundColor(MyColor.red)
-                .font(.system(size: 15, weight: .bold))
+                .font(.montserrat(.bold, size: 15))
             Text("Respect others and treat them as you would like to be treated.")
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
                 .foregroundColor(MyColor.hexD1D1D1)
-                .font(.system(size: 15, weight: .semibold))
+                .font(.montserrat(.semiBold, size: 15))
         }
     }
     
@@ -94,11 +94,12 @@ struct WellcomeView: View {
         VStack(spacing: 5){
             Text("Be proactive")
                 .foregroundColor(MyColor.red)
-                .font(.system(size: 15, weight: .bold))
+                .font(.montserrat(.bold, size: 15))
             Text("Always report bad behavior.")
                 .multilineTextAlignment(.center)
                 .foregroundColor(MyColor.hexD1D1D1)
-                .font(.system(size: 15, weight: .semibold))
+                .font(.montserrat(.semiBold, size: 15))
+
             
         }
     }

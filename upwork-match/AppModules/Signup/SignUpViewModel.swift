@@ -123,7 +123,7 @@ class SignUpViewModel: ObservableObject {
         guard let currentUser = Auth.auth().currentUser else { return }
         isLoading = true
         let fbService = FirebaseServices()
-        fbService.registerUser(username: displayName, identity: currentUser.uid, userFullname: displayName, bio: bio, bithday: bithday, age: age, loginType: LoginType.phone.rawValue) { finished in
+        fbService.registerUser(username: displayName, identity: currentUser.uid, userFullname: displayName, gender: gender, bio: bio, bithday: bithday, age: age, loginType: LoginType.phone.rawValue) { finished in
             self.isLoading = false
             completion?(finished)
         }
@@ -162,6 +162,6 @@ enum SignupStep: Int, CaseIterable {
     }
 }
 
-enum Gender: Int {
-    case male, female
+enum Gender: Int, Codable {
+    case female = 0, male
 }

@@ -31,7 +31,7 @@ class CreateAccountViewModel: NSObject, ObservableObject {
         
         let request = provider.createRequest()
         
-        request.requestedScopes = [.fullName,.email]
+        request.requestedScopes = [.fullName, .email]
         request.nonce = sha256(nonce)
         
         let controller = ASAuthorizationController(authorizationRequests: [request])
@@ -97,7 +97,7 @@ extension CreateAccountViewModel: ASAuthorizationControllerDelegate {
                 let firstName = appleIDCredential.fullName?.givenName
                 let lastName = appleIDCredential.fullName?.familyName
                 let fullName = "\(firstName ?? "John") \(lastName ?? "Deo")"
-                self.firebaserService.registerUser(username: email, identity: user.uid, userFullname: fullName, loginType: LoginType.apple.rawValue) { finished in
+                self.firebaserService.registerUser(username: email, identity: user.uid, userFullname: fullName, gender: nil, loginType: LoginType.apple.rawValue) { finished in
                     if finished {
                         AppFlow.shared.isLoggedIn = true
                     }

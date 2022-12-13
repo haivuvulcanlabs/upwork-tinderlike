@@ -15,12 +15,19 @@ struct EditProfileView: View {
     @State var images: [GridData] = ["ic-thumb-1","ic-thumb-2","ic-thumb-3", "ic-thumb-4", "ic-thumb-5", "ic-thumb-2","","", ""].compactMap({GridData(id: Int.random(in: 0...100), thumbURL: $0)})
     
     @State var aboutmeText: String = ""
+    @State var isActiveProfileView: Bool = false
     var body: some View {
         ZStack {
+            NavigationLink(isActive: $isActiveProfileView) {
+                ProfileAndLikeView()
+            } label: {
+            }
+
             ScrollViewReader { proxy in
                 VStack {
                     HStack {
                         Button {
+                            isActiveProfileView.toggle()
                         } label: {
                             Text("PREVIEW")
                                 .font(.openSans(.bold, size: 14))
@@ -65,17 +72,17 @@ struct EditProfileView: View {
                     
 
                     Text("Hold, drag and drop to reorder your photos")
-                        .font(.system(size: 12, weight: .semibold))
+                        .font(.openSans(.semiBold, size: 12))
                         .foregroundColor(MyColor.hex4d4d4d)
                         .padding(.vertical, 20)
                     Text("About me")
-                        .font(.system(size: 17, weight: .semibold))
+                        .font(.openSans(.semiBold, size: 17))
                         .foregroundColor(MyColor.hex4d4d4d)
 
                     TextField("Type here", text: $aboutmeText)
                         .multilineTextAlignment(.center)
                         .foregroundColor(MyColor.hex4d4d4d)
-                        .font(.system(size: 17, weight: .semibold))
+                        .font(.openSans(.semiBold, size: 17))
                         .padding(.horizontal, 10)
 
 

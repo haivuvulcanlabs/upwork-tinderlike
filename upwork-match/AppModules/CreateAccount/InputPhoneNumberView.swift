@@ -120,6 +120,7 @@ struct InputPhoneNumberView: View {
                 } label: {
                     buildButton(with: "CONTINUE")
                         .opacity(model.isVerified ? 1 : 0.5)
+                        .KeyboardAwarePadding()
                 }
                 .disabled(!model.isVerified)
             }
@@ -138,13 +139,13 @@ struct InputPhoneNumberView: View {
             HStack{
                 Text("sent to \(model.phoneNumberWithCode)")
                     .foregroundColor(Color(hex: "C1C1C1"))
-                    .font(.system(size: 10, weight: .medium))
+                    .font(.montserrat(.medium, size: 12))
                 Button {
                     model.tappedResend()
                 } label: {
                     Text("Resend")
                         .foregroundColor(Color(hex: "CBCBCB"))
-                        .font(.system(size: 12, weight: .semibold))
+                        .font(.montserrat(.semiBold, size: 12))
                 }
             }
             .padding(.vertical, 2)
@@ -184,7 +185,7 @@ struct InputPhoneNumberView: View {
             if let errorMessage = model.errorMessage {
                 Text(errorMessage)
                     .foregroundColor(MyColor.red)
-                    .font(.system(size: 11))
+                    .font(.montserrat(.regular, size: 11))
                     .multilineTextAlignment(.center)
                     .frame(alignment: .center)
             }

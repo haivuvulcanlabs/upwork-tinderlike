@@ -16,6 +16,7 @@ struct UserProfile: Codable,Hashable {
     var deviceType: Int?
     var deviceToken: String?
     var birthday: String?
+    var gender: Gender?
     var bio: String?
     var bithday: String?
     var age: Int?

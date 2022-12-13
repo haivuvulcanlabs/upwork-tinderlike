@@ -73,6 +73,7 @@
 		2155A7E2293F90FB00E6D3DF /* PhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7D4293F90FB00E6D3DF /* PhotoCollectionView.swift */; };
 		2155A7E3293F90FB00E6D3DF /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155A7D5293F90FB00E6D3DF /* PhotoView.swift */; };
 		2157EDE02947858A006A4BB1 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157EDDF2947858A006A4BB1 /* ProfileViewModel.swift */; };
+		2157EDE22948162F006A4BB1 /* AWSS3Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157EDE12948162F006A4BB1 /* AWSS3Manager.swift */; };
 		216E2F2C29384B38006FF871 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 216E2F2029384B38006FF871 /* OpenSans-ExtraBold.ttf */; };
 		216E2F2D29384B38006FF871 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 216E2F2129384B38006FF871 /* OpenSans-SemiBoldItalic.ttf */; };
 		216E2F2E29384B38006FF871 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 216E2F2229384B38006FF871 /* OpenSans-Bold.ttf */; };
@@ -201,6 +202,7 @@
 		2155A7D4293F90FB00E6D3DF /* PhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionView.swift; sourceTree = "<group>"; };
 		2155A7D5293F90FB00E6D3DF /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		2157EDDF2947858A006A4BB1 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		2157EDE12948162F006A4BB1 /* AWSS3Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSS3Manager.swift; sourceTree = "<group>"; };
 		216E2F2029384B38006FF871 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		216E2F2129384B38006FF871 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		216E2F2229384B38006FF871 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				2179FDC529476F190029BA03 /* FirebaseServices.swift */,
+				2157EDE12948162F006A4BB1 /* AWSS3Manager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -818,6 +821,7 @@
 				219F49992945FAC700FED3E5 /* StoreConfig.swift in Sources */,
 				219F498D2945DBBA00FED3E5 /* DeleteAccountView.swift in Sources */,
 				21E41D2D2939BF9C00227BAA /* SignupView.swift in Sources */,
+				2157EDE22948162F006A4BB1 /* AWSS3Manager.swift in Sources */,
 				2112A89C293AEFD600129304 /* EditPhotoView.swift in Sources */,
 				21E41D172938FC6400227BAA /* AppSetting.swift in Sources */,
 				21872A6329418B0E0075829E /* ChatMessage.swift in Sources */,

@@ -11,7 +11,7 @@ import FirebaseFirestore
 class FirebaseServices: NSObject {
     let db = Firestore.firestore()
 
-    func registerUser(username: String,identity: String, userFullname: String, bio: String = "", bithday: String? = nil, age: Int? = nil, loginType : Int, completion: ((Bool)->())?) {
+    func registerUser(username: String,identity: String, userFullname: String, gender: Gender?, bio: String = "", bithday: String? = nil, age: Int? = nil, loginType : Int, completion: ((Bool)->())?) {
         let userName = String(username.split(separator: "@").first ?? "")
 //        let oneSignalID = SessionManager.shared.getStringValueForKey(key: Defaults.oneSignalUUID)
 //        let param = [Parameter.fullname : userFullname,
@@ -21,7 +21,7 @@ class FirebaseServices: NSObject {
 //                     Parameter.deviceType : "2",
 //                     Parameter.username : userName] as [String : Any]
         
-        let user = UserProfile(id: identity, fullname: userFullname, username: username, profileImages: [], loginType: loginType, identity: identity, deviceType: 2, deviceToken: "", bio: bio, bithday: bithday, age: age, authToken: "", plusSetting: .default)
+        let user = UserProfile(id: identity, fullname: userFullname, username: username, profileImages: [], loginType: loginType, identity: identity, deviceType: 2, deviceToken: "", gender: gender, bio: bio, bithday: bithday, age: age, authToken: "", plusSetting: .default)
         let ref = db.collection("/users/").whereField("identity", in: [identity])
         
         let newDocRef = db.collection("/users/").document(identity)
