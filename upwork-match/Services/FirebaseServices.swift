@@ -7,8 +7,10 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseAuth
 
 class FirebaseServices: NSObject {
+    
     let db = Firestore.firestore()
 
     func registerUser(username: String,identity: String, userFullname: String, gender: Gender?, bio: String = "", bithday: String? = nil, age: Int? = nil, loginType : Int, completion: ((Bool)->())?) {
@@ -42,6 +44,12 @@ class FirebaseServices: NSObject {
                     }
                 }
             }
+        }
+    }
+    
+    func deleteProfile(by uid: String) {
+        db.collection("/users/").document(uid).delete { eror in
+            
         }
     }
 }

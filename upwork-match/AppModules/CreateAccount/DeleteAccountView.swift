@@ -107,7 +107,12 @@ struct DeleteAccountView: View {
         guard let user = Auth.auth().currentUser else {
             return
         }
+        
+        
         isLoading = true
+        let fbServices = FirebaseServices()
+        fbServices.deleteProfile(by: user.uid)
+        
         user.delete { error in
             self.isLoading = false
 
@@ -116,6 +121,9 @@ struct DeleteAccountView: View {
             } else {
             // Account deleted.
                 self.isAccountDeleted = true
+                AppFlow.shared.isLoggedIn = false
+                
+                SessionManager.shared.clear()
 
             }
         }
