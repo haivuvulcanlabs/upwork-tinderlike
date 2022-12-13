@@ -12,7 +12,21 @@ import FirebaseAuth
 class FirebaseServices: NSObject {
     
     let db = Firestore.firestore()
+    func isExistProfile(uid: String, completion: ((Bool)->())?) {
+        let ref = db.collection("/users/").whereField("identity", in: [uid])
+        
+        ref.getDocuments { querysnapshot, errr in
+            if let doc = querysnapshot?.documents, !doc.isEmpty {
+               //"Document is present."
+                completion?(true)
+            } else {
+                //
+                completion?(false)
+            }
+        }
 
+    }
+    
     func registerUser(username: String,identity: String, userFullname: String, gender: Gender?, bio: String = "", bithday: String? = nil, age: Int? = nil, loginType : Int, completion: ((Bool)->())?) {
         let userName = String(username.split(separator: "@").first ?? "")
 //        let oneSignalID = SessionManager.shared.getStringValueForKey(key: Defaults.oneSignalUUID)

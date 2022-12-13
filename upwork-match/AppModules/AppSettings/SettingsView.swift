@@ -26,88 +26,90 @@ struct SettingsView: View {
             
             VStack {
                 BackButtonNavView(image: Asset.Assets.icBackRed.image, text: "SETTINGS")
-                VStack(spacing: 40){
-                    ForEach(0..<model.items.count,id: \.self) { index in
-                        let group = model.items[index]
-                        VStack(alignment: .leading, spacing: 10) {
-//                        GroupBox {
-                            HStack{
-                                Text(group.text)
-                                    .font(.openSans(.bold, fixedSize: 14))
-                                    .foregroundColor(Color(hex: "AFAFAF"))
-                                Spacer()
-                            }
-                            .frame(height: 25, alignment: .leading)
-                            
-                            VStack(){
-                                ForEach(0..<group.items.count, id:\.self) { index2 in
-                                    let setting = group.items[index2]
-                                    VStack(alignment: .center, spacing: 0) {
-                                        HStack(alignment: .center){
-                                            Text(setting.text)
-                                                .font(.roboto(.regular, fixedSize: 17))
-                                                .foregroundColor(Color(hex: "D7D7D7"))
-                                            Spacer()
-                                            Asset.Assets.icRightArrow.image
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 12, height: 12, alignment: .center)
-                                        }
-                                        .frame(height: 48, alignment: .leading)
-                                        .padding(.horizontal, 16)
-                                        .onTapGesture {
-                                            if setting == .pushNotification {
-                                                isPushSettingActive.toggle()
-                                            } else if setting == .deleteAccount {
-                                                isDeleteAccountActive.toggle()
+              
+                ScrollView {
+                    VStack(spacing: 40){
+                        ForEach(0..<model.items.count,id: \.self) { index in
+                            let group = model.items[index]
+                            VStack(alignment: .leading, spacing: 10) {
+    //                        GroupBox {
+                                HStack{
+                                    Text(group.text)
+                                        .font(.openSans(.bold, fixedSize: 14))
+                                        .foregroundColor(Color(hex: "AFAFAF"))
+                                    Spacer()
+                                }
+                                .frame(height: 25, alignment: .leading)
+                                
+                                VStack(){
+                                    ForEach(0..<group.items.count, id:\.self) { index2 in
+                                        let setting = group.items[index2]
+                                        VStack(alignment: .center, spacing: 0) {
+                                            HStack(alignment: .center){
+                                                Text(setting.text)
+                                                    .font(.roboto(.regular, fixedSize: 17))
+                                                    .foregroundColor(Color(hex: "D7D7D7"))
+                                                Spacer()
+                                                Asset.Assets.icRightArrow.image
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 12, height: 12, alignment: .center)
+                                            }
+                                            .frame(height: 48, alignment: .leading)
+                                            .padding(.horizontal, 16)
+                                            .onTapGesture {
+                                                if setting == .pushNotification {
+                                                    isPushSettingActive.toggle()
+                                                } else if setting == .deleteAccount {
+                                                    isDeleteAccountActive.toggle()
+                                                }
+                                            }
+                                            if index2 < group.items.count - 1 {
+                                               Divider()
+                                                    .frame(minWidth: 0, maxWidth: .infinity)
+                                                    .frame(height: 0.5)
+                                                    .overlay{
+                                                        Color(hex: "A5A5A5")
+                                                    }
                                             }
                                         }
-                                        if index2 < group.items.count - 1 {
-                                           Divider()
-                                                .frame(minWidth: 0, maxWidth: .infinity)
-                                                .frame(height: 0.5)
-                                                .overlay{
-                                                    Color(hex: "A5A5A5")
-                                                }
-                                        }
+                                        .frame(height: 48, alignment: .leading)
+
                                     }
-                                    .frame(height: 48, alignment: .leading)
-
                                 }
+                                .frame(height: CGFloat(group.items.count) * 48, alignment: .leading)
+                                .background(Color(hex: "2C2C2E"))
+
+                                .cornerRadius(13, corners: .allCorners)
                             }
-                            .frame(height: CGFloat(group.items.count) * 48, alignment: .leading)
-                            .background(Color(hex: "2C2C2E"))
+    //                        .groupBoxStyle(ColoredGroupBox())
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
 
-                            .cornerRadius(13, corners: .allCorners)
+
                         }
-//                        .groupBoxStyle(ColoredGroupBox())
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
-
-
-                    }
-                    
-                    Spacer()
-                    
-                    Button(action: {
                         
-                        model.signOut()
-                    }, label: {
                         Spacer()
-                        Text("Sign out")
-                            .multilineTextAlignment(.center)
-                            .font(.roboto(.regular, fixedSize: 17))
-                            .foregroundColor(Color(hex: "D7D7D7"))
-                            .frame(height: 48, alignment: .center)
-                        Spacer()
-                    })
+                        
+                        Button(action: {
+                            
+                            model.signOut()
+                        }, label: {
+                            Spacer()
+                            Text("Sign out")
+                                .multilineTextAlignment(.center)
+                                .font(.roboto(.regular, fixedSize: 17))
+                                .foregroundColor(Color(hex: "D7D7D7"))
+                                .frame(height: 48, alignment: .center)
+                            Spacer()
+                        })
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
+                        .padding(.horizontal, 16)
+                        .background(Color(hex: "2C2C2E"))
+                        .cornerRadius(13)
+                    }
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
-                    .padding(.horizontal, 16)
-                    .background(Color(hex: "2C2C2E"))
-                    .cornerRadius(13)
+                    .padding(EdgeInsets(top: 30, leading: 16, bottom: 0, trailing: 16))
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
-                .padding(EdgeInsets(top: 30, leading: 16, bottom: 0, trailing: 16))
-                Spacer()
             }
         }
         .myBackColor()

@@ -121,10 +121,7 @@ struct DeleteAccountView: View {
             } else {
             // Account deleted.
                 self.isAccountDeleted = true
-                AppFlow.shared.isLoggedIn = false
-                
                 SessionManager.shared.clear()
-
             }
         }
     }

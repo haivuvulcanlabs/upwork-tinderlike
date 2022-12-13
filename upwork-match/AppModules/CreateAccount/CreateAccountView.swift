@@ -13,11 +13,17 @@ struct CreateAccountView: View {
     @StateObject private var model = CreateAccountViewModel()
     @State private var showingBottomView: Bool = false
     @State private var scale = 1.0
-    
+    @State private var menuViewH: CGFloat = 400
     var body: some View {
         ZStack{
+            NavigationLink(isActive: $model.isActiveSignup) {
+                SignupView()
+            } label: {
+                
+            }
+
                 VStack {
-                    Image("ic-logo")
+                    Asset.Assets.icLogo.image
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80 * scale, height: 80 * scale, alignment: .center)
@@ -34,7 +40,6 @@ struct CreateAccountView: View {
                     Spacer()
                 }
             
-            VStack {
                 VStack {
                     Text("By continuing, you agree with the\nPrivacy Policy and Community Guidelines.")
                         .foregroundColor(Color(hex: "CCCCCC"))
@@ -63,14 +68,14 @@ struct CreateAccountView: View {
                     Divider()
                         .frame(height: Device.bottomSafeArea)
                 }
-                .offset(x:  0, y: !showingBottomView ? Device.height : Device.height - 600)
+                .offset(x:  0, y: !showingBottomView ? Device.height : Device.height - 500)
                 .onAppear{
                     withAnimation(.linear(duration: 1).speed(1)){
+                        
                         showingBottomView = true
                     }
-                }
+                
             }
-            
         }
         
         .myBackColor()

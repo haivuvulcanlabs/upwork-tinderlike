@@ -18,7 +18,8 @@ class CreateAccountViewModel: NSObject, ObservableObject {
     @AppStorage(Defaults.authToken) var authToken = ""
     @AppStorage("stored_date") var storedDate = ""
     @Published var isLoading = false
-    
+    @Published var isActiveSignup = false
+
     fileprivate var currentNonce: String?
     let db = Firestore.firestore()
     let firebaserService = FirebaseServices()
@@ -93,13 +94,12 @@ extension CreateAccountViewModel: ASAuthorizationControllerDelegate {
                 let userID = appleIDCredential.user
 //                000451.e81eed052aff45f9b8f83367b2c12162.0527
                 debugPrint("hai - signin - \(userID)")
-                let email =  appleIDCredential.email ?? "\(userID)@apple.com"
-                let firstName = appleIDCredential.fullName?.givenName
-                let lastName = appleIDCredential.fullName?.familyName
-                let fullName = "\(firstName ?? "John") \(lastName ?? "Deo")"
-                self.firebaserService.registerUser(username: email, identity: user.uid, userFullname: fullName, gender: nil, loginType: LoginType.apple.rawValue) { finished in
-                    if finished {
+               
+                self.firebaserService.isExistProfile(uid: user.uid) { exist in
+                    if exist {
                         AppFlow.shared.isLoggedIn = true
+                    } else {
+                        self.isActiveSignup.toggle()
                     }
                 }
             }

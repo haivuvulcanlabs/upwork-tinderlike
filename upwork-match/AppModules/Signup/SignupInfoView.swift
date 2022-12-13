@@ -77,6 +77,7 @@ struct SignupInfoView: View {
                     buildButton(with: "CONTINUE")
                         .opacity(model.isVerified ? 1 : 0.5)
                 }.disabled(!model.isVerified)
+                .KeyboardAwarePadding()
             }
             
             BottomSheet(isShowing: $model.imagePicker, bgColor: .clear, content: AnyView(cameraActionSheet))

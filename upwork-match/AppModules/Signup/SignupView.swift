@@ -11,7 +11,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct SignupView: View {
-    @State private var selectedTab = 0
+    @State private var selectedTab = 2
     @StateObject private var model = SignUpViewModel()
     
     var body: some View {
@@ -33,7 +33,16 @@ struct SignupView: View {
                             HStack {
                                 Spacer()
                                 Button {
-                                    selectedTab += 1
+                                    if selectedTab == 6 {
+                                        //profile images
+                                        SignUpViewModel.shared.onCreateProfile { finished in
+                                            if finished {
+                                                self.selectedTab += 1
+                                            }
+                                        }
+                                    } else {
+                                        selectedTab += 1
+                                    }
                                 } label: {
                                     Text("SKIP")
                                         .foregroundColor(MyColor.red)
@@ -47,15 +56,20 @@ struct SignupView: View {
                 }
                 
                 TabView(selection: $selectedTab) {
-                    InputPhoneNumberView(isLoginFlow: false, step: .inputPhone, tabIndex: $selectedTab).tag(0)
-                    InputPhoneNumberView(isLoginFlow: false, step: .inputCode, tabIndex: $selectedTab).tag(1)
+//                    InputPhoneNumberView(isLoginFlow: false, step: .inputPhone, tabIndex: $selectedTab).tag(0)
+//                    InputPhoneNumberView(isLoginFlow: false, step: .inputCode, tabIndex: $selectedTab).tag(1)
                     SignupInfoView(step: .name, tabIndex: $selectedTab).tag(2)                    .gesture(DragGesture())
                     
                     SignupInfoView(step: .birthday, tabIndex: $selectedTab).tag(3)
+                        .gesture(DragGesture())
                     SignupInfoView(step: .gender, tabIndex: $selectedTab).tag(4)
+                        .gesture(DragGesture())
                     SignupInfoView(step: .bio, tabIndex: $selectedTab).tag(5)
+                        .gesture(DragGesture())
                     SignupInfoView(step: .photo, tabIndex: $selectedTab).tag(6)
+                        .gesture(DragGesture())
                     WellcomeView().tag(7)
+                        .gesture(DragGesture())
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 
