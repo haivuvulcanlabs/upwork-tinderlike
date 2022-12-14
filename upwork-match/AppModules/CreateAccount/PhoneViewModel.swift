@@ -16,7 +16,8 @@ class PhoneViewModel: ObservableObject {
     @Published var isVerified: Bool = false
     @Published var phoneNumber: String = ""
     @Published var selectedCountry: Country = Country(phoneCode: "1", isoCode: "US")
-    
+    @Published var isShowSignupView: Bool = false
+
     var verificationID: String?
     var verificationCode: String?
 
@@ -24,7 +25,7 @@ class PhoneViewModel: ObservableObject {
         return "+\(selectedCountry.phoneCode + phoneNumber)"
     }
     
-    
+    private var fbServices = FirebaseServices()
     func onVerifyPhoneNumber(completion: ((Bool)->())?) {
         let phoneNumberWithCode = "+\(selectedCountry.phoneCode + phoneNumber)"
 
@@ -118,6 +119,18 @@ class PhoneViewModel: ObservableObject {
     
     func tappedResend() {
         
+    }
+    
+    func onCheckProfile() {
+        guard let currentUser = Auth.auth().currentUser else { return }
+        self.fbServices.isExistProfile(uid: currentUser.uid) { finished in
+            if finished {
+                self.errorMessage = "Phonenumber is registed"
+
+            } else {
+                self.isShowSignupView.toggle()
+            }
+        }
     }
     
     func clearSession() {

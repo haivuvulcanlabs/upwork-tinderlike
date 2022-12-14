@@ -52,7 +52,7 @@ struct CreateAccountView: View {
                     }
 
                     NavigationLink {
-                        SignupView()
+                        SignInView(isLoginFlow: false)
                     } label: {
                         buildButton(with: "CREATE ACCOUNT")
                     }
@@ -64,23 +64,20 @@ struct CreateAccountView: View {
                         buildButton(with: "SIGN IN")
                     }
                     
-                    
                     Divider()
                         .frame(height: Device.bottomSafeArea)
                 }
-                .offset(x:  0, y: !showingBottomView ? Device.height : Device.height - 500)
+                .offset(x:  0, y: !showingBottomView ? Device.height : Device.height - (Device.hasTopNoth ? 580 : 500))
                 .onAppear{
                     withAnimation(.linear(duration: 1).speed(1)){
                         
                         showingBottomView = true
                     }
-                
             }
         }
-        
+        .ignoresSafeArea(.all)
         .myBackColor()
     }
-
 }
 
 extension View {

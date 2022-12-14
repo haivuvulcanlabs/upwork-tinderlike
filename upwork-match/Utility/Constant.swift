@@ -40,7 +40,9 @@ struct Device {
     static let bottomSafeArea = getBottomSafeArea()
     static var width = UIScreen.main.bounds.width
     static var height = UIScreen.main.bounds.height
-    
+    static var hasTopNoth: Bool {
+        return UIScreen.main.bounds.height >= 812
+    }
     
     static func getTopSafeArea() -> CGFloat {
         if #available(iOS 13.0, *) {
@@ -56,6 +58,8 @@ struct Device {
             return UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0.0
         }
     }
+    
+   
 }
 
 

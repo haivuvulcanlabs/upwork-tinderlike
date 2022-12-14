@@ -26,6 +26,12 @@ struct InputPhoneNumberView: View {
     var body: some View {
         
         ZStack {
+            NavigationLink(isActive: $model.isShowSignupView) {
+                SignupView()
+            } label: {
+                
+            }
+
             VStack {
                 if step == .inputPhone {
                     Text("Enter your mobile\nnumber")
@@ -112,6 +118,7 @@ struct InputPhoneNumberView: View {
                                 if finished {
                                     //go to next step
                                     tabIndex = 2
+                                    model.onCheckProfile()
                                 }
                             }
                            
@@ -126,7 +133,6 @@ struct InputPhoneNumberView: View {
             }
             BottomSheet(isShowing: $isShowPhonePicker, content: AnyView(phonePicker))
         }
-//        .adaptsToKeyboard()
         .myBackColor()
     }
     
