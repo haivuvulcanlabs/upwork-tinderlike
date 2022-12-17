@@ -22,7 +22,7 @@ class AppDelegate: NSObject,UIApplicationDelegate {
         FirebaseApp.configure()
         registerForPushNotifications()
         PurchaseViewModel.shared.loadProducts()
-
+        
         return true
     }
     

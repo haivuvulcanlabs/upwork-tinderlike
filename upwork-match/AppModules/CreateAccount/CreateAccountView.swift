@@ -67,7 +67,7 @@ struct CreateAccountView: View {
                     Divider()
                         .frame(height: Device.bottomSafeArea)
                 }
-                .offset(x:  0, y: !showingBottomView ? Device.height : Device.height - (Device.hasTopNoth ? 580 : 500))
+                .offset(x:  0, y: !showingBottomView ? Device.height : Device.height - (Device.hasTopNoth ? 580 : 500) - Device.bottomSafeArea)
                 .onAppear{
                     withAnimation(.linear(duration: 1).speed(1)){
                         

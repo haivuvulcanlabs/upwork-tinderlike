@@ -19,6 +19,9 @@ struct ChatMessage: Identifiable {
 
 
 struct FSUser : Hashable,Codable {
+    static let randomUser: FSUser = FSUser(date: Date().timeIntervalSince1970, user_image: "", is_new_msg: true, selected: false, user_identity: UUID().uuidString, user_name: "sara", age: "20", user_id: 1, is_verified: true, full_name: "Sara")
+
+    
     static func == (lhs: FSUser, rhs: FSUser) -> Bool {
         return lhs.date == rhs.date && lhs.date == rhs.date && lhs.date == rhs.date
     }
@@ -34,6 +37,4 @@ struct FSUser : Hashable,Codable {
     var user_id: Int
     var is_verified : Bool
     var full_name : String
-    
-    static let randomUser: FSUser = FSUser(date: Date().timeIntervalSince1970, user_image: "", is_new_msg: true, selected: false, user_identity: UUID().uuidString, user_name: "sara", age: "20", user_id: 1, is_verified: true, full_name: "Sara")
 }
